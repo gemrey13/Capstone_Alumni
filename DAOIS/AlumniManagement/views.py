@@ -4,6 +4,7 @@ from .models import *
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from io import BytesIO
 import io
 import base64
 
@@ -79,11 +80,34 @@ def related_job(request):
     # Perform the analysis
     df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
 
-    # Convert the DataFrame to HTML
-    html_table = df.to_html(classes='table')
+    count_df = df['Job Related to Course'].value_counts().reset_index()
+    count_df.columns = ['Related to Course', 'Count']
+
+    if True not in count_df['Related to Course'].values:
+        count_df = pd.concat([count_df, pd.DataFrame({'Related to Course': [True], 'Count': [0]})], ignore_index=True)
+
+    count_df['Percentage'] = count_df['Count'] / count_df['Count'].sum() * 100
+
+    plt.pie(count_df['Percentage'], labels=count_df['Related to Course'], autopct='%1.1f%%', startangle=90)
+    plt.title('Job Related to Course Analysis')
+
+
+    # Save the plot to a BytesIO object
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_data = buffer.getvalue()
+    buffer.close()
+
+    # Convert the plot data to a base64 encoded string
+    encoded_plot = base64.b64encode(plot_data).decode('utf-8')
+    # # Convert the DataFrame to HTML
+    # html_table = df.to_html(classes='table')
 
     # Pass the HTML table to the template context
-    context = {'html_table': html_table}
+    # context = {'html_table': html_table}
+
+    context = {'encoded_plot': encoded_plot}
     return render(request, 'AlumniManagement/job.html', context)
 
 	
