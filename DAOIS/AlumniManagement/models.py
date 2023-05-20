@@ -8,6 +8,9 @@ class Course(models.Model):
     course_name = models.CharField(max_length=64, blank=False)
     course_desc = models.CharField(max_length=255, blank=True)
 
+    def __str__(self):
+        return f'{self.course_id}'
+
 class Alumni_Demographic_Profile(models.Model):
     alumni_id = models.CharField(primary_key=True, max_length=6)
     fname = models.CharField(max_length=64)
@@ -18,6 +21,9 @@ class Alumni_Demographic_Profile(models.Model):
     religion = models.CharField(max_length=64)
     marital_status = models.CharField(max_length=64)
     date_of_birth = models.CharField(max_length=64)
+
+    def __str__(self):
+        return f'{self.fname} {self.lname}'
 
 class Current_Job(models.Model):
     current_job_id = models.CharField(primary_key=True, max_length=6)
@@ -40,10 +46,13 @@ class Previous_Job(models.Model):
 
 
 class Curriculum(models.Model):
-    curriculum_id = models.CharField(max_length=10, primary_key=True)
-    curriculum_name = models.CharField(max_length=64, blank=False)
+    curriculum_id = models.CharField(max_length=6, primary_key=True)
+    curriculum_name = models.CharField(max_length=255, blank=False)
     description = models.CharField(max_length=255, blank=True)
     year = models.CharField(max_length=4, blank=False)
+
+    def __str__(self):
+        return self.curriculum_name
 
 
 class Segment(models.Model):
