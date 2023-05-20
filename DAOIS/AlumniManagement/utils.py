@@ -1,7 +1,34 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
+import io
 import base64
+
+def create_job_status_chart(total_alumni_count, jobless_alumni_count):
+    employed_alumni_count = total_alumni_count - jobless_alumni_count
+
+    # Calculate the percentages
+    jobless_percentage = (jobless_alumni_count / total_alumni_count) * 100
+    employed_percentage = 100 - jobless_percentage
+
+    # Create the pie chart
+    labels = ['Jobless Alumni', 'Employed Alumni']
+    sizes = [jobless_percentage, employed_percentage]
+    explode = (0.1, 0)  # Explode the 'Jobless Alumni' slice
+    colors = ['#ff9999', '#66b3ff']
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
+    plt.title('Alumni Job Status')
+
+    # Convert the plot to an image for rendering in the template
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    plt.close()
+
+    return jobless_percentage, employed_percentage, image_base64
+
 
 def perform_related_job_analysis(alumni, current_jobs, courses):
     # Create lists to store the fetched data
