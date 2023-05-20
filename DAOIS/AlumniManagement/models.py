@@ -52,7 +52,7 @@ class Alumni_Demographic_Profile(models.Model):
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE, default='BSIT')
 
     def __str__(self):
-        return f'{self.fname} {self.lname}'
+        return f'{self.alumni_id} | {self.fname} {self.lname}'
 
 class Current_Job(models.Model):
     current_job_id = models.CharField(primary_key=True, max_length=6)
@@ -65,7 +65,7 @@ class Current_Job(models.Model):
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.job_title
+        return f'{self.current_job_id} {self.job_title} {self.alumni}'
 
 class Previous_Job(models.Model):
     previous_job_id = models.CharField(primary_key=True, max_length=10)

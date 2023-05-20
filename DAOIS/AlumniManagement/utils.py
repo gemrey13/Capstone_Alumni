@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+
 from io import BytesIO
 import io
 import base64
@@ -16,7 +17,7 @@ def create_job_status_chart(total_alumni_count, jobless_alumni_count):
     sizes = [jobless_percentage, employed_percentage]
     explode = (0.1, 0)  # Explode the 'Jobless Alumni' slice
     colors = ['#ff9999', '#66b3ff']
-    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+    plt.pie(sizes, shadow=True,explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
     plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
     plt.title('Alumni Job Status')
 
@@ -50,6 +51,8 @@ def perform_related_job_analysis(alumni, current_jobs, courses):
         'Current Job': current_job_data,
         'Course': course_data
     }
+
+    print(current_job_data)
     df = pd.DataFrame(data)
 
     # Perform the analysis
@@ -67,7 +70,7 @@ def perform_related_job_analysis(alumni, current_jobs, courses):
     counts = [related_count, non_related_count]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=90)
+    plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=50)
     plt.title('Job Related to Course Analysis')
 
     # Save the plot to a BytesIO object

@@ -3,14 +3,6 @@ from .models import *
 from .utils import *
 
 
-import pandas as pd
-import matplotlib.pyplot as plt
-
-
-from io import BytesIO
-import io
-import base64
-
 
 # def job_count(request):
 #     # alumni_id = "A10002"
@@ -60,10 +52,12 @@ def dashboard(request):
 
     context = {
         'jobless_percentage': jobless_percentage,
+        'employed_percentage': employed_percentage,
         'image_base64': image_base64,
     }
 
     return render(request, 'AlumniManagement/Dashboard.html', context)
+
 
 def related_job(request):
     alumni = Alumni_Demographic_Profile.objects.all()
