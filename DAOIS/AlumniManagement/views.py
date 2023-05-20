@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from .models import *
+from .utils import perform_related_job_analysis
+
 
 import pandas as pd
 import matplotlib.pyplot as plt
+
 
 from io import BytesIO
 import io
@@ -10,12 +13,12 @@ import base64
 
 
 def dashboard(request):
-    alumni_id = "A10002"
-    job_exists = Current_Job.objects.filter(alumni_id=alumni_id).exists()
-    if job_exists:
-    	print("has a job")
-    else:
-    	print("No job")
+    # alumni_id = "A10002"
+    # job_exists = Current_Job.objects.filter(alumni_id=alumni_id).exists()
+    # if job_exists:
+    # 	print("has a job")
+    # else:
+    # 	print("No job")
 
     total_alumni_count = Alumni_Demographic_Profile.objects.count()
 
@@ -51,65 +54,74 @@ def dashboard(request):
 
 
 def related_job(request):
-	# Fetch the required data from the models
     alumni = Alumni_Demographic_Profile.objects.all()
     current_jobs = Current_Job.objects.select_related('alumni').all()
     courses = Course.objects.all()
 
-    # Create lists to store the fetched data
-    alumni_data = []
-    current_job_data = []
-    course_data = []
-
-    # Populate the lists with the fetched data
-    for alum in alumni:
-        alumni_data.append(alum)
-        current_job = current_jobs.filter(alumni=alum).first()
-        current_job_data.append(current_job)
-        course = courses.filter(course_id=alum.course_id_id).first()
-        course_data.append(course)
-
-    # Create a DataFrame from the fetched data
-    data = {
-        'Alumni': alumni_data,
-        'Current Job': current_job_data,
-        'Course': course_data
-    }
-    df = pd.DataFrame(data)
-
-    # Perform the analysis
-    df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
-
-    count_df = df['Job Related to Course'].value_counts().reset_index()
-    count_df.columns = ['Related to Course', 'Count']
-
-    if True not in count_df['Related to Course'].values:
-        count_df = pd.concat([count_df, pd.DataFrame({'Related to Course': [True], 'Count': [0]})], ignore_index=True)
-
-    count_df['Percentage'] = count_df['Count'] / count_df['Count'].sum() * 100
-
-    plt.pie(count_df['Percentage'], labels=count_df['Related to Course'], autopct='%1.1f%%', startangle=90)
-    plt.title('Job Related to Course Analysis')
-
-
-    # Save the plot to a BytesIO object
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    plot_data = buffer.getvalue()
-    buffer.close()
-
-    # Convert the plot data to a base64 encoded string
-    encoded_plot = base64.b64encode(plot_data).decode('utf-8')
-    # # Convert the DataFrame to HTML
-    # html_table = df.to_html(classes='table')
-
-    # Pass the HTML table to the template context
-    # context = {'html_table': html_table}
+    encoded_plot = perform_related_job_analysis(alumni, current_jobs, courses)
 
     context = {'encoded_plot': encoded_plot}
     return render(request, 'AlumniManagement/job.html', context)
 
-	
-    
-   
+
+
+
+
+# def related_job(request):
+#     # Fetch the required data from the models
+#     alumni = Alumni_Demographic_Profile.objects.all()
+#     current_jobs = Current_Job.objects.select_related('alumni').all()
+#     courses = Course.objects.all()
+
+#     # Create lists to store the fetched data
+#     alumni_data = []
+#     current_job_data = []
+#     course_data = []
+
+#     # Populate the lists with the fetched data
+#     for alum in alumni:
+#         alumni_data.append(alum)
+#         current_job = current_jobs.filter(alumni=alum).first()
+#         current_job_data.append(current_job)
+#         course = courses.filter(course_id=alum.course_id_id).first()
+#         course_data.append(course)
+
+#     # Create a DataFrame from the fetched data
+#     data = {
+#         'Alumni': alumni_data,
+#         'Current Job': current_job_data,
+#         'Course': course_data
+#     }
+#     df = pd.DataFrame(data)
+
+#     # Perform the analysis
+#     df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
+
+#     # Filtering out None values
+#     filtered_jobs = df.dropna(subset=['Job Related to Course'])
+
+#     # Counting related and non-related jobs
+#     related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == True].shape[0]
+#     non_related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == False].shape[0]
+
+#     # Create the pie chart
+#     labels = ['Related to Course', 'Not Related to Course']
+#     counts = [related_count, non_related_count]
+
+#     plt.figure(figsize=(8, 6))
+#     plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=90)
+#     plt.title('Job Related to Course Analysis')
+
+#     # Save the plot to a BytesIO object
+#     buffer = BytesIO()
+#     plt.savefig(buffer, format='png')
+#     buffer.seek(0)
+#     plot_data = buffer.getvalue()
+#     buffer.close()
+
+#     # Convert the plot data to a base64 encoded string
+#     encoded_plot = base64.b64encode(plot_data).decode('utf-8')
+
+#     # Pass the encoded plot to the template context
+#     context = {'encoded_plot': encoded_plot}
+#     return render(request, 'AlumniManagement/job.html', context)
