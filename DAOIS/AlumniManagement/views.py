@@ -48,40 +48,44 @@ def dashboard(request):
 
     return render(request, 'AlumniManagement/Dashboard.html', context)
 
-# def dashboard(request):
-# 	query = """
-# 		SELECT a.alumni_id, a.fname, a.lname
-# 	    FROM Alumni_Demographic_Profile AS a
-# 	    LEFT JOIN Current_Job AS cj ON a.alumni_id = cj.alumni_id
-# 	    WHERE cj.current_job_id IS NULL
-#     """
-#     df = pd.read_sql_query(query, connection)
 
+def related_job(request):
+	# Fetch the required data from the models
+    alumni = Alumni_Demographic_Profile.objects.all()
+    current_jobs = Current_Job.objects.select_related('alumni').all()
+    courses = Course.objects.all()
+
+    # Create lists to store the fetched data
+    alumni_data = []
+    current_job_data = []
+    course_data = []
+
+    # Populate the lists with the fetched data
+    for alum in alumni:
+        alumni_data.append(alum)
+        current_job = current_jobs.filter(alumni=alum).first()
+        current_job_data.append(current_job)
+        course = courses.filter(course_id=alum.course_id_id).first()
+        course_data.append(course)
+
+    # Create a DataFrame from the fetched data
+    data = {
+        'Alumni': alumni_data,
+        'Current Job': current_job_data,
+        'Course': course_data
+    }
+    df = pd.DataFrame(data)
+
+    # Perform the analysis
+    df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
+
+    # Convert the DataFrame to HTML
+    html_table = df.to_html(classes='table')
+
+    # Pass the HTML table to the template context
+    context = {'html_table': html_table}
+    return render(request, 'AlumniManagement/job.html', context)
+
+	
     
-    
-
-#     # Count the number of alumni without jobs
-#     jobless_count = len(df)
-
-#     # Plot the count
-#     plt.bar(["Alumni without Job"], [jobless_count])
-#     plt.xlabel("Job Status")
-#     plt.ylabel("Count")
-#     plt.title("Number of Alumni without Jobs")
-
-#     # Convert the plot to an image for rendering in the template
-#     buffer = io.BytesIO()
-#     plt.savefig(buffer, format='png')
-#     buffer.seek(0)
-#     image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-#     plt.close()
-
-
-
-# 	alumni = pd.DataFrame(Alumni_Demographic_Profile.objects.all().values())
-
-# 	return render(request, 'AlumniManagement/Dashboard.html', {
-# 		'alumni': alumni.to_html(),
-# 		'jobless_count': jobless_count,
-#         'image_base64': image_base64,
-# 		})
+   
