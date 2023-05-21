@@ -4,45 +4,6 @@ from .utils import *
 
 
 
-# def job_count(request):
-#     # alumni_id = "A10002"
-#     # job_exists = Current_Job.objects.filter(alumni_id=alumni_id).exists()
-#     # if job_exists:
-#     # 	print("has a job")
-#     # else:
-#     # 	print("No job")
-
-#     total_alumni_count = Alumni_Demographic_Profile.objects.count()
-
-#     jobless_alumni_count = Alumni_Demographic_Profile.objects.filter(current_job__isnull=True).count()
-#     employed_alumni_count = total_alumni_count - jobless_alumni_count
-
-#     # Calculate the percentages
-#     jobless_percentage = (jobless_alumni_count / total_alumni_count) * 100
-#     employed_percentage = 100 - jobless_percentage
-
-#     # Create the pie chart
-#     labels = ['Jobless Alumni', 'Employed Alumni']
-#     sizes = [jobless_percentage, employed_percentage]
-#     explode = (0.1, 0)  # Explode the 'Jobless Alumni' slice
-#     colors = ['#ff9999', '#66b3ff']
-#     plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
-#     plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
-#     plt.title('Alumni Job Status')
-
-#     # Convert the plot to an image for rendering in the template
-#     buffer = io.BytesIO()
-#     plt.savefig(buffer, format='png')
-#     buffer.seek(0)
-#     image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-#     plt.close()
-
-#     context = {
-#         'jobless_percentage': jobless_percentage,
-#         'image_base64': image_base64,
-#     }
-
-#     return render(request, 'AlumniManagement/Dashboard.html', context)
 
 def dashboard(request):
     total_alumni_count = Alumni_Demographic_Profile.objects.count()
@@ -54,6 +15,7 @@ def dashboard(request):
         'jobless_percentage': jobless_percentage,
         'employed_percentage': employed_percentage,
         'image_base64': image_base64,
+        'total_alumni_count': total_alumni_count,
     }
 
     return render(request, 'AlumniManagement/Dashboard.html', context)
