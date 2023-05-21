@@ -95,15 +95,10 @@ class Segment(models.Model):
     curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
 
 
-
-class Graduate(models.Model):
-    graduate_id = models.CharField(max_length=6, primary_key=True)
-    graduation_date = models.DateField()
-    degree = models.CharField(max_length=64)
-    honor = models.CharField(max_length=64)
-
 class Educational_Attainment(models.Model):
+    graduate_id = models.CharField(max_length=6, primary_key=True)
     alumni_id = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE)
-    graduate_id = models.ForeignKey(Graduate, on_delete=models.CASCADE)
-    
+    # graduate_id = models.ForeignKey(Graduate, on_delete=models.CASCADE)
+    graduation_date = models.DateField(default='2021-02-05')
+    honor = models.CharField(max_length=64, blank=True)
 
