@@ -95,7 +95,7 @@ class Segment(models.Model):
     curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
 
 
-class Educational_Attainment(models.Model):
+class Graduate(models.Model):
     graduate_id = models.CharField(max_length=6, primary_key=True)
     alumni_id = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE)
     # graduate_id = models.ForeignKey(Graduate, on_delete=models.CASCADE)

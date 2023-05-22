@@ -20,6 +20,7 @@ def create_job_status_chart(total_alumni_count, jobless_alumni_count):
     sizes = [jobless_percentage, employed_percentage]
     explode = (0.1, 0)  # Explode the 'Jobless Alumni' slice
     colors = ['#ff9999', '#66b3ff']
+    plt.figure()
     plt.pie(sizes, shadow=True,explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
     plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
     plt.title('Alumni Job Status')
@@ -93,14 +94,14 @@ def calculate_num_students_with_job(course_id):
     # Fetch data from Django models and create DataFrames
     alumni_data = list(Alumni_Demographic_Profile.objects.all().values())
     current_job_data = list(Current_Job.objects.all().values())
-    educational_attainment_data = list(Educational_Attainment.objects.all().values())
+    graduate_data = list(Graduate.objects.all().values())
 
     alumni_df = pd.DataFrame(alumni_data)
     current_job_df = pd.DataFrame(current_job_data)
-    educational_attainment_df = pd.DataFrame(educational_attainment_data)
+    graduate_df = pd.DataFrame(graduate_data)
 
-    # Merge alumni_df and educational_attainment_df on alumni_id
-    merged_df = pd.merge(alumni_df, educational_attainment_df, left_on='alumni_id', right_on='alumni_id_id')
+    # Merge alumni_df and graduate_df on alumni_id
+    merged_df = pd.merge(alumni_df, graduate_df, left_on='alumni_id', right_on='alumni_id_id')
 
     # Calculate the date six months after graduation
     merged_df['graduation_date'] = pd.to_datetime(merged_df['graduation_date'])

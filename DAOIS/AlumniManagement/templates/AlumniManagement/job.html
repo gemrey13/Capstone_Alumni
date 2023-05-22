@@ -8,11 +8,21 @@
     <!-- Render the HTML table in the template -->
     {{ html_table | safe }}
 
-    <img src="data:image/png;base64,{{ encoded_plot }}" alt="Job Related to Course Analysis">
+    <img src="data:image/png;base64,{{ similar_job }}" alt="Job Related to Course Analysis">
     <hr>
 
-    <h1>Number of Students from the Specific Course with a Job within Six Months of Graduation:</h1>
-    <p>{{ num_students }}</p>
-    
+    <h1>Number of Students from the BSIT Course with a Job within Six Months of Graduation: {{ num_student_bsit }}</h1>
+    <h1>Number of Students from the BSA Course with a Job within Six Months of Graduation: {{ num_student_bsa }}</h1>
+    <div>
+        <h2>Number of Students with Job within 6 Months by Course</h2>
+        <img src="data:image/png;base64,{{ encoded_plot }}" alt="Plot">
+    </div>
+    <div>
+        <h2>Number of Students with Job for Specific Courses</h2>
+        <ul>
+            <li>BSIT: {{ num_student_bsit }}</li>
+            <li>BSA: {{ num_student_bsa }}</li>
+        </ul>
+    </div>
 </body>
 </html>
