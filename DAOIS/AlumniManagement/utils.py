@@ -1,9 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from datetime import timedelta
 from io import BytesIO
 import io
 import base64
+
+from .models import *
 
 def create_job_status_chart(total_alumni_count, jobless_alumni_count):
     employed_alumni_count = total_alumni_count - jobless_alumni_count
@@ -84,3 +87,33 @@ def perform_related_job_analysis(alumni, current_jobs, courses):
     encoded_plot = base64.b64encode(plot_data).decode('utf-8')
 
     return encoded_plot
+
+
+def calculate_num_students_with_job(course_id):
+    # Fetch data from Django models and create DataFrames
+    alumni_data = list(Alumni_Demographic_Profile.objects.all().values())
+    current_job_data = list(Current_Job.objects.all().values())
+    educational_attainment_data = list(Educational_Attainment.objects.all().values())
+
+    alumni_df = pd.DataFrame(alumni_data)
+    current_job_df = pd.DataFrame(current_job_data)
+    educational_attainment_df = pd.DataFrame(educational_attainment_data)
+
+    # Merge alumni_df and educational_attainment_df on alumni_id
+    merged_df = pd.merge(alumni_df, educational_attainment_df, left_on='alumni_id', right_on='alumni_id_id')
+
+    # Calculate the date six months after graduation
+    merged_df['graduation_date'] = pd.to_datetime(merged_df['graduation_date'])
+    merged_df['six_months_after_graduation'] = merged_df['graduation_date'] + timedelta(days=180)
+
+    # Merge with current_job_df on alumni_id and filter by specific course
+    filtered_df = pd.merge(merged_df, current_job_df, left_on='alumni_id', right_on='alumni_id')
+    filtered_df = filtered_df[filtered_df['course_id_id'] == course_id]
+
+    # Filter the students with a job within six months of graduation
+    filtered_df = filtered_df[filtered_df['start_date'] <= filtered_df['six_months_after_graduation']]
+
+    # Count the number of students
+    num_students_with_job_within_six_months = len(filtered_df)
+
+    return num_students_with_job_within_six_months
