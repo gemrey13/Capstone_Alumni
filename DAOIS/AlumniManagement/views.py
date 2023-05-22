@@ -28,27 +28,9 @@ def related_job(request):
 
     similar_job = perform_related_job_analysis(alumni, current_jobs, courses)
 
+
     # have job within 6 months upon graduation
-    course_bsit = 'BSIT'  # Replace with the desired course ID
-    course_bsa = 'BSA'
-    num_student_bsit = calculate_num_students_with_job(course_bsit)
-    num_student_bsa = calculate_num_students_with_job(course_bsa)
-
-    courses_list = ["BSIT", "BSA"]
-    num_students_list = [num_student_bsit, num_student_bsa]  # Add more values if needed
-
-    plt.figure()
-
-    plt.bar(courses_list, num_students_list)
-    plt.xlabel('Course')
-    plt.ylabel('Number of Students with Job')
-    plt.title('Number of Students with Job within 6 Months by Course')
-
-    # Save the plot to a BytesIO object
-    plot_buffer = io.BytesIO()
-    plt.savefig(plot_buffer, format='png')
-    plot_buffer.seek(0)
-    encoded_plot = base64.b64encode(plot_buffer.read()).decode('utf-8')
+    encoded_plot, num_student_bsit, num_student_bsa = job_within_six_months_plot()
 
     context = {
         'similar_job': similar_job,
