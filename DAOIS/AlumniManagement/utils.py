@@ -119,21 +119,33 @@ def calculate_num_students_with_job(course_id):
     return num_students_with_job_within_six_months
 
 
+def calculate_total_students(course_id):
+    total_students = Alumni_Demographic_Profile.objects.filter(course_id=course_id).count()
+    return total_students if total_students > 0 else 0
+
+
 def job_within_six_months_plot():
     course_bsit = 'BSIT'  # Replace with the desired course ID
     course_bsa = 'BSA'
-    num_student_bsit = calculate_num_students_with_job(course_bsit)
-    num_student_bsa = calculate_num_students_with_job(course_bsa)
+
+    total_students_bsit = calculate_total_students(course_bsit)
+    total_students_bsa = calculate_total_students(course_bsa)
+
+    job_students_bsit = calculate_num_students_with_job(course_bsit)
+    job_students_bsa = calculate_num_students_with_job(course_bsa)
+
+    percent_students_bsit = (job_students_bsit / total_students_bsit) * 100 if total_students_bsit != 0 else 0
+    percent_students_bsa = (job_students_bsa / total_students_bsa) * 100 if total_students_bsa != 0 else 0
 
     courses_list = ["BSIT", "BSA"]
-    num_students_list = [num_student_bsit, num_student_bsa]  # Add more values if needed
+    num_students_list = [job_students_bsit, job_students_bsa]  # Add more values if needed
 
     plt.figure()
 
     plt.bar(courses_list, num_students_list)
     plt.xlabel('Course')
     plt.ylabel('Number of Students with Job')
-    plt.title('Number of Students with Job within 6 Months by Course')
+    plt.title('Percentage of Graduate Students with Job within 6 Months by Course')
 
     # Save the plot to a BytesIO object
     plot_buffer = io.BytesIO()
@@ -141,4 +153,4 @@ def job_within_six_months_plot():
     plot_buffer.seek(0)
     encoded_plot = base64.b64encode(plot_buffer.read()).decode('utf-8')
 
-    return encoded_plot, num_student_bsit, num_student_bsa
+    return encoded_plot, percent_students_bsit, percent_students_bsa

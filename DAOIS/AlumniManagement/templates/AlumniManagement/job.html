@@ -11,14 +11,14 @@
     <img src="data:image/png;base64,{{ similar_job }}" alt="Job Related to Course Analysis">
     <hr>
 
-        <h2>Number of Students with Job within 6 Months by Course</h2>
+        <h2>Number of Students with Job for Specific Courses within 6 Months by Course</h2>
         <img src="data:image/png;base64,{{ encoded_plot }}" alt="Plot">
     
     <div>
         <h2>Number of Students with Job for Specific Courses</h2>
         <ul>
-            <li>BSIT: {{ num_student_bsit }}</li>
-            <li>BSA: {{ num_student_bsa }}</li>
+            <li>BSIT: {{ percent_students_bsit }}</li>
+            <li>BSA: {{ percent_students_bsa }}</li>
         </ul>
     </div>
 </body>
