@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import date
+
 
 FIELD_CHOICES = [
         ('technology', 'Technology'),
@@ -48,11 +50,18 @@ class Alumni_Demographic_Profile(models.Model):
     address = models.CharField(max_length=64)
     religion = models.CharField(max_length=64)
     marital_status = models.CharField(max_length=64)
-    date_of_birth = models.CharField(max_length=64)
+    date_of_birth = models.DateField()
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE, default='BSIT')
 
     def __str__(self):
         return f'{self.alumni_id} | {self.fname} {self.lname}'
+
+    def age(self):
+        today = date.today()
+        age = today.year - self.date_of_birth.year
+        if today.month < self.date_of_birth.month or (today.month == self.date_of_birth.month and today.day < self.date_of_birth.day):
+            age -= 1
+        return age
 
 class Current_Job(models.Model):
     current_job_id = models.CharField(primary_key=True, max_length=6)
