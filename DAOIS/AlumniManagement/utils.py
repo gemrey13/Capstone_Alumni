@@ -35,58 +35,102 @@ def create_job_status_chart(total_alumni_count, jobless_alumni_count):
     return jobless_percentage, employed_percentage, image_base64
 
 
+# def perform_related_job_analysis(alumni, current_jobs, courses):
+#     # Create lists to store the fetched data
+#     alumni_data = []
+#     current_job_data = []
+#     course_data = []
+
+#     # Populate the lists with the fetched data
+#     for alum in alumni:
+#         alumni_data.append(alum)
+#         current_job = current_jobs.filter(alumni=alum).first()
+#         current_job_data.append(current_job)
+#         course = courses.filter(course_id=alum.course_id_id).first()
+#         course_data.append(course)
+
+#     # Create a DataFrame from the fetched data
+#     data = {
+#         'Alumni': alumni_data,
+#         'Current Job': current_job_data,
+#         'Course': course_data
+#     }
+
+#     df = pd.DataFrame(data)
+
+#     # Perform the analysis
+#     df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
+
+#     # Filtering out None values
+#     filtered_jobs = df.dropna(subset=['Job Related to Course'])
+
+#     # Counting related and non-related jobs
+#     related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == True].shape[0]
+#     non_related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == False].shape[0]
+
+#     # Create the pie chart
+#     labels = ['Related to Course', 'Not Related to Course']
+#     counts = [related_count, non_related_count]
+
+#     plt.figure(figsize=(8, 6))
+#     plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=50)
+#     plt.title('Job Related to Course Analysis')
+
+#     # Save the plot to a BytesIO object
+#     buffer = BytesIO()
+#     plt.savefig(buffer, format='png')
+#     buffer.seek(0)
+#     plot_data = buffer.getvalue()
+#     buffer.close()
+
+#     # Convert the plot data to a base64 encoded string
+#     encoded_plot = base64.b64encode(plot_data).decode('utf-8')
+
+#     return encoded_plot
 def perform_related_job_analysis(alumni, current_jobs, courses):
-    # Create lists to store the fetched data
-    alumni_data = []
-    current_job_data = []
-    course_data = []
+    # Create a dictionary to store the analysis results for each course
+    course_analysis = {}
 
-    # Populate the lists with the fetched data
-    for alum in alumni:
-        alumni_data.append(alum)
-        current_job = current_jobs.filter(alumni=alum).first()
-        current_job_data.append(current_job)
-        course = courses.filter(course_id=alum.course_id_id).first()
-        course_data.append(course)
+    # Iterate over each course
+    for course in courses:
+        # Create lists to store the fetched data for the current course
+        alumni_data = []
+        current_job_data = []
+        course_data = []
 
-    # Create a DataFrame from the fetched data
-    data = {
-        'Alumni': alumni_data,
-        'Current Job': current_job_data,
-        'Course': course_data
-    }
+        # Populate the lists with the fetched data for the current course
+        for alum in alumni.filter(course_id=course.course_id):
+            alumni_data.append(alum)
+            current_job = current_jobs.filter(alumni=alum).first()
+            current_job_data.append(current_job)
+            course_data.append(course)
 
-    df = pd.DataFrame(data)
+        # Create a DataFrame from the fetched data for the current course
+        data = {
+            'Alumni': alumni_data,
+            'Current Job': current_job_data,
+            'Course': course_data
+        }
 
-    # Perform the analysis
-    df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
+        df = pd.DataFrame(data)
 
-    # Filtering out None values
-    filtered_jobs = df.dropna(subset=['Job Related to Course'])
+        # Perform the analysis for the current course
+        df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
 
-    # Counting related and non-related jobs
-    related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == True].shape[0]
-    non_related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == False].shape[0]
+        # Filtering out None values
+        filtered_jobs = df.dropna(subset=['Job Related to Course'])
 
-    # Create the pie chart
-    labels = ['Related to Course', 'Not Related to Course']
-    counts = [related_count, non_related_count]
+        # Counting related and non-related jobs
+        related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == True].shape[0]
+        non_related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == False].shape[0]
 
-    plt.figure(figsize=(8, 6))
-    plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=50)
-    plt.title('Job Related to Course Analysis')
+        # Store the analysis results for the current course in the dictionary
+        course_analysis[course.course_name] = {
+            'Related_Jobs': related_count,
+            'Non_related_Jobs': non_related_count
+        }
 
-    # Save the plot to a BytesIO object
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    plot_data = buffer.getvalue()
-    buffer.close()
-
-    # Convert the plot data to a base64 encoded string
-    encoded_plot = base64.b64encode(plot_data).decode('utf-8')
-
-    return encoded_plot
+    return course_analysis
 
 
 def calculate_num_students_with_job(course_id):

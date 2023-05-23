@@ -21,8 +21,12 @@
             <li>BSA: {{ percent_students_bsa }}</li>
         </ul>
     </div>
-    <hr>
+    <hr><h1>Related Job Analysis</h1>
 
-    
+    {% for course, analysis in course_analysis.items %}
+        <h2>{{ course }}</h2>
+        <p>Related Jobs: {{ analysis.Related_Jobs }}</p>
+        <p>Non-related Jobs: {{ analysis.Non_related_Jobs }}</p>
+    {% endfor %}
 </body>
 </html>

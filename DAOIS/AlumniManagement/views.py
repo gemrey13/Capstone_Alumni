@@ -39,14 +39,14 @@ def related_job(request):
     current_jobs = Current_Job.objects.select_related('alumni').all()
     courses = Course.objects.all()
 
-    similar_job = perform_related_job_analysis(alumni, current_jobs, courses)
+    course_analysis = perform_related_job_analysis(alumni, current_jobs, courses)
 
 
     # have job within 6 months upon graduation
     encoded_plot, percent_students_bsit, percent_students_bsa = job_within_six_months_plot()
 
     context = {
-        'similar_job': similar_job,
+        'course_analysis': course_analysis,
         'encoded_plot': encoded_plot,
         'percent_students_bsit': percent_students_bsit,
         'percent_students_bsa': percent_students_bsa
