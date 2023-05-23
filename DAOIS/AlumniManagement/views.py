@@ -6,6 +6,11 @@ from datetime import datetime, timedelta
 
 
 def dashboard(request):
+    
+    alumni = Alumni_Demographic_Profile.objects.all()
+    current_jobs = Current_Job.objects.select_related('alumni').all()
+    courses = Course.objects.all()
+
     total_alumni_count = Alumni_Demographic_Profile.objects.count()
     jobless_alumni_count = Alumni_Demographic_Profile.objects.filter(current_job__isnull=True).count()
 
@@ -20,6 +25,8 @@ def dashboard(request):
     total_students_bsit = calculate_total_students(course_bsit)
     total_students_bsa = calculate_total_students(course_bsa)
 
+    course_analysis = perform_related_job_analysis(alumni, current_jobs, courses)
+
     context = {
         'jobless_percentage': jobless_percentage,
         'employed_percentage': employed_percentage,
@@ -29,6 +36,7 @@ def dashboard(request):
         'total_students_bsit': total_students_bsit,
         'percent_students_bsa': percent_students_bsa,
         'total_students_bsa': total_students_bsa,
+        'course_analysis': course_analysis,
     }
 
     return render(request, 'AlumniManagement/Dashboard.html', context)

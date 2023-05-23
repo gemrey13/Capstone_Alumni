@@ -131,34 +131,16 @@
   <hr>
 
   <div class="w3-container">
-    <h5>Countries</h5>
+    <h5>Courses  <span class="w3-bar-item w3-right">Related Job Count</span></h5>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      {% for course, analysis in course_analysis.items %}
       <tr>
-        <td>United States</td>
-        <td>65%</td>
+        <td>{{ course }}</td>
+        <td>{{ analysis.Related_Jobs }}</td>
       </tr>
-      <tr>
-        <td>UK</td>
-        <td>15.7%</td>
-      </tr>
-      <tr>
-        <td>Russia</td>
-        <td>5.6%</td>
-      </tr>
-      <tr>
-        <td>Spain</td>
-        <td>2.1%</td>
-      </tr>
-      <tr>
-        <td>India</td>
-        <td>1.9%</td>
-      </tr>
-      <tr>
-        <td>France</td>
-        <td>1.5%</td>
-      </tr>
+      {% endfor %}
     </table><br>
-    <button class="w3-button w3-dark-grey">More Countries &nbsp;<i class="fa fa-arrow-right"></i></button>
+    <button class="w3-button w3-dark-grey">More Courses &nbsp;<i class="fa fa-arrow-right"></i></button>
   </div>
   <hr>
   <div class="w3-container">
