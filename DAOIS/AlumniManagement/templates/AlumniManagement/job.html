@@ -4,12 +4,6 @@
     <title>Analysis</title>
 </head>
 <body>
-    <h1>Job Analysis</h1>
-    <!-- Render the HTML table in the template -->
-    {{ html_table | safe }}
-
-    <img src="data:image/png;base64,{{ similar_job }}" alt="Job Related to Course Analysis">
-    <hr>
 
         <h2>Number of Students with Job for Specific Courses within 6 Months by Course</h2>
         <img src="data:image/png;base64,{{ encoded_plot }}" alt="Plot">
