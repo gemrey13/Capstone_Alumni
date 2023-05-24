@@ -4,6 +4,7 @@ from .utils import *
 import pandas as pd
 from datetime import datetime, timedelta
 import random
+from .models import Course
 
 def dashboard(request):
     
@@ -73,4 +74,9 @@ def related_job(request):
 
 
 def alumni(request):
-    return render(request, "AlumniManagement/alumni.html")
+    courses = Course.objects.all()
+
+    context = {
+        'courses': courses,
+    }
+    return render(request, "AlumniManagement/alumni.html", context)
