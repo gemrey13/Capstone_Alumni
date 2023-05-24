@@ -69,3 +69,8 @@ def related_job(request):
     return render(request, 'AlumniManagement/job.html', context)
 
 
+
+
+
+def alumni(request):
+    return render(request, "AlumniManagement/alumni.html")

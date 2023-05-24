@@ -1,0 +1,272 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"jo",
+				"job_students_list"
+			],
+			[
+				"s",
+				"src"
+			],
+			[
+				"scr",
+				"source"
+			],
+			[
+				"n",
+				"num_student_bsa"
+			],
+			[
+				"num",
+				"num_student_bsit"
+			],
+			[
+				"alu",
+				"alumni_data"
+			],
+			[
+				"de",
+				"default"
+			],
+			[
+				"cur",
+				"curriculum_name"
+			],
+			[
+				"curr",
+				"curriculum_id"
+			],
+			[
+				"c",
+				"Current_Job"
+			],
+			[
+				"curre",
+				"current_job_id"
+			],
+			[
+				"Char",
+				"CharField"
+			],
+			[
+				"fore",
+				"ForeignKey"
+			],
+			[
+				"S",
+				"Segment"
+			],
+			[
+				"Date",
+				"DateField"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/alumni.html",
+		"/home/gemrey/.config/sublime-text/Packages/Django Syntax/Django HTML.sublime-syntax",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/DAOIS/settings.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/utils.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/base.html",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/Dashboard.html",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/sidebar.html",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/views.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/job.html",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/models.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/static/AlumniManagement/js/sidebar.js",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/static/AlumniManagement/css/sidebar.css",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/admin.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/urls.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/sample.html",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/static/css/sidebar.css",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/static/js/sidebar.js",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/DAOIS/urls.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/migrations/0003_auto_20230520_0124.py",
+		"/home/gemrey/Desktop/Capstone/DAOIS/DAOIS/settings.py",
+		"/home/gemrey/Desktop/Capstone/DAOIS/AlumniManagement/models.py",
+		"/home/gemrey/Desktop/Capstone/DAOIS/manage.py"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 98.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"image_base64",
+			"perform_related_job_analysis",
+			"similar_job",
+			"Orders",
+			"orders",
+			"educational_attainment",
+			"Educational_Attainment",
+			"html"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"job_status_pie",
+			"course_related_job_analysis",
+			"course_analysis",
+			"graduate",
+			"Graduate"
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "djaneiro.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 201.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
