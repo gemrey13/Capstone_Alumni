@@ -187,7 +187,6 @@ def job_within_six_months_plot():
     plot_buffer.seek(0)
     bar_plot_job_within_6_months = base64.b64encode(plot_buffer.read()).decode('utf-8')
 
-    print(job_students_list)
-    print(percent_students_list)
-    print(total_students_list)
+
+
     return bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list
