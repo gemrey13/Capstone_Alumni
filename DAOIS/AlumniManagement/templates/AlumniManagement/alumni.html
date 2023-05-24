@@ -9,8 +9,7 @@
 	  	<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Add Alumni</button>
 	</header>
 
-	<div class="w3-container">
-
+	<div class="w3-container ">
 	  <div id="id01" class="w3-modal">
 	    <div class="w3-modal-content w3-animate-zoom">
 
@@ -37,41 +36,55 @@
 			    <input class="w3-input w3-border" name="mi" type="text"><br>
 			  </div>
 			</div>
-			  
+			 
+	      	<div class="w3-row-padding">
+	      	  <div class="w3-half">
+	      	  	<label class="w3-text-blue"><b>Suffix</b></label>
+			  	<input class="w3-input w3-border" name="suffix" type="text"><br>
+			  </div>
+			  <div class="w3-half">
+			    <label class="w3-text-blue"><b>Marital Status</b></label>
+			    <input class="w3-input w3-border" name="marital_status" type="text" required><br>
+			  </div>
+			</div>
 
+			<div class="w3-row-padding">
+	      	  <div class="w3-third">
+	      	  	<label class="w3-text-blue"><b>Address</b></label>
+			  <input class="w3-input w3-border" name="address" type="text" required><br>
+			  </div>
+			  <div class="w3-third">
+			    <label class="w3-text-blue"><b>Religion</b></label>
+			  <input class="w3-input w3-border" name="religion" type="text" required><br>
+			  </div>
+			  <div class="w3-third">
+			    <label class="w3-text-blue"><b>Date of Birth</b></label>
+			  <input class="w3-input w3-border" name="date_of_birth" type="date" required><br>
+			  </div>
+			</div>
 			  
-			  <label class="w3-text-blue"><b>Suffix</b></label>
-			  <input class="w3-input w3-border" name="suffix" type="text"><br>
-
+			<div class="w3-row-padding">
 			  <label class="w3-text-blue"><b>Gender</b></label>
-			    <select class="w3-select w3-border" name="gender" required>
+			    <select class="w3-select w3-border w3-white" name="gender" required>
 			        <option value="" disabled selected>Select gender</option>
 			        <option value="male">Male</option>
 			        <option value="female">Female</option>
-			    </select><br>
-
-			  <label class="w3-text-blue"><b>Address</b></label>
-			  <input class="w3-input w3-border" name="address" type="text" required><br>
-
-			  <label class="w3-text-blue"><b>Religion</b></label>
-			  <input class="w3-input w3-border" name="religion" type="text" required><br>
-
-			  <label class="w3-text-blue"><b>Marital Status</b></label>
-			  <input class="w3-input w3-border" name="marital_status" type="text" required><br>
-
-			  <label class="w3-text-blue"><b>Date of Birth</b></label>
-			  <input class="w3-input w3-border" name="date_of_birth" type="date" required><br>
-
+			    </select><br><br>
+			</div>
+			 
+			  
+			<div class="w3-row-padding">
 			  <label class="w3-text-blue"><b>Course</b></label>
-		    <select class="w3-select w3-border" name="course_id" required>
+		    <select class="w3-select w3-border w3-white" name="course_id" required>
 		        <option value="" disabled selected>Select course</option>
 		        {% for course in courses %}
 		            <option value="{{ course.id }}">{{ course.course_name }}</option>
 		        {% endfor %}
-		    </select><br>
+		    </select><br><br>
 
 			  <button class="w3-btn w3-blue">Register</button></p>
 			</form>
+		</div>
 
 	    </div>
 	  </div>
