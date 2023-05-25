@@ -18,7 +18,6 @@ def dashboard(request):
     jobless_percentage, employed_percentage, job_status_pie = create_job_status_chart(total_alumni_count, jobless_alumni_count)
 
 
-    # bar_plot_job_within_6_months, percent_students_bsit, percent_students_bsa = job_within_six_months_plot()
     bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list = job_within_six_months_plot()
 
     course_list = Course.objects.values_list('course_id', flat=True)
@@ -38,9 +37,7 @@ def dashboard(request):
         'course_percentages': course_percentages,
         'job_status_pie': job_status_pie,
         'total_alumni_count': total_alumni_count,
-        # 'percent_students_bsit': percent_students_bsit,
         'total_students_bsit': total_students_bsit,
-        # 'percent_students_bsa': percent_students_bsa,
         'total_students_bsa': total_students_bsa,
         'course_analysis': course_analysis,
     }
