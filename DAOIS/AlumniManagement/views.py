@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
 from .models import *
 from .utils import *
 import random
 
 
-
+@login_required(login_url='Authentication:login')
 def dashboard(request):
     
     course_analysis = course_related_job_analysis()
