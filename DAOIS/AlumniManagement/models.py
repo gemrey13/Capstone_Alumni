@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from django.db import models
 from datetime import date
 
@@ -36,6 +38,7 @@ class Course(models.Model):
         return f'{self.course_id}'
 
 class Alumni_Demographic_Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     alumni_id = models.CharField(primary_key=True, max_length=6)
     fname = models.CharField(max_length=64)
     lname = models.CharField(max_length=64)
