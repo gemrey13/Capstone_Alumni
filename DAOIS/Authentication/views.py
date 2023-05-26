@@ -15,6 +15,10 @@ def login_view(request):
 			return redirect('AlumniManagement:dashboard')
 		else:
 			messages.error(request, 'Invalid Username or password.')
+			return redirect('Authentication:login')
+
+	if messages.get_messages(request):
+		messages.get_messages(request).used = True
 	return render(request, 'Authentication/login.html')
 
 def logout_view(request):
