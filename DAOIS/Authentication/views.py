@@ -6,6 +6,7 @@ from django.contrib import messages
 
 # Create your views here.
 def login_view(request):
+
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -16,7 +17,8 @@ def login_view(request):
 		else:
 			messages.error(request, 'Invalid Username or password.')
 			return redirect('Authentication:login')
-
+	if request.user.is_authenticated:
+		return redirect('AlumniManagement:dashboard')
 	if messages.get_messages(request):
 		messages.get_messages(request).used = True
 	return render(request, 'Authentication/login.html')
