@@ -1,14 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-
 from datetime import timedelta
-from io import BytesIO
-import io
-import base64
-
-from django.db.models import Count, F
 from .models import *
-
 
 
 def employment_percentage():
@@ -21,9 +13,7 @@ def employment_percentage():
     jobless_percentage = (jobless_alumni_count / total_alumni_count) * 100
     employed_percentage = 100 - jobless_percentage
 
-
     return jobless_percentage, employed_percentage, employed_alumni_count
-
 
 
 def course_related_job_analysis():
@@ -77,49 +67,35 @@ def course_related_job_analysis():
     return course_analysis
 
 
-
 def calculate_num_students_with_job(course_id):
-
 
     # Fetch data from Django models and create DataFrames
     alumni_data = list(Alumni_Demographic_Profile.objects.all().values())
     current_job_data = list(Current_Job.objects.all().values())
     graduate_data = list(Graduate.objects.all().values())
 
-
-
     alumni_df = pd.DataFrame(alumni_data)
     current_job_df = pd.DataFrame(current_job_data)
     graduate_df = pd.DataFrame(graduate_data)
 
-
-
     # Merge alumni_df and graduate_df on alumni_id
     merged_df = pd.merge(alumni_df, graduate_df, left_on='alumni_id', right_on='alumni_id_id')
-
-
 
     # Calculate the date six months after graduation
     merged_df['graduation_date'] = pd.to_datetime(merged_df['graduation_date'])
     merged_df['six_months_after_graduation'] = merged_df['graduation_date'] + timedelta(days=180)
 
-
-
     # Merge with current_job_df on alumni_id and filter by specific course
     filtered_df = pd.merge(merged_df, current_job_df, left_on='alumni_id', right_on='alumni_id')
     filtered_df = filtered_df[filtered_df['course_id_id'] == course_id]
 
-
-
     # Filter the students with a job within six months of graduation
     filtered_df = filtered_df[filtered_df['start_date'] <= filtered_df['six_months_after_graduation']]
 
-    
     # Count the number of students
     num_students_with_job_within_six_months = len(filtered_df)
 
     return num_students_with_job_within_six_months
-
 
 
 def course_total_students():
@@ -133,10 +109,10 @@ def course_total_students():
     return courses_total_count
 
 
-
 def job_within_six_months():
     course_list = Course.objects.values_list('course_id', flat=True)  # Retrieve course IDs from the Course model
 
+    course_title_list = []
     total_students_list = []
     job_students_list = []
     percent_students_list = []
@@ -146,8 +122,9 @@ def job_within_six_months():
         job_students = calculate_num_students_with_job(course_id)
         percent_students = (job_students / total_students) * 100 if total_students != 0 else 0
 
+        course_title_list.append(course_id)
         total_students_list.append(total_students)
         job_students_list.append(job_students)
         percent_students_list.append(percent_students)
 
-    return percent_students_list, total_students_list, job_students_list
+    return percent_students_list, total_students_list, job_students_list, course_title_list

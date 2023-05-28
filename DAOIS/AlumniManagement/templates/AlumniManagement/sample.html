@@ -4,23 +4,47 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="main">
-	<div style="positon:relative; height:40vh; width:80vw;display:flex;">
+	<div style="positon:relative; height:40vh; width:80vw;display:flex;flex-wrap:wrap">
 		<canvas id="courses_total_count"></canvas>
 		<canvas id="pieChart" ></canvas>
 		<canvas id="related_job_chart"></canvas>
+		<canvas id="mixedChart"></canvas>
 	</div>
-	<table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-      {% for course, analysis in course_analysis.items %}
-      <tr>
-        <td>{{ course }}</td>
-        <td>{{ analysis.Related_Jobs }}</td>
-      </tr>
-      {% endfor %}
-    </table>
 </div>
 
 
 <script type="text/javascript">
+let percent_students_list = [];
+let total_students_list = [];
+let job_students_list = [];
+let course_title_list = [];
+{% for percent_students_list, total_students_list, job_students_list, course_title_list in combination %}
+	percent_students_list.push('{{percent_students_list}}');
+	total_students_list.push('{{total_students_list}}');
+	job_students_list.push('{{job_students_list}}');
+	course_title_list.push('{{course_title_list}}');
+{% endfor %}
+
+let mixedChart = document.getElementById('mixedChart');
+new Chart(mixedChart, {
+	data: {
+		datasets: [{
+			type: 'bar',
+			label: 'Total student have job within 6 months',
+			data: job_students_list,
+			borderColor: 'rgb(255, 99, 132)',
+    	backgroundColor: 'rgba(255, 99, 132, 0.2)'
+		}, {
+			type: 'line',
+			label: 'Total Student List',
+			data: total_students_list,
+			fill: false,
+    	borderColor: 'rgb(54, 162, 235)'
+		}],
+		labels: course_title_list
+	}
+})
+
 let labels = [] 
 let data_related = []
 {% for course, analysis in course_analysis.items %}
@@ -107,7 +131,7 @@ const data = {
   ],
   datasets: [{
     label: 'Job Percentages',
-    data: [{{employed_percentage}}, {{jobless_percentage}}],
+    data: [{{employed_alumni_percentage}}, {{jobless_percentage}}],
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
