@@ -42,14 +42,11 @@ def alumni(request):
 
 
 def sample(request):
-
-    # bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list = job_within_six_months_plot()
     
     jobless_percentage, employed_percentage, employed_alumni_count = employment_percentage()
 
 
-    courses = list(Course.objects.values_list('course_id', flat=True))
-    courses_total_count = course_total_students(courses)
+    courses_total_count = course_total_students()
     
 
     percent_students_list, total_students_list, job_students_list = job_within_six_months()

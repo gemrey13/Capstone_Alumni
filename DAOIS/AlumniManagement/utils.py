@@ -138,7 +138,9 @@ def calculate_num_students_with_job(course_id):
 
 
 
-def course_total_students(courses):
+def course_total_students():
+
+    courses = list(Course.objects.values_list('course_id', flat=True))
     courses_total_count = {}
 
     for course in courses:
