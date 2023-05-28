@@ -1,10 +1,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
 <canvas id="barChart" style="width:100%;max-width:500px"></canvas>
 
 
+<canvas id="pieChart" ></canvas>
 
 
 
@@ -30,5 +30,27 @@ new Chart(ctx, {
       text: "World Wine Production 2018"
     }
   }
+});
+
+const data = {
+  labels: [
+    'Employed',
+    'Unemployed',
+  ],
+  datasets: [{
+    label: 'Job Percentages',
+    data: [{{employed_percentage}}, {{jobless_percentage}}],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+    ],
+    hoverOffset: 4
+  }]
+};
+const pie = document.getElementById('pieChart');
+new Chart(pie, {
+	type: 'doughnut',
+	data: data,
+	options: {aspectRatio:2.0}
 });
 </script>

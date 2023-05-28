@@ -8,11 +8,11 @@ import random
 
 @login_required(login_url='Authentication:login')
 def dashboard(request):
-    
+
     course_analysis = course_related_job_analysis()
-    total_alumni_count = Alumni_Demographic_Profile.objects.count()
-    jobless_alumni_count = Alumni_Demographic_Profile.objects.filter(current_job__isnull=True).count()
-    jobless_percentage, employed_percentage, job_status_pie = create_job_status_chart(total_alumni_count, jobless_alumni_count)
+    
+    
+
     bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list = job_within_six_months_plot()
 
     course_list = Course.objects.values_list('course_id', flat=True)
@@ -49,12 +49,13 @@ def alumni(request):
 def sample(request):
 
     bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list = job_within_six_months_plot()
-    print(percent_students_list)
-    courses = Course.objects.all()
-    print(courses)
+    
+    jobless_percentage, employed_percentage, employed_alumni_count = employment_percentage()
+    print(jobless_percentage)
+    print(employed_percentage)
     context = {
         'percent_students_list':percent_students_list,
-
-
+        'jobless_percentage':jobless_percentage,
+        'employed_percentage':employed_percentage
     }
     return render(request, 'AlumniManagement/sample.html', context)
