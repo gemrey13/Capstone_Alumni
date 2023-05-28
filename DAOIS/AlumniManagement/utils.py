@@ -131,7 +131,6 @@ def calculate_num_students_with_job(course_id):
     filtered_df = filtered_df[filtered_df['start_date'] <= filtered_df['six_months_after_graduation']]
 
     
-
     # Count the number of students
     num_students_with_job_within_six_months = len(filtered_df)
 
@@ -139,13 +138,17 @@ def calculate_num_students_with_job(course_id):
 
 
 
-def calculate_total_students(course_id):
-    total_students = Alumni_Demographic_Profile.objects.filter(course_id=course_id).count()
-    return total_students if total_students > 0 else 0
+def course_total_students(courses):
+    courses_total_count = {}
+
+    for course in courses:
+        total_students = Alumni_Demographic_Profile.objects.filter(course_id=course).count()
+        courses_total_count[course] = total_students
+    return courses_total_count
 
 
 
-def job_within_six_months_plot():
+def job_within_six_months():
     course_list = Course.objects.values_list('course_id', flat=True)  # Retrieve course IDs from the Course model
 
     total_students_list = []
@@ -153,7 +156,7 @@ def job_within_six_months_plot():
     percent_students_list = []
 
     for course_id in course_list:
-        total_students = calculate_total_students(course_id)
+        total_students = Alumni_Demographic_Profile.objects.filter(course_id=course_id).count()
         job_students = calculate_num_students_with_job(course_id)
         percent_students = (job_students / total_students) * 100 if total_students != 0 else 0
 
@@ -161,19 +164,4 @@ def job_within_six_months_plot():
         job_students_list.append(job_students)
         percent_students_list.append(percent_students)
 
-    plt.figure()
-
-    plt.bar(course_list, job_students_list)
-    plt.xlabel('Course')
-    plt.ylabel('Number of Students with Job')
-    plt.title('Percentage of Graduate Students with Job within 6 Months by Course')
-
-    # Save the plot to a BytesIO object
-    plot_buffer = io.BytesIO()
-    plt.savefig(plot_buffer, format='png')
-    plot_buffer.seek(0)
-    bar_plot_job_within_6_months = base64.b64encode(plot_buffer.read()).decode('utf-8')
-
-
-
-    return bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list
+    return percent_students_list, total_students_list, job_students_list

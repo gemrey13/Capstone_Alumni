@@ -18,14 +18,9 @@ def dashboard(request):
     course_list = Course.objects.values_list('course_id', flat=True)
     course_percentages = zip(course_list, percent_students_list, total_students_list, job_students_list , [random.choice(['w3-green', 'w3-orange', 'w3-blue', 'w3-red', 'w3-lime', 'w3-brown']) for _ in course_list])
 
-    course_bsit = 'BSIT'  # Replace with the desired course ID
-    course_bsa = 'BSA'
-    total_students_bsit = calculate_total_students(course_bsit)
-    total_students_bsa = calculate_total_students(course_bsa)
+    
 
     context = {
-        'jobless_percentage': jobless_percentage,
-        'employed_percentage': employed_percentage,
         'course_percentages': course_percentages,
         'job_status_pie': job_status_pie,
         'total_alumni_count': total_alumni_count,
@@ -48,14 +43,24 @@ def alumni(request):
 
 def sample(request):
 
-    bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list = job_within_six_months_plot()
+    # bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list = job_within_six_months_plot()
     
     jobless_percentage, employed_percentage, employed_alumni_count = employment_percentage()
-    print(jobless_percentage)
-    print(employed_percentage)
+
+
+    courses = list(Course.objects.values_list('course_id', flat=True))
+    courses_total_count = course_total_students(courses)
+    
+
+    percent_students_list, total_students_list, job_students_list = job_within_six_months()
+
+    print(percent_students_list)
+    print(total_students_list)
+    print(job_students_list)
+
     context = {
-        'percent_students_list':percent_students_list,
         'jobless_percentage':jobless_percentage,
-        'employed_percentage':employed_percentage
+        'employed_percentage':employed_percentage,
+        'courses_total_count':courses_total_count
     }
     return render(request, 'AlumniManagement/sample.html', context)

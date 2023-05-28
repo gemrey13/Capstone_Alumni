@@ -1,36 +1,52 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<canvas id="barChart" style="width:100%;max-width:500px"></canvas>
-
-
-<canvas id="pieChart" ></canvas>
+<div style="positon:relative; height:40vh; width:80vw;display:flex;">
+	<canvas id="courses_total_count"></canvas>
+	<canvas id="pieChart" ></canvas>
+</div>
 
 
 
 <script type="text/javascript">
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-var yValues = {{percent_students_list}};
-var barColors = ["red", "green","blue","orange","brown"];
 
-const ctx = document.getElementById('barChart');
-new Chart(ctx, {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    legend: {display: false},
-    title: {
-      display: true,
-      text: "World Wine Production 2018"
-    }
-  }
-});
+
+const data_courses_total_count = {
+	labels: Object.keys({{courses_total_count|safe}}),
+	datasets: [{
+		label: 'Total Count of Students by Course',
+		data: Object.values({{courses_total_count|safe}}),
+		backgroundColor: [
+	      'rgba(255, 99, 132, 0.2)',
+	      'rgba(255, 159, 64, 0.2)',
+	      'rgba(255, 205, 86, 0.2)',
+	      'rgba(75, 192, 192, 0.2)',
+	      'rgba(54, 162, 235, 0.2)'
+	      ],
+		borderColor: [
+	      'rgb(255, 99, 132)',
+	      'rgb(255, 159, 64)',
+	      'rgb(255, 205, 86)',
+	      'rgb(75, 192, 192)',
+	      'rgb(54, 162, 235)'
+	      ],
+		borderWidth: 1
+	}]
+}
+const courses_total_count = document.getElementById('courses_total_count');
+new Chart(courses_total_count, {
+	type: 'bar',
+	data: data_courses_total_count,
+	options: {
+		scale: {
+			y: {
+				beginAtZero: true
+			}
+		}
+	}
+})
+
+
 
 const data = {
   labels: [
@@ -48,9 +64,9 @@ const data = {
   }]
 };
 const pie = document.getElementById('pieChart');
+
 new Chart(pie, {
 	type: 'doughnut',
 	data: data,
-	options: {aspectRatio:2.0}
 });
 </script>
