@@ -37,23 +37,6 @@ def dashboard(request):
     return render(request, 'AlumniManagement/Dashboard.html', context)
 
 
-def related_job(request):
-    alumni = Alumni_Demographic_Profile.objects.all()
-    current_jobs = Current_Job.objects.select_related('alumni').all()
-    courses = Course.objects.all()
-    course_analysis = course_related_job_analysis()
-
-    # have job within 6 months upon graduation
-    encoded_plot, percent_students_bsit, percent_students_bsa = job_within_six_months_plot()
-
-    context = {
-        'course_analysis': course_analysis,
-        'encoded_plot': encoded_plot,
-    }
-
-    return render(request, 'AlumniManagement/job.html', context)
-
-
 def alumni(request):
     courses = Course.objects.all()
 
@@ -61,3 +44,17 @@ def alumni(request):
         'courses': courses,
     }
     return render(request, "AlumniManagement/alumni.html", context)
+
+
+def sample(request):
+
+    bar_plot_job_within_6_months, percent_students_list, total_students_list, job_students_list = job_within_six_months_plot()
+    print(percent_students_list)
+    courses = Course.objects.all()
+    print(courses)
+    context = {
+        'percent_students_list':percent_students_list,
+
+
+    }
+    return render(request, 'AlumniManagement/sample.html', context)

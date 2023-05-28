@@ -1,0 +1,34 @@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<canvas id="barChart" style="width:100%;max-width:500px"></canvas>
+
+
+
+
+
+<script type="text/javascript">
+var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+var yValues = {{percent_students_list}};
+var barColors = ["red", "green","blue","orange","brown"];
+
+const ctx = document.getElementById('barChart');
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "World Wine Production 2018"
+    }
+  }
+});
+</script>
