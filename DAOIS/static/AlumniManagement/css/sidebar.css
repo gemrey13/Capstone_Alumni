@@ -209,15 +209,9 @@ body.dark {
 .bottom i {
   font-size: 20px;
 }
-.bottom span {
-  font-size: 18px;
-}
 .sidebar.close .bottom_content {
   width: 50px;
   left: 15px;
-}
-.sidebar.close .bottom span {
-  display: none;
 }
 .sidebar.hoverable .collapse_sidebar {
   display: none;
@@ -256,7 +250,7 @@ body.dark {
   .sidebar.close .bottom_content {
     left: -100%;
   }
-  .bottom {
+  .bottom_content {
     display: none;
   }
   .main {
@@ -264,3 +258,5 @@ body.dark {
   margin-left: 10px;
 }
 }
+
+

@@ -5,25 +5,32 @@ const submenuItems = document.querySelectorAll(".submenu_item");
 const sidebarOpen = document.querySelector("#sidebarOpen");
 const sidebarClose = document.querySelector(".collapse_sidebar");
 const sidebarExpand = document.querySelector(".expand_sidebar");
-sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
+document.addEventListener("DOMContentLoaded", () => {
+  sidebar.classList.add("close");
 
-sidebarClose.addEventListener("click", () => {
-  sidebar.classList.add("close", "hoverable");
+  if (sidebar.classList.contains("close")) {
+    sidebarExpand.style.display = "block";
+    sidebarClose.style.display = "none";
+  } else {
+    sidebarExpand.style.display = "none";
+    sidebarClose.style.display = "block";
+  }
 });
+
 sidebarExpand.addEventListener("click", () => {
   sidebar.classList.remove("close", "hoverable");
+  sidebarExpand.style.display = "none";
+  sidebarClose.style.display = "block";
+});
+sidebarClose.addEventListener("click", () => {
+  sidebar.classList.add("close", "hoverable");
+  sidebarExpand.style.display = "block";
+  sidebarClose.style.display = "none";
 });
 
-sidebar.addEventListener("mouseenter", () => {
-  if (sidebar.classList.contains("hoverable")) {
-    sidebar.classList.remove("close");
-  }
-});
-sidebar.addEventListener("mouseleave", () => {
-  if (sidebar.classList.contains("hoverable")) {
-    sidebar.classList.add("close");
-  }
-});
+sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+
 
 darkLight.addEventListener("click", () => {
   body.classList.toggle("dark");
