@@ -50,7 +50,7 @@ def sample(request):
     
 
     percent_students_list, total_students_list, job_students_list = job_within_six_months()
-
+    # !!! Continue here!!!!
     print(percent_students_list)
     print(total_students_list)
     print(job_students_list)
