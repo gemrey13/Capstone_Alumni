@@ -32,21 +32,15 @@ def course_related_job_analysis():
     current_jobs = Current_Job.objects.select_related('alumni').all()
     courses = Course.objects.all()
 
-
     # Create a dictionary to store the analysis results for each course
     course_analysis = {}
 
-
-
     # Iterate over each course
     for course in courses:
-
         # Create lists to store the fetched data for the current course
         alumni_data = []
         current_job_data = []
         course_data = []
-
-
 
         # Populate the lists with the fetched data for the current course
         for alum in alumni.filter(course_id=course.course_id):
@@ -54,8 +48,6 @@ def course_related_job_analysis():
             current_job = current_jobs.filter(alumni=alum).first()
             current_job_data.append(current_job)
             course_data.append(course)
-
-
 
         # Create a DataFrame from the fetched data for the current course
         data = {
@@ -66,26 +58,18 @@ def course_related_job_analysis():
 
         df = pd.DataFrame(data)
 
-
-
         # Perform the analysis for the current course
         df['Job Related to Course'] = df['Course'].apply(lambda x: x.field_type if x else None) == df['Current Job'].apply(lambda x: x.field_type if x else None)
 
-
-
         # Filtering out None values
         filtered_jobs = df.dropna(subset=['Job Related to Course'])
-
-
 
         # Counting related and non-related jobs
         related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == True].shape[0]
         non_related_count = filtered_jobs[filtered_jobs['Job Related to Course'] == False].shape[0]
 
-
-
         # Store the analysis results for the current course in the dictionary
-        course_analysis[course.course_name] = {
+        course_analysis[course.course_id] = {
             'Related_Jobs': related_count,
             'Non_related_Jobs': non_related_count
         }

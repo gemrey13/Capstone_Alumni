@@ -2,15 +2,65 @@
 
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <div class="main">
-<div style="positon:relative; height:40vh; width:80vw;display:flex;">
-	<canvas id="courses_total_count"></canvas>
-	<canvas id="pieChart" ></canvas>
-</div>
+	<div style="positon:relative; height:40vh; width:80vw;display:flex;">
+		<canvas id="courses_total_count"></canvas>
+		<canvas id="pieChart" ></canvas>
+		<canvas id="related_job_chart"></canvas>
+	</div>
+	<table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      {% for course, analysis in course_analysis.items %}
+      <tr>
+        <td>{{ course }}</td>
+        <td>{{ analysis.Related_Jobs }}</td>
+      </tr>
+      {% endfor %}
+    </table>
 </div>
 
 
 <script type="text/javascript">
+let labels = [] 
+let data_related = []
+{% for course, analysis in course_analysis.items %}
+	labels.push('{{course}}');
+	data_related.push('{{ analysis.Related_Jobs }}');
+{% endfor %}
+const data_related_job_chart = {
+	labels: labels,
+	datasets: [{
+		axis: 'y',
+		label: 'Job Related to Courses',
+		data: data_related,
+		fill: false,
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+    ],
+    borderWidth: 1
+	}]
+}
+
+const related_job_chart = document.getElementById('related_job_chart')
+new Chart(related_job_chart, {
+	type: 'bar',
+	data: data_related_job_chart,
+	options: {
+		indexAxis: 'y'
+	}
+})
+
 
 
 const data_courses_total_count = {
