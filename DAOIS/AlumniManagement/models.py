@@ -27,6 +27,34 @@ FIELD_CHOICES = [
         ('government', 'Government/Public Administration'),
     ]
 
+class Country(models.Model):
+    country_name = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.country_name
+
+
+class Province(models.Model):
+    province_name = models.CharField(max_length=64)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.province_name
+
+class City(models.Model):
+    city_name = models.CharField(max_length=64)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.city_name
+
+class Barangay(models.Model):
+    barangay_name = models.CharField(max_length=64)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.barangay_name
+
 
 class Course(models.Model):
     course_id = models.CharField(max_length=6, primary_key=True)
