@@ -73,16 +73,16 @@ class Alumni_Demographic_Profile(models.Model):
     mi = models.CharField(max_length=2, blank=True)
     suffix = models.CharField(max_length=3, blank=True)
 
-    GENDER_CHOICES = [
+    SEX_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female')
     ]
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
+    sex = models.CharField(max_length=10, choices=SEX_CHOICES)
     address = models.CharField(max_length=64)
     religion = models.CharField(max_length=64)
     marital_status = models.CharField(max_length=64)
     date_of_birth = models.DateField()
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, default='BSIT')
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.alumni_id} | {self.fname} {self.lname}'
