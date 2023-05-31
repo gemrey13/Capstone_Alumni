@@ -106,6 +106,11 @@ class Current_Job(models.Model):
     company_name = models.CharField(max_length=64)
     company_address = models.CharField(max_length=64)
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE, null=True, blank=True)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, default=1)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, default=1)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, default=1)
+    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE, default=2)
+
 
     def __str__(self):
         return f'{self.current_job_id} {self.job_title} {self.alumni}'
@@ -119,6 +124,10 @@ class Previous_Job(models.Model):
     company_name = models.CharField(max_length=64)
     company_address = models.CharField(max_length=64)
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE, null=True, blank=True)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, default=1)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, default=1)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, default=1)
+    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE, default=2)
 
 
 class Curriculum(models.Model):
