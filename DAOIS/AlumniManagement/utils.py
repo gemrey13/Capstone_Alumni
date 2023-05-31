@@ -139,3 +139,23 @@ def jobs_per_field():
     df = pd.DataFrame.from_records(alumni_counts)
 
     return df
+
+
+def alumni_per_place():
+    # Perform the query and get alumni counts per place
+    alumni_counts = (
+        Alumni_Demographic_Profile.objects
+        .values('country__country_name', 'province__province_name', 'city__city_name', 'barangay__barangay_name')
+        .annotate(count=Count('alumni_id'))
+    )
+
+    # Convert the query results to a pandas DataFrame
+    alumni_counts_df = pd.DataFrame.from_records(alumni_counts)
+
+    # Prepare the data for rendering in the template
+    country_data = alumni_counts_df[['country__country_name', 'count']].values.tolist()
+    province_data = alumni_counts_df[['province__province_name', 'count']].values.tolist()
+    city_data = alumni_counts_df[['city__city_name', 'count']].values.tolist()
+    barangay_data = alumni_counts_df[['barangay__barangay_name', 'count']].values.tolist()
+    
+    return country_data, province_data, city_data, barangay_data

@@ -34,8 +34,11 @@ def sample(request):
 
     alumni_counts = jobs_per_field()
     
-    print(alumni_counts)
-
+    country_data, province_data, city_data, barangay_data = alumni_per_place()
+    print(country_data)
+    print(province_data)
+    print(city_data)
+    print(barangay_data)
     context = {
         'jobless_percentage':jobless_percentage,
         'employed_alumni_percentage':employed_alumni_percentage,
