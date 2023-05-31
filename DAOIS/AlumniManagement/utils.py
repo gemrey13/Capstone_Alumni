@@ -1,6 +1,8 @@
 import pandas as pd
 from datetime import timedelta
 from .models import *
+from django.db.models import Count
+
 
 
 def employment_percentage():
@@ -128,3 +130,12 @@ def job_within_six_months():
         percent_students_list.append(percent_students)
 
     return percent_students_list, total_students_list, job_students_list, course_title_list
+
+
+def jobs_per_field():
+    alumni_counts = Current_Job.objects.values('field_type').annotate(count=Count('alumni'))
+    
+    # Convert queryset to pandas DataFrame
+    df = pd.DataFrame.from_records(alumni_counts)
+
+    return df

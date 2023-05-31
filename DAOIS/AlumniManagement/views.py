@@ -31,12 +31,18 @@ def sample(request):
     percent_students_list, total_students_list, job_students_list, course_title_list = job_within_six_months()
     combination = zip(percent_students_list, total_students_list, job_students_list, course_title_list)
 
+
+    alumni_counts = jobs_per_field()
+    
+    print(alumni_counts)
+
     context = {
         'jobless_percentage':jobless_percentage,
         'employed_alumni_percentage':employed_alumni_percentage,
         'courses_total_count':courses_total_count,
         'course_analysis': course_analysis,
         'combination': combination,
+        'alumni_counts': alumni_counts.to_dict('records'),
     }
     return render(request, 'AlumniManagement/sample.html', context)
 

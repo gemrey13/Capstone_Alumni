@@ -4,16 +4,64 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="main">
-	<div style="positon:relative; height:40vh; width:80vw;display:flex;flex-wrap:wrap">
+	<div style="positon:relative; height:40vh; width:80vw;display:flex;">
 		<canvas id="courses_total_count"></canvas>
 		<canvas id="pieChart" ></canvas>
 		<canvas id="related_job_chart"></canvas>
 		<canvas id="mixedChart"></canvas>
 	</div>
+	<div style="positon:relative; height:40vh; width:80vw;display:flex;">
+		<canvas id="radar_jobs"></canvas>
+	</div>
+	<table>
+        <tr>
+            <th>Field Type</th>
+            <th>Count</th>
+        </tr>
+        {% for alumni_count in alumni_counts %}
+        <tr>
+            <td>{{ alumni_count.field_type }}</td>
+            <td>{{ alumni_count.count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 
 
 <script type="text/javascript">
+let field_labels = [];
+let field_jobs = [];
+{% for alumni_count in alumni_counts %}
+  field_labels.push('{{alumni_count.field_type}}')
+	field_jobs.push('{{alumni_count.count}}')
+{% endfor %}
+const data_fields_jobs = {
+	labels: field_labels,
+	datasets: [
+	{
+		label: 'Jobs per Fields',
+		data: field_jobs,
+		borderColor: 'red',
+		backgroundColor: 'red',
+		fill: false
+	}]
+}
+const radar_jobs = document.getElementById('radar_jobs')
+new Chart(radar_jobs, {
+	type: 'line',
+	data: data_fields_jobs,
+	options: {
+		plugins: {
+			filler: {
+				propagate: false
+			},
+		},
+		interaction: {
+			intersect: false
+		}
+	}
+})
+
 let percent_students_list = [];
 let total_students_list = [];
 let job_students_list = [];
