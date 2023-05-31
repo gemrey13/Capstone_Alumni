@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Pro",
+				"Province"
+			],
+			[
 				"cour",
 				"course_title_list"
 			],
@@ -183,116 +187,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "AlumniManagement/templates/AlumniManagement/alumni.html",
-			"settings":
-			{
-				"buffer_size": 130,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-				[
-					26,
-					1,
-					"left_delete",
-					null,
-					"AQAAAEIAAAAAAAAAQgAAAAAAAACoDAAAPGRpdiBjbGFzcz0idzMtbWFpbiIgc3R5bGU9Im1hcmdpbi1sZWZ0OjMwMHB4O21hcmdpbi10b3A6NDNweDsiPgoKCgk8aGVhZGVyIGNsYXNzPSJ3My1jb250YWluZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDoyMnB4Ij4KCSAgCTxidXR0b24gb25jbGljaz0iZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2lkMDEnKS5zdHlsZS5kaXNwbGF5PSdibG9jayciIGNsYXNzPSJ3My1idXR0b24gdzMtYmxhY2siPkFkZCBBbHVtbmk8L2J1dHRvbj4KCTwvaGVhZGVyPgoKCTxkaXYgY2xhc3M9InczLWNvbnRhaW5lciAiPgoJICA8ZGl2IGlkPSJpZDAxIiBjbGFzcz0idzMtbW9kYWwiPgoJICAgIDxkaXYgY2xhc3M9InczLW1vZGFsLWNvbnRlbnQgdzMtYW5pbWF0ZS16b29tIj4KCgkgICAgICA8aGVhZGVyIGNsYXNzPSJ3My1jb250YWluZXIgdzMtdGVhbCI+IAoJICAgICAgICA8c3BhbiBvbmNsaWNrPSJkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnaWQwMScpLnN0eWxlLmRpc3BsYXk9J25vbmUnIiAKCSAgICAgICAgY2xhc3M9InczLWJ1dHRvbiB3My1kaXNwbGF5LXRvcHJpZ2h0Ij4mdGltZXM7PC9zcGFuPgoJICAgICAgICA8aDIgY2xhc3M9InczLWNlbnRlciI+QWRkIEFsdW1uaTwvaDI+CgkgICAgICA8L2hlYWRlcj4KCgkgICAgICA8Zm9ybSBjbGFzcz0idzMtY29udGFpbmVyIHczLWNhcmQtNCB3My1saWdodC1ncmV5IiBhY3Rpb249Ii8iPgoJICAgICAgCXslIGNzcmZfdG9rZW4gJX0KCSAgICAgIAk8YnI+CgkgICAgICAJPGRpdiBjbGFzcz0idzMtcm93LXBhZGRpbmciPgoJICAgICAgCSAgPGRpdiBjbGFzcz0idzMtdGhpcmQiPgoJICAgICAgCSAgCTxsYWJlbCBjbGFzcz0idzMtdGV4dC1ibHVlIj48Yj5GaXJzdCBOYW1lPC9iPjwvbGFiZWw+CgkJCSAgICA8aW5wdXQgY2xhc3M9InczLWlucHV0IHczLWJvcmRlciIgbmFtZT0iZm5hbWUiIHR5cGU9InRleHQiIHJlcXVpcmVkPjxicj4KCQkJICA8L2Rpdj4KCQkJICA8ZGl2IGNsYXNzPSJ3My10aGlyZCI+CgkJCSAgICA8bGFiZWwgY2xhc3M9InczLXRleHQtYmx1ZSI+PGI+TGFzdCBOYW1lPC9iPjwvbGFiZWw+CgkJCSAgCTxpbnB1dCBjbGFzcz0idzMtaW5wdXQgdzMtYm9yZGVyIiBuYW1lPSJsbmFtZSIgdHlwZT0idGV4dCIgcmVxdWlyZWQ+PGJyPgoJCQkgIDwvZGl2PgoJCQkgIDxkaXYgY2xhc3M9InczLXRoaXJkIj4KCQkJICAgIDxsYWJlbCBjbGFzcz0idzMtdGV4dC1ibHVlIj48Yj5NaWRkbGUgSW5pdGlhbDwvYj48L2xhYmVsPgoJCQkgICAgPGlucHV0IGNsYXNzPSJ3My1pbnB1dCB3My1ib3JkZXIiIG5hbWU9Im1pIiB0eXBlPSJ0ZXh0Ij48YnI+CgkJCSAgPC9kaXY+CgkJCTwvZGl2PgoJCQkgCgkgICAgICAJPGRpdiBjbGFzcz0idzMtcm93LXBhZGRpbmciPgoJICAgICAgCSAgPGRpdiBjbGFzcz0idzMtaGFsZiI+CgkgICAgICAJICAJPGxhYmVsIGNsYXNzPSJ3My10ZXh0LWJsdWUiPjxiPlN1ZmZpeDwvYj48L2xhYmVsPgoJCQkgIAk8aW5wdXQgY2xhc3M9InczLWlucHV0IHczLWJvcmRlciIgbmFtZT0ic3VmZml4IiB0eXBlPSJ0ZXh0Ij48YnI+CgkJCSAgPC9kaXY+CgkJCSAgPGRpdiBjbGFzcz0idzMtaGFsZiI+CgkJCSAgICA8bGFiZWwgY2xhc3M9InczLXRleHQtYmx1ZSI+PGI+TWFyaXRhbCBTdGF0dXM8L2I+PC9sYWJlbD4KCQkJICAgIDxpbnB1dCBjbGFzcz0idzMtaW5wdXQgdzMtYm9yZGVyIiBuYW1lPSJtYXJpdGFsX3N0YXR1cyIgdHlwZT0idGV4dCIgcmVxdWlyZWQ+PGJyPgoJCQkgIDwvZGl2PgoJCQk8L2Rpdj4KCgkJCTxkaXYgY2xhc3M9InczLXJvdy1wYWRkaW5nIj4KCSAgICAgIAkgIDxkaXYgY2xhc3M9InczLXRoaXJkIj4KCSAgICAgIAkgIAk8bGFiZWwgY2xhc3M9InczLXRleHQtYmx1ZSI+PGI+QWRkcmVzczwvYj48L2xhYmVsPgoJCQkgIDxpbnB1dCBjbGFzcz0idzMtaW5wdXQgdzMtYm9yZGVyIiBuYW1lPSJhZGRyZXNzIiB0eXBlPSJ0ZXh0IiByZXF1aXJlZD48YnI+CgkJCSAgPC9kaXY+CgkJCSAgPGRpdiBjbGFzcz0idzMtdGhpcmQiPgoJCQkgICAgPGxhYmVsIGNsYXNzPSJ3My10ZXh0LWJsdWUiPjxiPlJlbGlnaW9uPC9iPjwvbGFiZWw+CgkJCSAgPGlucHV0IGNsYXNzPSJ3My1pbnB1dCB3My1ib3JkZXIiIG5hbWU9InJlbGlnaW9uIiB0eXBlPSJ0ZXh0IiByZXF1aXJlZD48YnI+CgkJCSAgPC9kaXY+CgkJCSAgPGRpdiBjbGFzcz0idzMtdGhpcmQiPgoJCQkgICAgPGxhYmVsIGNsYXNzPSJ3My10ZXh0LWJsdWUiPjxiPkRhdGUgb2YgQmlydGg8L2I+PC9sYWJlbD4KCQkJICA8aW5wdXQgY2xhc3M9InczLWlucHV0IHczLWJvcmRlciIgbmFtZT0iZGF0ZV9vZl9iaXJ0aCIgdHlwZT0iZGF0ZSIgcmVxdWlyZWQ+PGJyPgoJCQkgIDwvZGl2PgoJCQk8L2Rpdj4KCQkJICAKCQkJPGRpdiBjbGFzcz0idzMtcm93LXBhZGRpbmciPgoJCQkgIDxsYWJlbCBjbGFzcz0idzMtdGV4dC1ibHVlIj48Yj5HZW5kZXI8L2I+PC9sYWJlbD4KCQkJICAgIDxzZWxlY3QgY2xhc3M9InczLXNlbGVjdCB3My1ib3JkZXIgdzMtd2hpdGUiIG5hbWU9ImdlbmRlciIgcmVxdWlyZWQ+CgkJCSAgICAgICAgPG9wdGlvbiB2YWx1ZT0iIiBkaXNhYmxlZCBzZWxlY3RlZD5TZWxlY3QgZ2VuZGVyPC9vcHRpb24+CgkJCSAgICAgICAgPG9wdGlvbiB2YWx1ZT0ibWFsZSI+TWFsZTwvb3B0aW9uPgoJCQkgICAgICAgIDxvcHRpb24gdmFsdWU9ImZlbWFsZSI+RmVtYWxlPC9vcHRpb24+CgkJCSAgICA8L3NlbGVjdD48YnI+PGJyPgoJCQk8L2Rpdj4KCQkJIAoJCQkgIAoJCQk8ZGl2IGNsYXNzPSJ3My1yb3ctcGFkZGluZyI+CgkJCSAgPGxhYmVsIGNsYXNzPSJ3My10ZXh0LWJsdWUiPjxiPkNvdXJzZTwvYj48L2xhYmVsPgoJCSAgICA8c2VsZWN0IGNsYXNzPSJ3My1zZWxlY3QgdzMtYm9yZGVyIHczLXdoaXRlIiBuYW1lPSJjb3Vyc2VfaWQiIHJlcXVpcmVkPgoJCSAgICAgICAgPG9wdGlvbiB2YWx1ZT0iIiBkaXNhYmxlZCBzZWxlY3RlZD5TZWxlY3QgY291cnNlPC9vcHRpb24+CgkJICAgICAgICB7JSBmb3IgY291cnNlIGluIGNvdXJzZXMgJX0KCQkgICAgICAgICAgICA8b3B0aW9uIHZhbHVlPSJ7eyBjb3Vyc2UuaWQgfX0iPnt7IGNvdXJzZS5jb3Vyc2VfbmFtZSB9fTwvb3B0aW9uPgoJCSAgICAgICAgeyUgZW5kZm9yICV9CgkJICAgIDwvc2VsZWN0Pjxicj48YnI+CgoJCQkgIDxidXR0b24gY2xhc3M9InczLWJ0biB3My1ibHVlIj5SZWdpc3RlcjwvYnV0dG9uPjwvcD4KCQkJPC9mb3JtPgoJCTwvZGl2PgoKCSAgICA8L2Rpdj4KCSAgPC9kaXY+Cgk8L2Rpdj4KPC9kaXY+",
-					"AQAAAAAAAAABAAAAQgAAAAAAAADqDAAAAAAAAAAAAAAAAGxA"
-				],
-				[
-					27,
-					1,
-					"insert",
-					{
-						"characters": "div.main"
-					},
-					"CAAAAEIAAAAAAAAAQwAAAAAAAAAAAAAAQwAAAAAAAABEAAAAAAAAAAAAAABEAAAAAAAAAEUAAAAAAAAAAAAAAEUAAAAAAAAARgAAAAAAAAAAAAAARgAAAAAAAABHAAAAAAAAAAAAAABHAAAAAAAAAEgAAAAAAAAAAAAAAEgAAAAAAAAASQAAAAAAAAAAAAAASQAAAAAAAABKAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAQgAAAAAAAABCAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					28,
-					1,
-					"insert_completion",
-					{
-						"completion": "<div class=\"main\">$0</div>",
-						"format": "snippet",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "div.main"
-					},
-					"AgAAAEIAAAAAAAAAQgAAAAAAAAAIAAAAZGl2Lm1haW5CAAAAAAAAAFoAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASgAAAAAAAABKAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					29,
-					1,
-					"insert",
-					{
-						"characters": "Under"
-					},
-					"BQAAAFQAAAAAAAAAVQAAAAAAAAAAAAAAVQAAAAAAAABWAAAAAAAAAAAAAABWAAAAAAAAAFcAAAAAAAAAAAAAAFcAAAAAAAAAWAAAAAAAAAAAAAAAWAAAAAAAAABZAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAVAAAAAAAAABUAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					30,
-					1,
-					"insert",
-					{
-						"characters": " Developme"
-					},
-					"CgAAAFkAAAAAAAAAWgAAAAAAAAAAAAAAWgAAAAAAAABbAAAAAAAAAAAAAABbAAAAAAAAAFwAAAAAAAAAAAAAAFwAAAAAAAAAXQAAAAAAAAAAAAAAXQAAAAAAAABeAAAAAAAAAAAAAABeAAAAAAAAAF8AAAAAAAAAAAAAAF8AAAAAAAAAYAAAAAAAAAAAAAAAYAAAAAAAAABhAAAAAAAAAAAAAABhAAAAAAAAAGIAAAAAAAAAAAAAAGIAAAAAAAAAYwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAWQAAAAAAAABZAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					31,
-					1,
-					"insert",
-					{
-						"characters": "nt"
-					},
-					"AgAAAGMAAAAAAAAAZAAAAAAAAAAAAAAAZAAAAAAAAABlAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAYwAAAAAAAABjAAAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "DAOIS/urls.py",
-			"settings":
-			{
-				"buffer_size": 1011,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-				[
-					23,
-					1,
-					"left_delete",
-					null,
-					"AQAAAFcDAAAAAAAAVwMAAAAAAAAJAAAAZGFzaGJvYXJk",
-					"AQAAAAAAAAABAAAAVwMAAAAAAABgAwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					24,
-					1,
-					"right_delete",
-					null,
-					"AQAAAFcDAAAAAAAAVwMAAAAAAAABAAAALw",
-					"AQAAAAAAAAABAAAAVwMAAAAAAABXAwAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "AlumniManagement/views.py",
-			"settings":
-			{
-				"buffer_size": 1270,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -336,12 +230,15 @@
 	[
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement",
-		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates",
-		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement",
-		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/DAOIS"
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/__pycache__"
 	],
 	"file_history":
 	[
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/admin.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/models.py",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/__pycache__/models.cpython-311.pyc",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/alumni.html",
+		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/DAOIS/urls.py",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/utils.py",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/views.py",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/sample.html",
@@ -364,18 +261,14 @@
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/Authentication/templates/Authentication/login.html",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/Authentication/templates/base.html",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/Authentication/urls.py",
-		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/alumni.html",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/DAOIS/settings.py",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/Authentication/managers.py",
-		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/models.py",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/Authentication/models.py",
-		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/DAOIS/urls.py",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/migrations/0010_alumni_demographic_profile_user.py",
 		"/home/gemrey/scan_output-01.cap",
 		"/home/gemrey/.config/sublime-text/Packages/Django Syntax/Django HTML.sublime-syntax",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/base.html",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/templates/AlumniManagement/job.html",
-		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/admin.py",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/static/css/sidebar.css",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/static/js/sidebar.js",
 		"/home/gemrey/Desktop/Capstone_Alumni/DAOIS/AlumniManagement/migrations/0003_auto_20230520_0124.py",
@@ -385,7 +278,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -399,6 +292,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"<<<<<<< HEAD",
+			"GENDER_CHOICES",
+			"GENDER_CH",
+			"gender",
 			"random",
 			"plt",
 			"Count",
@@ -460,6 +357,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"SEX_CHOICES",
+			"sex",
 			"employed_alumni_percentage",
 			"username",
 			"",
@@ -482,100 +381,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "AlumniManagement/templates/AlumniManagement/alumni.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 130,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								56,
-								56
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "DAOIS/urls.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1011,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								855,
-								855
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "AlumniManagement/views.py",
-					"selected": true,
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1270,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -618,7 +423,7 @@
 	"project": "djaneiro.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":

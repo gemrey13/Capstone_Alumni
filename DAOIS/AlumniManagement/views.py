@@ -39,3 +39,5 @@ def sample(request):
         'combination': combination,
     }
     return render(request, 'AlumniManagement/sample.html', context)
+
+

@@ -72,17 +72,20 @@ class Alumni_Demographic_Profile(models.Model):
     lname = models.CharField(max_length=64)
     mi = models.CharField(max_length=2, blank=True)
     suffix = models.CharField(max_length=3, blank=True)
-
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     SEX_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female')
     ]
     sex = models.CharField(max_length=10, choices=SEX_CHOICES)
-    address = models.CharField(max_length=64)
+    
     religion = models.CharField(max_length=64)
     marital_status = models.CharField(max_length=64)
     date_of_birth = models.DateField()
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, default='Philippines')
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, default="Quezon")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, default='Lucena City')
+    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE, default='Dalahican')
 
     def __str__(self):
         return f'{self.alumni_id} | {self.fname} {self.lname}'
