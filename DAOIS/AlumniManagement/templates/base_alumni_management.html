@@ -5,38 +5,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>DLL {% block title %}{% endblock title %}</title>
-
-	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 	
 </head>
 
 <body>
-	<!-- navbar 
-    <nav class="navbar">
-      <div class="logo_item">
-        <i class="bx bx-menu" id="sidebarOpen"></i>
-        <img src="images/logo.png" alt=""></i>
-      </div>
-
-      <div class="search_bar">
-        <input type="text" placeholder="Search" />
-      </div>
-
-      <div class="navbar_content">
-        <i class="bi bi-grid"></i>
-        <i class='bx bx-sun' id="darkLight"></i>
-        <i class='bx bx-bell' ></i>
-      </div>
-    </nav>
-    	end -->
-    
-
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<!-- Sidebar/menu -->
 	{% include "AlumniManagement/sidebar.html" %}
 	
 	{% block content %}{% endblock content %}
 
-	
-	
 </body>
 </html>

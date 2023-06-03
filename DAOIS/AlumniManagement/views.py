@@ -6,21 +6,23 @@ from .utils import *
 
 @login_required(login_url='Authentication:login')
 def dashboard(request):
-        
+    course_analysis = course_related_job_analysis()
     context = {
+        'course_analysis': course_analysis,
     }
-
     return render(request, 'AlumniManagement/Dashboard.html', context)
 
 
+@login_required(login_url='Authentication:login')
 def alumni(request):
     courses = Course.objects.all()
     context = {
         'courses': courses,
     }
     return render(request, "AlumniManagement/alumni.html", context)
+    
 
-
+@login_required(login_url='Authentication:login')
 def sample(request):
     jobless_percentage, employed_alumni_percentage, employed_alumni_count = employment_percentage()
 

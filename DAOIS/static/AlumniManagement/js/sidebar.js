@@ -34,6 +34,19 @@ sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
 darkLight.addEventListener("click", () => {
   body.classList.toggle("dark");
+
+  const isDarkMode = body.classList.contains("dark");
+
+  if (isDarkMode) {
+    chartOptions.borderColor = 'white';
+    chartOptions.color = 'white';
+  }else {
+    chartOptions.borderColor = 'black';
+    chartOptions.color = 'black';
+  }
+
+  related_job.update();
+
   if (body.classList.contains("dark")) {
     document.setI;
     darkLight.classList.replace("bx-sun", "bx-moon");

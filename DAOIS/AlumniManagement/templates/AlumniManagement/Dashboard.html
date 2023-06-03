@@ -4,234 +4,92 @@
 
 
 {% block content %}
-
 <link rel="stylesheet" type="text/css" href="{% static 'AlumniManagement/css/dashboard.css' %}">
-
 <!-- !PAGE CONTENT! -->
 <div class="main">
-  <div class="row">
+  
+  <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-6">
 
-    <div class="col-sm-3">
-      <div class="card text-dark border-dark mb-3" style="max-width: 18rem;">
-        <div class="icon-card">
-          <i class='bx bx-book-bookmark'></i>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Curriculum</h5>
-        </div>
+    <div class="rounded-3xl shadow-xl bg-blend-color bg-black p-4">
+      <span class="text-gray-700 lg:text-xl">Total Alumni</span>
+      <div class="text-3xl text-gray-800 lg:text-4xl flex items-center">
+        <strong class="flex-grow ">31K</strong>
+        <i class='bx bx-user text-5xl'></i>
       </div>
-      
-    </div>
-    <div class="col-sm-3">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">Secondary card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
+      <span class="text-gray-600">June 03, 2023</span>
     </div>
 
-    <div class="col-sm-3">
-      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">Success card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+    <div class="rounded-3xl shadow-xl bg-blend-color bg-black p-4">
+      <span class="text-gray-700 lg:text-xl">Curriculum</span>
+      <div class="text-3xl text-gray-800 lg:text-4xl flex items-center">
+        <strong class="flex-grow ">5</strong>
+        <i class='bx bx-book-bookmark text-5xl'></i>
+      </div>
+      <span class="text-gray-600">2015-2023</span>
+    </div>
+
+    <div class="rounded-3xl shadow-xl bg-blend-color bg-black p-4">
+      <span class="text-gray-700 lg:text-xl">Post Request</span>
+      <div class="text-3xl text-gray-800 lg:text-4xl flex items-center">
+        <strong class="flex-grow ">123215</strong>
+        <i class='bx bx-message-square-add text-5xl'></i>
       </div>
     </div>
 
-    <div class="col-sm-3">
-      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">Danger card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-
+  </div>
+    <hr class="mt-5 border-2">  
+    <br>
+  <div class="container mx-auto grid lg:grid-cols-2 rounded-3xl shadow-xl bg-blend-color bg-black p-4">
+    <canvas id="related_job_chart"></canvas>
+    <div>sad</div>
   </div>
 </div>
 
+<script type="text/javascript">
+let labels = [] 
+let data_related = []
+{% for course, analysis in course_analysis.items %}
+  labels.push('{{course}}');
+  data_related.push('{{ analysis.Related_Jobs }}');
+{% endfor %}
 
-<!--
-<div class="main">
+const chartOptions = {
+  borderColor: 'white',
+  scales: {
+    y: {
+      ticks: {
+        color: 'white'
+      }
+    }
+  }
+}
+const data_related_job_chart = {
+  labels: labels,
+  datasets: [{
+    axis: 'y',
+    label: 'Job Related to Courses',
+    data: data_related,
+    fill: false,
+    backgroundColor: [
+      'rgba(255, 99, 132)',
+      'rgba(255, 159, 64)',
+      'rgba(255, 205, 86)',
+      'rgba(75, 192, 192)',
+      'rgba(54, 162, 235)',
+    ],
+    borderColor: chartOptions.borderColor,
+    color: chartOptions.color,
+    borderWidth: 1
+  }]
+}
 
-  <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
-  </header>
-
-  <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-bank w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>0</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Curriculum</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-refresh w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>0</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Post Request</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-bookmark w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>0</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>History</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>{{ total_alumni_count }}</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Alumni</h4>
-      </div>
-    </div>
-  </div>
-
-  <div class="w3-panel">
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-third">
-        <h5>Alumni Job Status</h5>
-        <img src="data:image/png;base64,{{ job_status_pie }}" alt="Alumni Job Status Pie Chart" style="width:100%;">
-      </div>
-      <div class="w3-twothird">
-        <h5>Analysis</h5>
-        <table class="w3-table w3-striped w3-white">	
-          <tr>
-            <td><i class="fa fa-users w3-text-blue w3-large"></i></td>
-            <td>Employed Alumni Percentage</td>
-            <td><i>{{ employed_percentage }}%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa w3-text-red w3-large"></i></td>
-            <td>Unemployed Alumni Percentage</td>
-            <td><i>{{ jobless_percentage }}%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa w3-text-yellow w3-large"></i></td>
-            <td>Wala Maisip</td>
-            <td><i>1,000,000,000%</i></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <hr>
-
-  <div class="w3-container">
-    <h5>Number of Students with Job within 6 Months by Course</h5>
-
-    {% for course, percent_students, total_students, job_students , css_class in course_percentages %}
-      <p>{{course}} (student count: {{job_students}} out of {{total_students}})</p>
-      <div class="w3-aqua">
-        <div class="w3-container w3-center w3-padding {{css_class}}" style="width:{{percent_students}}%">{{percent_students}}%</div>
-      </div>
-    {% endfor %}
-
-  </div>
-  <hr>
-
-  <div class="w3-container">
-    <h5>Courses  <span class="w3-bar-item w3-right">Related Job Count</span></h5>
-    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-      {% for course, analysis in course_analysis.items %}
-      <tr>
-        <td>{{ course }}</td>
-        <td>{{ analysis.Related_Jobs }}</td>
-      </tr>
-      {% endfor %}
-    </table><br>
-    <button class="w3-button w3-dark-grey">More Courses &nbsp;<i class="fa fa-arrow-right"></i></button>
-  </div>
-  <hr>
-  <div class="w3-container">
-    <h5>Recent Users</h5>
-    <ul class="w3-ul w3-card-4 w3-white">
-      <li class="w3-padding-16">
-        <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-        <span class="w3-xlarge">Gem Rey</span><br>
-      </li>
-      <li class="w3-padding-16">
-        <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-        <span class="w3-xlarge">Admin</span><br>
-      </li>
-      <li class="w3-padding-16">
-        <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-        <span class="w3-xlarge">Alumni</span><br>
-      </li>
-    </ul>
-  </div>
-  <hr>
-
-  <div class="w3-container">
-    <h5>Recent Comments</h5>
-    <div class="w3-row">
-      <div class="w3-col m2 text-center">
-        <img class="w3-circle" src="" style="width:96px;height:96px">
-      </div>
-      <div class="w3-col m10 w3-container">
-        <h4>John Wick <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-      </div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2 text-center">
-        <img class="w3-circle" src="" style="width:96px;height:96px">
-      </div>
-      <div class="w3-col m10 w3-container">
-        <h4>The Dog <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
-        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="w3-container w3-dark-grey w3-padding-32">
-    <div class="w3-row">
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-green">DLL</h5>
-        <p>Courses</p>
-        <p>Department</p>
-        <p>Establishment</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-red">Developer</h5>
-        <p>Tony Stark</p>
-        <p>Bruce Banner</p>
-        <p>Peter Parker</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-orange">Contacts</h5>
-        <p>Facebook</p>
-        <p>Github</p>
-        <p>Gmail</p>
-        <p>Instagram</p>
-      </div>
-    </div>
-  </div>
-  <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4></h4>
-    <p>Copyrigtht 2023</p>
-  </footer>
-
-</div>
--->
+const related_job_chart = document.getElementById('related_job_chart')
+const related_job = new Chart(related_job_chart, {
+  type: 'bar',
+  data: data_related_job_chart,
+  options: {
+    indexAxis: 'y'
+  }
+})
+</script>
 {% endblock content %}

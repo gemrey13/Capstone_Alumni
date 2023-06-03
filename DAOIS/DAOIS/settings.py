@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'AlumniManagement',
     'Authentication',
+
 ]
 
 MIDDLEWARE = [
