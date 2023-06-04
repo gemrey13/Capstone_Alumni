@@ -2,90 +2,107 @@
 
 
 {% block content %}
-<div class="main">
-	<h1 class="text-xl mb-2">Alumni Table</h1><br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-	<div class="overflow-auto rounded-lg shadow hidden md:block">
+
+<div class="main">
+	<h1 class="text-sm md:text-xl mb-2">Alumni Table</h1>
+	<form action="" class="relative mx-auto" id="search-form">
+		<div class="flex items-center justify-end">
+		    <div class="flex border-2 border-gray-200 rounded">
+		        <input type="text" class="px-4 py-2 w-20 md:w-80" placeholder="Search..." id="search-input">
+		        <button class="px-4 text-white bg-gray-600 border-l ">
+		            Search
+		        </button>
+		    </div>
+		</div>
+	</form>
+
+	<div class="overflow-auto rounded-lg shadow hidden md:block" id="table-container">
 		<table class="w-full">
 		<thead class="bg-gray-50 border-b-2 border-gray-200">
 			<tr>
-				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
-				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">Course</th>
-				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">First Name</th>
-				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Last Name</th>
-				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Middle Name</th>
-				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">Suffix</th>
-				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">Sex</th>
+				<th class="w-7 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
+				<th class="w-10 p-3 text-sm font-semibold tracking-wide text-left">Course</th>
+				<th class="w-28 p-3 text-sm font-semibold tracking-wide text-left">First Name</th>
+				<th class="w-28 p-3 text-sm font-semibold tracking-wide text-left">Last Name</th>
+				<th class="w-2 p-3 text-sm font-semibold tracking-wide text-left">M.I.</th>
+				<th class="w-2 p-3 text-sm font-semibold tracking-wide text-left">Sfx</th>
+				<th class="w-6 p-3 text-sm font-semibold tracking-wide text-left">Sex</th>
 				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Religion</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Marital Status</th>
-				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Date of Birth</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Country</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Province</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">City</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Barangay</th>
+				<th class="w-16 p-3 text-sm font-semibold tracking-wide text-left">M/S</th>
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Date of Birth</th>
+				<th class="w-18 p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Action</th>
 			</tr>
 		</thead>
 		<tbody class="divide-y divide-gray-100">
-			<tr class="bg-white">
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">ALU123</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">BSIT</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Gemrey</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Ranola</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Bandol</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap"></td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Male</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cathilic</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Single</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">JUly 13, 2002</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">PH</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Quezon</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Lucena</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cotta</td>
-			</tr>
-			<tr class="bg-gray-100">
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">ALU123</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">BSIT</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Gemrey</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Ranola</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Bandol</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap"></td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Male</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cathilic</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Single</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">JUly 13, 2002</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">PH</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Quezon</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Lucena</td>
-				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cotta</td>
-			</tr>
-			<tr></tr>
-			<tr></tr>
+			
+				{% for profile in profiles %}
+				<tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.alumni_id}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.course_id}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.fname}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.lname}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.mi}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.suffix}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{% if profile.sex == 'male' %}M{% else %}F
+					{% endif %}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.religion}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.marital_status}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.date_of_birth}}</td>
+					<td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.country}}, {{profile.province}}, {{profile.city}}, {{profile.barangay}}</td>
+					<td class="text-blue-500">
+						<button><a href="#" class="hover:underline">Update</a></button>
+						<button><a href="#" class="hover:underline">Delete</a></button>
+					</td>
+				</tr>
+				{% endfor %}
 		</tbody>
 	</table>
 	</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden" id="card-container">
+        {% for profile in profiles %}
+        <div class="bg-white space-y-2 p-4 rounded-lg shadow">
+            <div class="flex items-center space-x-2 text-sm">
+                <div class="text-blue-500 font-semibold hover:underline">{{profile.alumni_id}} <br>{{profile.course_id}}</div>
+                <div class="text-gray-500">{{profile.marital_status}} <br>{{profile.sex}}</div>
+                <div class="p-3 text-sm text-gray-700 whitespace-nowrap text-left"> {{profile.religion}} <br>{{profile.date_of_birth}}</div>
+            </div>
+            <div class="text-sm text-gray-700">{{profile.country}} {{profile.province}}, {{profile.city}} {{profile.barangay}} </div>
+            <div class="text-md font-bold text-black">{{profile.fname}} {{profile.mi}} {{profile.lname}} {{profile.suffix}}</div>
+        </div>
+        {% empty %}
+        <div class="text-gray-700">No results found.</div>
+        {% endfor %}
+    </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-	<div class="bg-white space-y-3 p-4 rounded-lg shadow">
-		<div class="flex items-center space-x-2 text-sm">
-			<div class="text-blue-500 font-bold hover:underline">A01001 <br>BSIT</div>
-			<div class="text-gray-500">Single July 13, 2002</div>
-			<div class="p-3 text-sm text-gray-700 whitespace-nowrap">Male Catholic</div>
-		</div>
-		<div class="text-sm text-gray-500">Gem Rey Bandol Ranola Jr</div>
-		<div class="text-sm font-medium text-black">PH Quezon Lucena City Cotta</div>
-	</div>
-
-	<div class="bg-white space-y-2 p-4 rounded-lg shadow">
-		<div class="flex items-center space-x-2 text-sm">
-			<div class="text-blue-500 font-semibold hover:underline">A01001 <br>BSIT</div>
-			<div class="text-gray-500">Single <br>Male</div>
-			<div class="p-3 text-sm text-gray-700 whitespace-nowrap text-left"> Catholic <br>July 13, 2002</div>
-		</div>
-		<div class="text-sm text-gray-700">PH Quezon Lucena City Cotta </div>
-		<div class="text-md font-bold text-black">Gem Rey Bandol Ranola Jr</div>
-	</div>
-</div>
 	
 
 </div>
+
+<script>
+	$(document).ready(function() {
+    $('#search-form').submit(function(event) {
+        event.preventDefault();
+        var query = $('#search-input').val();
+        console.log(query)
+        $.ajax({
+            type: 'GET',
+            url: '/alumni/search/',
+            data: {
+                'query': query
+            },
+            success: function(response) {
+                $('#table-container').html(response.html),
+                $('#card-container').html(response.html);
+            },
+            error: function(xhr, status, error) {
+                // Handle error if needed
+            }
+        });
+    });
+});
+
+</script>
 {% endblock content %}

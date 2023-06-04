@@ -1,7 +1,18 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .utils import *
+
+
+def alumni_search(request):
+    query = request.GET.get('query', '')
+    profiles = Alumni_Demographic_Profile.objects.filter(
+        fname__icontains=query
+    )
+    html = render_to_string('AlumniManagement/components/alumni_search.html', {'profiles': profiles})
+    return JsonResponse({'html': html})
 
 
 @login_required(login_url='Authentication:login')
@@ -15,9 +26,9 @@ def dashboard(request):
 
 @login_required(login_url='Authentication:login')
 def alumni(request):
-    courses = Course.objects.all()
+    profiles = Alumni_Demographic_Profile.objects.all()
     context = {
-        'courses': courses,
+        'profiles': profiles,
     }
     return render(request, "AlumniManagement/alumni.html", context)
     

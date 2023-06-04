@@ -1,0 +1,64 @@
+<div class="overflow-auto rounded-lg shadow hidden md:block">
+        <table class="w-full">
+        <thead class="bg-gray-50 border-b-2 border-gray-200">
+            <tr>
+                <th class="w-7 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
+                <th class="w-10 p-3 text-sm font-semibold tracking-wide text-left">Course</th>
+                <th class="w-28 p-3 text-sm font-semibold tracking-wide text-left">First Name</th>
+                <th class="w-28 p-3 text-sm font-semibold tracking-wide text-left">Last Name</th>
+                <th class="w-2 p-3 text-sm font-semibold tracking-wide text-left">M.I.</th>
+                <th class="w-2 p-3 text-sm font-semibold tracking-wide text-left">Sfx</th>
+                <th class="w-6 p-3 text-sm font-semibold tracking-wide text-left">Sex</th>
+                <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Religion</th>
+                <th class="w-16 p-3 text-sm font-semibold tracking-wide text-left">M/S</th>
+                <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Date of Birth</th>
+                <th class="w-18 p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+                <th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Action</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+            
+                {% for profile in profiles %}
+                <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.alumni_id}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.course_id}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.fname}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.lname}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.mi}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.suffix}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{% if profile.sex == 'male' %}M{% else %}F
+                    {% endif %}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.religion}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.marital_status}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.date_of_birth}}</td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.country}}, {{profile.province}}, {{profile.city}}, {{profile.barangay}}</td>
+                    <td class="text-blue-500">
+                        <button><a href="#" class="hover:underline">Update</a></button>
+                        <button><a href="#" class="hover:underline">Delete</a></button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan=3>No results found.</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+        {% for profile in profiles %}
+        <div class="bg-white space-y-2 p-4 rounded-lg shadow">
+            <div class="flex items-center space-x-2 text-sm">
+                <div class="text-blue-500 font-semibold hover:underline">{{profile.alumni_id}} <br>{{profile.course_id}}</div>
+                <div class="text-gray-500">{{profile.marital_status}} <br>{{profile.sex}}</div>
+                <div class="p-3 text-sm text-gray-700 whitespace-nowrap text-left"> {{profile.religion}} <br>{{profile.date_of_birth}}</div>
+            </div>
+            <div class="text-sm text-gray-700">{{profile.country}} {{profile.province}}, {{profile.city}} {{profile.barangay}} </div>
+            <div class="text-md font-bold text-black">{{profile.fname}} {{profile.mi}} {{profile.lname}} {{profile.suffix}}</div>
+        </div>
+        {% empty %}
+        <div class="text-gray-700">No results found.</div>
+        {% endfor %}
+    </div>
