@@ -31,9 +31,8 @@ sidebarClose.addEventListener("click", () => {
 sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
 
-
 darkLight.addEventListener("click", () => {
-  body.classList.toggle("dark");
+  body.classList.toggle("dark");  
   if (body.classList.contains("dark")) {
     document.setI;
     darkLight.classList.replace("bx-sun", "bx-moon");
