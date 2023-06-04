@@ -2,5 +2,90 @@
 
 
 {% block content %}
-<div class="main">Under Development</div>
+<div class="main">
+	<h1 class="text-xl mb-2">Alumni Table</h1><br>
+
+	<div class="overflow-auto rounded-lg shadow hidden md:block">
+		<table class="w-full">
+		<thead class="bg-gray-50 border-b-2 border-gray-200">
+			<tr>
+				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
+				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">Course</th>
+				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">First Name</th>
+				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Last Name</th>
+				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Middle Name</th>
+				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">Suffix</th>
+				<th class="w-14 p-3 text-sm font-semibold tracking-wide text-left">Sex</th>
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Religion</th>
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Marital Status</th>
+				<th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Date of Birth</th>
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Country</th>
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Province</th>
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">City</th>
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Barangay</th>
+			</tr>
+		</thead>
+		<tbody class="divide-y divide-gray-100">
+			<tr class="bg-white">
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">ALU123</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">BSIT</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Gemrey</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Ranola</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Bandol</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap"></td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Male</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cathilic</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Single</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">JUly 13, 2002</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">PH</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Quezon</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Lucena</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cotta</td>
+			</tr>
+			<tr class="bg-gray-100">
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">ALU123</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">BSIT</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Gemrey</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Ranola</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Bandol</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap"></td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Male</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cathilic</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Single</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">JUly 13, 2002</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">PH</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Quezon</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Lucena</td>
+				<td class="p-3 text-sm text-gray-700 whitespace-nowrap">Cotta</td>
+			</tr>
+			<tr></tr>
+			<tr></tr>
+		</tbody>
+	</table>
+	</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+	<div class="bg-white space-y-3 p-4 rounded-lg shadow">
+		<div class="flex items-center space-x-2 text-sm">
+			<div class="text-blue-500 font-bold hover:underline">A01001 <br>BSIT</div>
+			<div class="text-gray-500">Single July 13, 2002</div>
+			<div class="p-3 text-sm text-gray-700 whitespace-nowrap">Male Catholic</div>
+		</div>
+		<div class="text-sm text-gray-500">Gem Rey Bandol Ranola Jr</div>
+		<div class="text-sm font-medium text-black">PH Quezon Lucena City Cotta</div>
+	</div>
+
+	<div class="bg-white space-y-2 p-4 rounded-lg shadow">
+		<div class="flex items-center space-x-2 text-sm">
+			<div class="text-blue-500 font-semibold hover:underline">A01001 <br>BSIT</div>
+			<div class="text-gray-500">Single <br>Male</div>
+			<div class="p-3 text-sm text-gray-700 whitespace-nowrap text-left"> Catholic <br>July 13, 2002</div>
+		</div>
+		<div class="text-sm text-gray-700">PH Quezon Lucena City Cotta </div>
+		<div class="text-md font-bold text-black">Gem Rey Bandol Ranola Jr</div>
+	</div>
+</div>
+	
+
+</div>
 {% endblock content %}

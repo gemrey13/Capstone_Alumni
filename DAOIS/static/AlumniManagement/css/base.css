@@ -1,0 +1,14 @@
+
+.main {
+  margin-top: 70px;
+  margin-left: 100px;
+  margin-right: 20px;
+}
+
+
+@media screen and (max-width:768px) {
+  .main {
+    margin-top: 40px;
+    margin-left: 20px;
+  }
+}
