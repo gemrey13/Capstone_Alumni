@@ -5,6 +5,9 @@ const submenuItems = document.querySelectorAll(".submenu_item");
 const sidebarOpen = document.querySelector("#sidebarOpen");
 const sidebarClose = document.querySelector(".collapse_sidebar");
 const sidebarExpand = document.querySelector(".expand_sidebar");
+const darkModePref = localStorage.getItem('darkMode');
+
+
 document.addEventListener("DOMContentLoaded", () => {
   sidebar.classList.add("close");
 
@@ -31,13 +34,20 @@ sidebarClose.addEventListener("click", () => {
 sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
 
+if (darkModePref === 'true') {
+  body.classList.add('dark');
+  darkLight.classList.replace("bx-sun", "bx-moon");
+}
+
 darkLight.addEventListener("click", () => {
   body.classList.toggle("dark");  
   if (body.classList.contains("dark")) {
     document.setI;
     darkLight.classList.replace("bx-sun", "bx-moon");
+    localStorage.setItem('darkMode', 'true');
   } else {
     darkLight.classList.replace("bx-moon", "bx-sun");
+    localStorage.setItem('darkMode', 'false');
   }
 });
 
