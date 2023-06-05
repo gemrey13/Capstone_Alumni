@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Select Example</title>
+</head>
+<body>
+  <label for="country">Country:</label>
+  <select id="country" onchange="populateProvinces()">
+    <option value="">Select Country</option>
+    <option value="PH">Philippines</option>
+    <option value="US">United States</option>
+    <!-- Add more country options as needed -->
+  </select>
+
+  <label for="province">Province:</label>
+  <select id="province" onchange="populateCities()">
+    <option value="">Select Province</option>
+  </select>
+
+  <label for="city">City:</label>
+  <select id="city" onchange="populateVillages()">
+    <option value="">Select City</option>
+  </select>
+
+  <label for="village">Village:</label>
+  <select id="village">
+    <option value="">Select Village</option>
+  </select>
+
+  <script>
+    // Define the data for provinces, cities, and villages
+    const data = {
+      PH: {
+        provinces: ["Metro Manila", "Cebu", "Bulacan"],
+        cities: {
+          "Metro Manila": ["Manila", "Quezon City", "Makati"],
+          "Cebu": ["Cebu City", "Lapu-Lapu City", "Mandaue City"],
+          "Bulacan": ["Malolos", "Meycauayan", "Baliuag"]
+        },
+        villages: {
+          "Manila": ["Village A", "Village B", "Village C"],
+          "Quezon City": ["Village D", "Village E", "Village F"],
+          "Makati": ["Village G", "Village H", "Village I"],
+          // Add more village options as needed
+        }
+      },
+      US: {
+        provinces: ["California", "New York", "Texas"],
+        cities: {
+          "California": ["Los Angeles", "San Francisco", "San Diego"],
+          "New York": ["New York City", "Buffalo", "Albany"],
+          "Texas": ["Houston", "Dallas", "Austin"]
+          // Add more city options as needed
+        },
+        villages: {
+          "Los Angeles": ["Village 1", "Village 2", "Village 3"],
+          "San Francisco": ["Village 4", "Village 5", "Village 6"],
+          "San Diego": ["Village 7", "Village 8", "Village 9"],
+          // Add more village options as needed
+        }
+      }
+      // Add more country options as needed
+    };
+
+    // Function to populate the provinces based on the selected country
+    function populateProvinces() {
+      const countrySelect = document.getElementById("country");
+      const provinceSelect = document.getElementById("province");
+      const citySelect = document.getElementById("city");
+      const villageSelect = document.getElementById("village");
+
+      // Clear previous options
+      provinceSelect.innerHTML = "<option value=''>Select Province</option>";
+      citySelect.innerHTML = "<option value=''>Select City</option>";
+      villageSelect.innerHTML = "<option value=''>Select Village</option>";
+
+      const country = countrySelect.value;
+      if (country !== "") {
+        const provinces = data[country].provinces;
+        provinces.forEach((province) => {
+          const option = document.createElement("option");
+          option.value = province;
+          option.textContent = province;
+          provinceSelect.appendChild(option);
+        });
+      }
+    }
+
+    // Function to populate the cities based on the selected province
+    function populateCities() {
+      const countrySelect = document.getElementById("country");
+      const provinceSelect = document.getElementById("province");
+      const citySelect = document.getElementById("city");
+      const villageSelect = document.getElementById("village");
+
+      // Clear previous options
+      citySelect.innerHTML = "<option value=''>Select City</option>";
+      villageSelect.innerHTML = "<option value=''>Select Village</option>";
+
+      const country = countrySelect.value;
+      const province = provinceSelect.value;
+      if (country !== "" && province !== "") {
+        const cities = data[country].cities[province];
+        cities.forEach((city) => {
+          const option = document.createElement("option");
+          option.value = city;
+          option.textContent = city;
+          citySelect.appendChild(option);
+        });
+      }
+    }
+
+    // Function to populate the villages based on the selected city
+    function populateVillages() {
+      const countrySelect = document.getElementById("country");
+      const provinceSelect = document.getElementById("province");
+      const citySelect = document.getElementById("city");
+      const villageSelect = document.getElementById("village");
+
+      // Clear previous options
+      villageSelect.innerHTML = "<option value=''>Select Village</option>";
+
+      const country = countrySelect.value;
+      const province = provinceSelect.value;
+      const city = citySelect.value;
+      if (country !== "" && province !== "" && city !== "") {
+        const villages = data[country].villages[city];
+        villages.forEach((village) => {
+          const option = document.createElement("option");
+          option.value = village;
+          option.textContent = village;
+          villageSelect.appendChild(option);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

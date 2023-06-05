@@ -6,6 +6,41 @@ from .models import *
 from .utils import *
 
 
+def your_view(request):
+    countries = Country.objects.all()
+    provinces = Province.objects.all()
+    cities = City.objects.all()
+    barangays = Barangay.objects.all()
+
+    context = {
+        'countries': countries,
+        'provinces': provinces,
+        'cities': cities,
+        'barangays': barangays,
+    }
+
+    return render(request, 'power.html', context)
+
+def get_barangays(request):
+    city_id = request.GET.get('city_id')
+    barangays = Barangay.objects.filter(city_id=city_id).values('id', 'barangay_name')
+
+    return JsonResponse({'barangays': list(barangays)})
+
+def get_provinces(request):
+    country_id = request.GET.get('country_id')
+    provinces = Province.objects.filter(country_id=country_id).values('id', 'province_name')
+
+    return JsonResponse({'provinces': list(provinces)})
+
+def get_cities(request):
+    province_id = request.GET.get('province_id')
+    cities = City.objects.filter(province_id=province_id).values('id', 'city_name')
+
+    return JsonResponse({'cities': list(cities)})
+
+
+
 def alumni_search(request):
     query = request.GET.get('query', '')
     profiles = Alumni_Demographic_Profile.objects.filter(
