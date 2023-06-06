@@ -62,8 +62,10 @@ def dashboard(request):
 @login_required(login_url='Authentication:login')
 def alumni(request):
     profiles = Alumni_Demographic_Profile.objects.all()
+    countries = Country.objects.all()
     context = {
         'profiles': profiles,
+        'countries': countries,
     }
     return render(request, "AlumniManagement/alumni.html", context)
     
