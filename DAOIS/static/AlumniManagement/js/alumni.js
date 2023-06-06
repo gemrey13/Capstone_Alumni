@@ -123,8 +123,7 @@
 
 
 
-
-  var currentFormIndex = 0;
+    var currentFormIndex = 0;
     var forms = document.getElementsByClassName("form");
     var prevButton = document.getElementById("prevButton");
     var nextButton = document.getElementById("nextButton");
@@ -161,3 +160,4 @@
     }
 
     updateButtonVisibility();
+  
