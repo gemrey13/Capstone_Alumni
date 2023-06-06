@@ -46,7 +46,7 @@ body.dark {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 27px;
+  padding: 17px 27px;
   z-index: 2;
   box-shadow: 0 0 2px var(--grey-color-light);
 }
