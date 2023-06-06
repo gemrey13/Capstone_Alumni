@@ -119,3 +119,45 @@
         }
       });
     });
+
+
+
+
+
+  var currentFormIndex = 0;
+    var forms = document.getElementsByClassName("form");
+    var prevButton = document.getElementById("prevButton");
+    var nextButton = document.getElementById("nextButton");
+    var submitButton = document.getElementById("submitButton");
+
+    function changeForm(delta) {
+      var currentForm = forms[currentFormIndex];
+      currentForm.classList.remove("active");
+
+      currentFormIndex += delta;
+
+      // Make sure the index stays within the bounds of the forms array
+      if (currentFormIndex < 0) {
+        currentFormIndex = forms.length - 1;
+      } else if (currentFormIndex >= forms.length) {
+        currentFormIndex = 0;
+      }
+
+      var nextForm = forms[currentFormIndex];
+      nextForm.classList.add("active");
+
+      updateButtonVisibility();
+    }
+
+    function updateButtonVisibility() {
+      prevButton.style.display = currentFormIndex === 0 ? "none" : "inline-block";
+      nextButton.style.display = currentFormIndex === forms.length - 1 ? "none" : "inline-block";
+      submitButton.style.display = currentFormIndex === forms.length - 1 ? "inline-block" : "none";
+    }
+
+    function submitForm() {
+      // Perform form submission logic here
+      alert("Form submitted!");
+    }
+
+    updateButtonVisibility();
