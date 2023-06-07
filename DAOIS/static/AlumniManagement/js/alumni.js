@@ -38,6 +38,84 @@
 
 
     $(document).ready(function() {
+      $('#jobCountry').change(function() {
+        var jobCountryId = $(this).val();
+        if (jobCountryId !== '') {
+          $.ajax({
+            url: '/get_provinces/',
+            type: 'GET',
+            data: { country_id: jobCountryId },
+            success: function(response) {
+              // Clear previous options
+              $('#jobProvince').empty().append('<option value="">Select Province</option>');
+              $('#jobCity').empty().append('<option value="">Select City</option>');
+              $('#jobBarangay').empty().append('<option value="">Select Barangay</option>');
+
+              // Populate provinces
+              response.provinces.forEach(function(province) {
+                $('#jobProvince').append('<option value="' + province.id + '">' + province.province_name + '</option>');
+              });
+            }
+          });
+        }
+      });
+
+    $('#jobProvince').change(function() {
+        var jobProvinceId = $(this).val();
+        if (jobProvinceId !== '') {
+          // Fetch cities for the selected province
+          $.ajax({
+            url: '/get_cities/',
+            type: 'GET',
+            data: { province_id: jobProvinceId },
+            success: function(response) {
+              // Clear previous options
+              $('#jobCity').empty().append('<option value="">Select City</option>');
+              $('#jobBarangay').empty().append('<option value="">Select Barangay</option>');
+
+              // Populate cities
+              response.cities.forEach(function(city) {
+                $('#jobCity').append('<option value="' + city.id + '">' + city.city_name + '</option>');
+              });
+            }
+          });
+        } else {
+          // Clear city and barangay options if province is not selected
+          $('#jobCity').empty().append('<option value="">Select City</option>');
+          $('#jobBarangay').empty().append('<option value="">Select Barangay</option>');
+        }
+      });
+
+    $('#jobCity').change(function() {
+        var jobCityId = $(this).val();
+        if (jobCityId !== '') {
+          // Fetch barangays for the selected city
+          $.ajax({
+            url: '/get_barangays/',
+            type: 'GET',
+            data: { city_id: jobCityId },
+            success: function(response) {
+              // Clear previous options
+              $('#jobBarangay').empty().append('<option value="">Select Barangay</option>');
+
+              // Populate barangays
+              response.barangays.forEach(function(barangay) {
+                $('#jobBarangay').append('<option value="' + barangay.id + '">' + barangay.barangay_name + '</option>');
+              });
+            }
+          });
+        } else {
+          // Clear barangay options if city is not selected
+          $('#jobBarangay').empty().append('<option value="">Select Barangay</option>');
+        }
+      });
+    });
+
+   
+
+
+
+    $(document).ready(function() {
       // Triggered when the country selection changes
       $('#country').change(function() {
         var countryId = $(this).val();

@@ -29,9 +29,11 @@ def get_barangays(request):
 
 def get_provinces(request):
     country_id = request.GET.get('country_id')
+    jobcountry_id = request.GET.get('jobcountry_id')
     provinces = Province.objects.filter(country_id=country_id).values('id', 'province_name')
+    jobprovinces = Province.objects.filter(country_id=jobcountry_id).values('id', 'province_name')
 
-    return JsonResponse({'provinces': list(provinces)})
+    return JsonResponse({'provinces': list(provinces), 'jobprovinces': list(jobprovinces)})
 
 def get_cities(request):
     province_id = request.GET.get('province_id')
@@ -63,9 +65,12 @@ def dashboard(request):
 def alumni(request):
     profiles = Alumni_Demographic_Profile.objects.all()
     countries = Country.objects.all()
+    field_choices = FIELD_CHOICES
+    print(field_choices)
     context = {
         'profiles': profiles,
         'countries': countries,
+        'field_choices': field_choices,
     }
     return render(request, "AlumniManagement/alumni.html", context)
     

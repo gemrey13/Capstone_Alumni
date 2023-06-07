@@ -104,7 +104,6 @@ class Current_Job(models.Model):
     salary = models.IntegerField()
     start_date = models.DateField()
     company_name = models.CharField(max_length=64)
-    company_address = models.CharField(max_length=64)
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE, null=True, blank=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, default=1)
     province = models.ForeignKey(Province, on_delete=models.CASCADE, default=1)
