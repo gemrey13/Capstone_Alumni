@@ -1,14 +1,13 @@
-
 .main {
-  margin-top: 90px;
-  margin-left: 100px;
-  margin-right: 20px;
+    margin-top: 90px;
+    margin-left: 100px;
+    margin-right: 20px;
 }
 
 
 @media screen and (max-width:768px) {
-  .main {
-    margin-top: 80px;
-    margin-left: 20px;
-  }
+    .main {
+        margin-top: 80px;
+        margin-left: 20px;
+    }
 }
