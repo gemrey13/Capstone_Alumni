@@ -66,7 +66,6 @@ def alumni(request):
     profiles = Alumni_Demographic_Profile.objects.all()
     countries = Country.objects.all()
     field_choices = FIELD_CHOICES
-    print(field_choices)
     context = {
         'profiles': profiles,
         'countries': countries,

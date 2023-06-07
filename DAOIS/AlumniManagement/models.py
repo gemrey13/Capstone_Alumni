@@ -78,7 +78,6 @@ class Alumni_Demographic_Profile(models.Model):
         ('female', 'Female')
     ]
     sex = models.CharField(max_length=10, choices=SEX_CHOICES)
-    
     religion = models.CharField(max_length=64)
     marital_status = models.CharField(max_length=64)
     date_of_birth = models.DateField()
