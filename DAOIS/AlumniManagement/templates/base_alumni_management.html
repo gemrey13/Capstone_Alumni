@@ -12,11 +12,12 @@
 </head>
 
 <body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<!-- Sidebar/menu -->
 	{% include "AlumniManagement/sidebar.html" %}
-	
-	{% block content %}{% endblock content %}
-
+	<div class="main">
+		{% block content %}{% endblock content %}
+	</div>
 </body>
 </html>

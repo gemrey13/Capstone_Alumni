@@ -1,129 +1,114 @@
 {% load static %}
-
 <link rel="stylesheet" type="text/css" href="{% static 'AlumniManagement/css/sidebar.css' %}">
-
-  <nav class="navbar">
-      <div class="logo_item">
+<nav class="navbar">
+    <div class="logo_item">
         <i class="bx bx-menu" id="sidebarOpen"></i>
         <img src="" alt=""><span class="navbar-text">DLL Alumni Office</span>
-      </div>
-
-      <div class="navbar_content">
+    </div>
+    <div class="navbar_content">
         <i class="bi bi-grid"></i>
         <i class='bx bx-sun' id="darkLight"></i>
-        <i class='bx bx-bell' ></i>
-      </div>
-    </nav>
-
+        <i class='bx bx-bell'></i>
+    </div>
+</nav>
 <!-- nice sidebar -->
-    <nav class="sidebar close">
-      <div class="menu_content">
+<nav class="sidebar close">
+    <div class="menu_content">
         <ul class="menu_items">
-          <div class="menu_title menu_dahsboard"></div>
-          <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
-          <!-- start -->
-         
-
-          <li class="item">
-            <a href="{% url 'AlumniManagement:dashboard' %}" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-grid-alt"></i>
-              </span>
-              <span class="navlink">Overview</span>
-            </a>
-          </li>
-          <!-- end -->
-
+            <div class="menu_title menu_dahsboard"></div>
+            <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
+            <!-- start -->
+            <li class="item">
+                <a href="{% url 'AlumniManagement:dashboard' %}" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class="bx bx-grid-alt"></i>
+                    </span>
+                    <span class="navlink">Overview</span>
+                </a>
+            </li>
+            <!-- end -->
             <div href="#" class="nav_link submenu_item">
-              <span class="navlink_icon">
-                <i class="bx bx-home-alt"></i>
-              </span>
-              <span class="navlink">Home</span>
-              <i class="bx bx-chevron-right arrow-left"></i>
+                <span class="navlink_icon">
+                    <i class="bx bx-home-alt"></i>
+                </span>
+                <span class="navlink">Home</span>
+                <i class="bx bx-chevron-right arrow-left"></i>
             </div>
-
             <ul class="menu_items submenu">
-              <a href="#" class="nav_link sublink">Under Development</a>
-              <a href="#" class="nav_link sublink">Under Development</a>
+                <a href="#" class="nav_link sublink">Under Development</a>
+                <a href="#" class="nav_link sublink">Under Development</a>
             </ul>
-          </li>
-
-          <li class="item">
-            <a href="{% url 'AlumniManagement:alumni' %}" class="nav_link">
-              <span class="navlink_icon">
-                <i class='bx bx-user'></i>
-              </span>
-              <span class="navlink">Alumni</span>
-            </a>
-          </li>
-
-          <li class="item">
-            <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class='bx bx-message-square-add'></i>
-              </span>
-              <span class="navlink">Post Request</span>
-            </a>
-          </li>
-
-          <li class="item">
-            <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class='bx bx-book-bookmark'></i>
-              </span>
-              <span class="navlink">Curriculum</span>
-            </a>
-          </li>
-          <!-- end -->
+            </li>
+            <li class="item">
+                <a href="{% url 'AlumniManagement:alumni' %}" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class='bx bx-user'></i>
+                    </span>
+                    <span class="navlink">Alumni</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class='bx bx-message-square-add'></i>
+                    </span>
+                    <span class="navlink">Post Request</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class='bx bx-book-bookmark'></i>
+                    </span>
+                    <span class="navlink">Curriculum</span>
+                </a>
+            </li>
+            <!-- end -->
         </ul>
-
         <ul class="menu_items">
-          <div class="menu_title menu_setting"></div>
-          <li class="item">
-            <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-flag"></i>
-              </span>
-              <span class="navlink">Notification</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-medal"></i>
-              </span>
-              <span class="navlink">Award</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-cog"></i>
-              </span>
-              <span class="navlink">Setting</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-layer"></i>
-              </span>
-              <span class="navlink">Features</span>
-            </a>
-          </li>
+            <div class="menu_title menu_setting"></div>
+            <li class="item">
+                <a href="#" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class="bx bx-flag"></i>
+                    </span>
+                    <span class="navlink">Notification</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class="bx bx-medal"></i>
+                    </span>
+                    <span class="navlink">Award</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class="bx bx-cog"></i>
+                    </span>
+                    <span class="navlink">Setting</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class="bx bx-layer"></i>
+                    </span>
+                    <span class="navlink">Features</span>
+                </a>
+            </li>
         </ul>
-
         <!-- Sidebar Open / Close -->
         <div class="bottom_content">
-          <div class="bottom expand_sidebar">
-            <i class='bx bx-log-in' ></i>
-          </div>
-
-          <div class="bottom collapse_sidebar">
-            <i class='bx bx-log-out'></i>
-          </div>
+            <div class="bottom expand_sidebar">
+                <i class='bx bx-log-in'></i>
+            </div>
+            <div class="bottom collapse_sidebar">
+                <i class='bx bx-log-out'></i>
+            </div>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
 <script type="text/javascript" src="{% static "AlumniManagement/js/sidebar.js" %}"></script>
-

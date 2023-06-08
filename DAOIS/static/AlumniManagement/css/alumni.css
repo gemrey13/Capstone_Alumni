@@ -1,0 +1,15 @@
+.form {
+    display: none;
+}
+
+.form.active {
+    display: block;
+}
+
+#nextButton {
+    display: inline-block;
+}
+
+#submitButton {
+    display: none;
+}
