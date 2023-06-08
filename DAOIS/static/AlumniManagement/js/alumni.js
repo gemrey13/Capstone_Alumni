@@ -236,7 +236,9 @@ function updateButtonVisibility() {
 
 function submitForm() {
     // Perform form submission logic here
-    alert("Form submitted!");
+    var form = document.getElementById("add_alumni_and_job");
+  // Submit the form
+    form.submit();
 }
 
 

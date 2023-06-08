@@ -2,7 +2,6 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "AlumniManagement/css/alumni.css" %}">
-
 <div class="modal h-screen w-full absolute sm:mt-0 mt-96 left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
     <div class="bg-white rounder shadow-lg sm:w-2/3">
         <div class="border-b px-4 py-2 flex justify-between items-center">
@@ -10,247 +9,260 @@
             <button class="text-black closeModal">&cross;</button>
         </div>
         <div class="p-3">
-        	<!-- Add Alumni Form -->
-            <form class="form active w-full max-w-full">
-                <div class="flex flex-wrap -mx-3">
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                            First Name
-                        </label>
-                        <input name="fname" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="lname" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                            Last Name
-                        </label>
-                        <input name="lname" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
-                    </div>
-                    <div class="w-full md:w-1/6 px-3 mb-5 sm:mb-0">
-                        <label name="mi" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-mi-name">
-                            M.I.
-                        </label>
-                        <input name="mi" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-mi-name" type="text" placeholder="Initial">
-                    </div>
-                    <div class="w-full md:w-1/6 px-3 mb-5 sm:mb-0">
-                        <label name="suffix" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-suffix-name">
-                            Suffix
-                        </label>
-                        <input name="suffix" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-suffix-name" type="text" placeholder="Ex. Jr. / Sr.">
-                    </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 mb-2">
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="suffix" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-alumni-id-name">
-                            Alumni ID
-                        </label>
-                        <input name="alumni_id" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-alumni-id-name" type="text" placeholder="No.">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="lname" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-course-name">
-                            Course
-                        </label>
-                        <input name="course_id" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-course-name" type="text" placeholder="Course">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="lname" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-course-name">
-                            Date of Birth
-                        </label>
-                        <input name="course_id" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-course-name" type="date" placeholder="Course">
-                    </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 mb-2">
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="suffix" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-status-name">
-                            Marital Status
-                        </label>
-                        <input name="marital_status" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-status-name" type="text" placeholder="Ex. Single">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="lname" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-sex-name">
-                            Sex
-                        </label>
-                        <input name="sex" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-sex-name" type="text" placeholder="M or F">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-2">
-                        <label name="lname" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-religion-name">
-                            Religion
-                        </label>
-                        <input name="religion" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-religion-name" type="text" placeholder="Religion">
-                    </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 ">
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="country">
-                            Country
-                        </label>
-                        <div class="relative">
-                            <select name="country" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="country">
-                                <option value="">Select Country</option>
-                                {% for country in countries %}
-                                <option value="{{ country.id }}">{{ country.country_name }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                            </div>
+            <!-- Add Alumni Form -->
+            <form method="post" id="add_alumni_and_job">
+                <div class="form active w-full max-w-full">
+                    {% csrf_token %}
+                    <div class="flex flex-wrap -mx-3">
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                                First Name
+                            </label>
+                            <input name="fname" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                                Last Name
+                            </label>
+                            <input name="lname" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
+                        </div>
+                        <div class="w-full md:w-1/6 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-mi-name">
+                                M.I.
+                            </label>
+                            <input name="mi" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-mi-name" type="text" placeholder="Initial">
+                        </div>
+                        <div class="w-full md:w-1/6 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-suffix-name">
+                                Suffix
+                            </label>
+                            <input name="suffix" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-suffix-name" type="text" placeholder="Ex. Jr. / Sr.">
                         </div>
                     </div>
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="province">
-                            Province
-                        </label>
-                        <div class="relative">
-                            <select name="province" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="province">
-                                <option value="">Select Province</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                    <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-alumni-id-name">
+                                Alumni ID
+                            </label>
+                            <input name="alumni_id" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-alumni-id-name" type="text" placeholder="No.">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="course">
+                                Course
+                            </label>
+                            <div class="relative">
+                                <select name="course" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                    <option value="">Select Course</option>
+                                    {% for course in courses %}
+                                    <option value="{{course.course_id}}">{{course.course_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="city">
-                            City
-                        </label>
-                        <div class="relative">
-                            <select name="city" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="city">
-                                <option value="">Select City</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                            </div>
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-course-name">
+                                Date of Birth
+                            </label>
+                            <input name="date_of_birth" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-course-name" type="date" placeholder="Course">
                         </div>
                     </div>
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="barangay">
-                            Barangay
-                        </label>
-                        <div class="relative">
-                            <select name="barangay" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="barangay">
-                                <option value="">Select Barangay</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                            </div>
+                    <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-status-name">
+                                Marital Status
+                            </label>
+                            <input name="marital_status" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-status-name" type="text" placeholder="Ex. Single">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-sex-name">
+                                Sex
+                            </label>
+                            <input name="sex" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-sex-name" type="text" placeholder="M or F">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-2">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-religion-name">
+                                Religion
+                            </label>
+                            <input name="religion" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-religion-name" type="text" placeholder="Religion">
                         </div>
                     </div>
-                </div>
-            </form>
-
-            <!-- Current Job Form -->
-            <form class="form w-full max-w-full">
-                <div class="flex flex-wrap -mx-3">
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                            Job Id
-                        </label>
-                        <input name="current_job_id" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-job-id" type="text" placeholder="Jane">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="lname" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                            Job Title
-                        </label>
-                        <input class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="province">
-                            Field Type
-                        </label>
-                        <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="province">
-                                <option value="">Select Field Type</option>
-                                {% for choice in field_choices %}
-                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                    <div class="flex flex-wrap -mx-3 ">
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="country">
+                                Country
+                            </label>
+                            <div class="relative">
+                                <select name="country" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="country">
+                                    <option value="">Select Country</option>
+                                    {% for country in countries %}
+                                    <option value="{{ country.id }}">{{ country.country_name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="province">
+                                Province
+                            </label>
+                            <div class="relative">
+                                <select name="province" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="province">
+                                    <option value="">Select Province</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="city">
+                                City
+                            </label>
+                            <div class="relative">
+                                <select name="city" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="city">
+                                    <option value="">Select City</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="barangay">
+                                Barangay
+                            </label>
+                            <div class="relative">
+                                <select name="barangay" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="barangay">
+                                    <option value="">Select Barangay</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-2">
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="suffix" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-alumni-id-name">
-                            Salary
-                        </label>
-                        <input class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-alumni-id-name" type="text" placeholder="No.">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="lname" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-course-name">
-                            Start Date
-                        </label>
-                        <input class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-course-name" type="date" placeholder="Course">
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                        <label name="suffix" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-status-name">
-                            Company Name
-                        </label>
-                        <input class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-status-name" type="text" placeholder="Ex. Single">
-                    </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 ">
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="country">
-                            Country
-                        </label>
-                        <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobCountry">
-                                <option value="">Select Country</option>
-                                {% for country in countries %}
-                                <option value="{{ country.id }}">{{ country.country_name }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                <!-- Current Job Form -->
+                <div class="form w-full max-w-full">
+                    <div class="flex flex-wrap -mx-3">
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                                Job Id
+                            </label>
+                            <input name="current_job_id" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-job-id" type="text" placeholder="No.">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                                Job Title
+                            </label>
+                            <input name="job_title" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Ex. Web Developer">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="province">
+                                Field Type
+                            </label>
+                            <div class="relative">
+                                <select name="field_type" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="province">
+                                    <option value="">Select Field Type</option>
+                                    {% for choice in field_choices %}
+                                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="province">
-                            Province
-                        </label>
-                        <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobProvince">
-                                <option value="">Select Province</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                            </div>
+                    <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-alumni-id-name">
+                                Salary
+                            </label>
+                            <input name="salary" type="number" min="1" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-alumni-id-name" type="text" placeholder="Salary">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-course-name">
+                                Start Date
+                            </label>
+                            <input class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-course-name" type="date">
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-status-name">
+                                Company Name
+                            </label>
+                            <input name="company_name" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-status-name" type="text" placeholder="Ex. Meta">
                         </div>
                     </div>
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="city">
-                            City
-                        </label>
-                        <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobCity">
-                                <option value="">Select City</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                    <div class="flex flex-wrap -mx-3 ">
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="country">
+                                Country
+                            </label>
+                            <div class="relative">
+                                <select name="job_country" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobCountry">
+                                    <option value="">Select Country</option>
+                                    {% for country in countries %}
+                                    <option value="{{ country.id }}">{{ country.country_name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="barangay">
-                            Barangay
-                        </label>
-                        <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobBarangay">
-                                <option value="">Select Barangay</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="province">
+                                Province
+                            </label>
+                            <div class="relative">
+                                <select name="job_province" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobProvince">
+                                    <option value="">Select Province</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="city">
+                                City
+                            </label>
+                            <div class="relative">
+                                <select name="job_city" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobCity">
+                                    <option value="">Select City</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="barangay">
+                                Barangay
+                            </label>
+                            <div class="relative">
+                                <select name="job_barangay" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobBarangay">
+                                    <option value="">Select Barangay</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -261,7 +273,7 @@
             <button class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 closeModal">Cancel</button>
             <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1" id="prevButton" onclick="changeForm(-1)">Prev</button>
             <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white" id="nextButton" onclick="changeForm(1)">Next</button>
-            <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white" id="submitButton" onclick="submitForm()">Submit</button>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white" id="submitButton" onclick="submitForm()">Submit</button>
         </div>
     </div>
 </div>
@@ -339,6 +351,5 @@
     <div class="text-gray-700">No results found.</div>
     {% endfor %}
 </div>
-
 <script type="text/javascript" src="{% static "AlumniManagement/js/alumni.js" %}"></script>
 {% endblock content %}

@@ -65,10 +65,49 @@ def dashboard(request):
 def alumni(request):
     profiles = Alumni_Demographic_Profile.objects.all()
     countries = Country.objects.all()
+    courses = Course.objects.all()
     field_choices = FIELD_CHOICES
+    
+    if request.method == "POST":
+        fname = request.POST.get('fname')
+        print(fname)
+        lname = request.POST.get('lname')
+        mi = request.POST.get('mi')
+        suffix = request.POST.get('suffix')
+        course_id = request.POST.get('country')
+        alumni_id = request.POST.get('alumni_id')
+        marital_status = request.POST.get('marital_status')
+        date_of_birth = request.POST.get('date_of_birth')
+        religion = request.POST.get('religion')
+        sex = request.POST.get('sex')
+        country = request.POST.get('country')
+        province = request.POST.get('province')
+        city = request.POST.get('city')
+        barangay = request.POST.get('barangay')
+        #-----------------------------------------------
+        current_job_id = request.POST.get('current_job_id')
+        field_type = request.POST.get('field_type')
+        job_title = request.POST.get('job_title')
+        print(job_title)
+        salary = request.POST.get('salary')
+        start_date = request.POST.get('start_date')
+        company_name = request.POST.get('company_name')
+        country = request.POST.get('job_country')
+        province = request.POST.get('job_province')
+        city = request.POST.get('job_city')
+        barangay = request.POST.get('job_barangay')
+
+
+        new_alumni = Alumni_Demographic_Profile(alumni_id=alumni_id, fname=fname, lname=lname, mi=mi, suffix=suffix, course_id=course_id, sex=sex, religion=religion, marital_status=marital_status, date_of_birth=date_of_birth, country=country, province=province, city=city, barangay=barangay)
+        new_alumni.save()
+
+        new_job = Current_Job(alumni=new_alumni, current_job_id=current_job_id, field_type=field_type, job_title=job_title, salary=salary, start_date=start_date, company_name=company_name, country=country, province=province, city=city, barangay=barangay)
+        new_job.save()
+
     context = {
         'profiles': profiles,
         'countries': countries,
+        'courses': courses,
         'field_choices': field_choices,
     }
     return render(request, "AlumniManagement/alumni.html", context)
