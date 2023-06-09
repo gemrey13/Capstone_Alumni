@@ -101,9 +101,7 @@ def alumni(request):
 
             #----------------------------------------------------
             if fname and lname and course_id and date_of_birth and sex and alumni_id:
-                if not country or not province or not city or not barangay:
-                    raise ValueError('Please Provide a Address.')
-                else:
+                if current_job_id and field_type and job_title and start_date and salary and company_name and job_country and job_city and job_province and job_barangay:
                     course = Course.objects.get(course_id=course_id)
                     country = Country.objects.get(id=country)
                     province = Province.objects.get(id=province)
@@ -115,26 +113,36 @@ def alumni(request):
                                                             marital_status=marital_status, date_of_birth=date_of_birth, 
                                                             country=country, province=province, city=city, barangay=barangay)
                     new_alumni.save()
-
-                if current_job_id and field_type and job_title and start_date and salary:
-                    if not company_name or not job_country or not job_province or not job_city or not job_barangay:
-                        raise ValueError('Please reconfirm your job details.')
+                    
+                    job_country = Country.objects.get(id=job_country)
+                    job_province = Province.objects.get(id=job_province)
+                    job_city = City.objects.get(id=job_city)
+                    job_barangay = Barangay.objects.get(id=job_barangay)
+                    start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+                    new_job = Current_Job(alumni=new_alumni, current_job_id=current_job_id, field_type=field_type, job_title=job_title, 
+                                        salary=salary, start_date=start_date, company_name=company_name, 
+                                        country=job_country, province=job_province, city=job_city, barangay=job_barangay)
+                    new_job.save()
+                    messages.success('Sucess Add alumni and his/her current job.')
+                else:
+                    if not country or not province or not city or not barangay:
+                        raise ValueError('Please Provide a Address.')
                     else:
-                        job_country = Country.objects.get(id=job_country)
-                        job_province = Province.objects.get(id=job_province)
-                        job_city = City.objects.get(id=job_city)
-                        job_barangay = Barangay.objects.get(id=job_barangay)
-                        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
-                        new_job = Current_Job(alumni=new_alumni, current_job_id=current_job_id, field_type=field_type, job_title=job_title, 
-                                            salary=salary, start_date=start_date, company_name=company_name, 
-                                            country=job_country, province=job_province, city=job_city, barangay=job_barangay)
-                        new_job.save()
-              
-
+                        course = Course.objects.get(course_id=course_id)
+                        country = Country.objects.get(id=country)
+                        province = Province.objects.get(id=province)
+                        city = City.objects.get(id=city)
+                        barangay = Barangay.objects.get(id=barangay)
+                        date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
+                        new_alumni = Alumni_Demographic_Profile(alumni_id=alumni_id, fname=fname, lname=lname, mi=mi, suffix=suffix, 
+                                                                course_id=course, sex=sex, religion=religion, 
+                                                                marital_status=marital_status, date_of_birth=date_of_birth, 
+                                                                country=country, province=province, city=city, barangay=barangay)
+                        new_alumni.save()
+                        messages.success('Sucess Add alumni.')
             elif not fname or not lname or not course_id or not date_of_birth or not religion or not marital_status or not sex:
                 raise ValueError('Please Provide a Valid Alumni Input.')
                 
-            
             
         except ValueError as e:
             messages.error(request, str(e))

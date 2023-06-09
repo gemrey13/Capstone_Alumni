@@ -7,6 +7,7 @@
 .messages {
     z-index: 100;
     position: absolute;
+    right: 0;
 }
 #base-alert{
   opacity: 0;
