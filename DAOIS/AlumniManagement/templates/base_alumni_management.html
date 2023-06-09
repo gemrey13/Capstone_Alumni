@@ -14,10 +14,27 @@
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	{% if messages %}
+	    {% for message in messages %}
+	        <div onclick="exitAlertBase()" class="messages bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert" id="base-alert">
+			  <p class="font-bold">Be Warned</p>
+			  <p>{{ message }}</p>
+			</div>
+	    {% endfor %}
+	{% endif %}
+
 	<!-- Sidebar/menu -->
 	{% include "AlumniManagement/sidebar.html" %}
 	<div class="main">
 		{% block content %}{% endblock content %}
 	</div>
+
+	<script type="text/javascript">
+	function exitAlertBase() {
+		const alertBase = document.getElementById('base-alert');
+		alertBase.classList.add('hidden')
+	}
+	</script>
 </body>
 </html>

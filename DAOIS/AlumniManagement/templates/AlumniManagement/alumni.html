@@ -10,7 +10,7 @@
         </div>
         <div class="p-3">
             <!-- Add Alumni Form -->
-            <form method="post" id="add_alumni_and_job">
+            <form method="post" action="{% url 'AlumniManagement:alumni' %}" id="add_alumni_and_job">
                 <div class="form active w-full max-w-full">
                     {% csrf_token %}
                     <div class="flex flex-wrap -mx-3">
@@ -277,6 +277,7 @@
         </div>
     </div>
 </div>
+
 <div class="flex justify-between mb-5">
     <div class="align-end">
         <button class="showModal bg-blue-600 hover:bg-blue-700 px-5 py-2.5 sm:py-2.5 sm:px-6 rounded text-white">Add</button>
