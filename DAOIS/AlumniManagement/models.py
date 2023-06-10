@@ -147,7 +147,6 @@ class Segment(models.Model):
 class Graduate(models.Model):
     graduate_id = models.CharField(max_length=6, primary_key=True)
     alumni_id = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE)
-    # graduate_id = models.ForeignKey(Graduate, on_delete=models.CASCADE)
-    graduation_date = models.DateField(default='2021-02-05')
+    graduation_date = models.DateField()
     honor = models.CharField(max_length=64, blank=True)
 
