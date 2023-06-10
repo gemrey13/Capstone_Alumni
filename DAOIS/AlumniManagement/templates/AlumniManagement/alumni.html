@@ -78,10 +78,21 @@
                             <input name="marital_status" maxlength="64" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-status-name" type="text" placeholder="Ex. Single">
                         </div>
                         <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-sex-name">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="sex">
                                 Sex
                             </label>
-                            <input name="sex" maxlength="10" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-sex-name" type="text" placeholder="M or F">
+                            <div class="relative">
+                                <select name="sex" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="sex">
+                                    <option value="">Select Sex</option>
+                                    {% for sex_choice in sex_choices %}
+                                    <option value="{{ sex_choice.0 }}">{{ sex_choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="w-full md:w-1/3 px-3 mb-2">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-religion-name">
@@ -337,6 +348,44 @@
         </tbody>
     </table>
 </div>
+<div class="flex flex-col items-center">
+      <!-- Help text -->
+      <span class="text-sm text-gray-700 dark:text-gray-400">
+          Showing <span class="font-semibold text-gray-900 dark:text-white">{{page.number}}</span> to <span class="font-semibold text-gray-900 dark:text-white">{{page.paginator.num_pages}}</span> Pages
+      </span>
+      <div class="inline-flex mt-2 xs:mt-0">
+        <nav aria-label="Page navigation example">
+          <ul class="inline-flex -space-x-px">
+            {% if has_previous %}
+            <li>
+              <a href="?page={{ previous_page_number }}" class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for page_number in page_range %}
+            {% if page_number == page_obj.number %}
+                <li>
+                  <a href="?page={{ page_number }}" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">{{page_number}}</a>
+                </li>
+            {% else %}
+                <li>
+                  <a href="?page={{ page_number }}" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{page_number}}</a>
+                </li>
+            {% endif %}
+            {% endfor %}
+            
+            {% if has_next %}
+            <li>
+              <a href="?page={{ next_page_number }}" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+
+
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden" id="card-container">
     {% for profile in profiles %}
     <div class="bg-white space-y-2 p-4 rounded-lg shadow">

@@ -13,3 +13,10 @@
 #submitButton {
     display: none;
 }
+
+/* CSS styles for the current page button */
+.current-page {
+    color: blue;
+    font-weight: bold;
+    /* Add any other styles as desired */
+}

@@ -6,21 +6,44 @@ from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .utils import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 def your_view(request):
-    countries = Country.objects.all()
-    provinces = Province.objects.all()
-    cities = City.objects.all()
-    barangays = Barangay.objects.all()
+    items = Alumni_Demographic_Profile.objects.all()
+    paginator = Paginator(items, 1)
+    page_number = request.GET.get('page')
 
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (EmptyPage, PageNotAnInteger):
+        # Redirect or handle the invalid page number case
+        page_obj = paginator.get_page(1)  # Redirect to the first pag
+
+    total_pages = paginator.num_pages
+    max_page_buttons = 5
+
+    # Calculate the range of page numbers to show
+    middle_button = max_page_buttons // 2
+
+    if total_pages <= max_page_buttons:
+        page_range = range(1, total_pages + 1)
+    elif page_obj.number <= middle_button:
+        page_range = range(1, max_page_buttons + 1)
+    elif page_obj.number >= total_pages - middle_button:
+        page_range = range(total_pages - max_page_buttons + 1, total_pages + 1)
+    else:
+        page_range = range(page_obj.number - middle_button, page_obj.number + middle_button + 1)
     context = {
-        'countries': countries,
-        'provinces': provinces,
-        'cities': cities,
-        'barangays': barangays,
+        'items': page_obj.object_list,
+        'page':page_obj,
+        'has_previous': page_obj.has_previous(),
+        'has_next': page_obj.has_next(),
+        'previous_page_number': page_obj.previous_page_number() if page_obj.has_previous() else None,
+        'next_page_number': page_obj.next_page_number() if page_obj.has_next() else None,
+        'page_range': page_range,
     }
-
     return render(request, 'power.html', context)
 
 def get_barangays(request):
@@ -68,7 +91,6 @@ def alumni(request):
     profiles = Alumni_Demographic_Profile.objects.all()
     countries = Country.objects.all()
     courses = Course.objects.all()
-    field_choices = FIELD_CHOICES
     
     if request.method == "POST":
 
@@ -123,7 +145,7 @@ def alumni(request):
                                         salary=salary, start_date=start_date, company_name=company_name, 
                                         country=job_country, province=job_province, city=job_city, barangay=job_barangay)
                     new_job.save()
-                    messages.success('Sucess Add alumni and his/her current job.')
+                    messages.success(request, 'Sucess Add alumni and his/her current job.')
                 else:
                     if not country or not province or not city or not barangay:
                         raise ValueError('Please Provide a Address.')
@@ -139,7 +161,7 @@ def alumni(request):
                                                                 marital_status=marital_status, date_of_birth=date_of_birth, 
                                                                 country=country, province=province, city=city, barangay=barangay)
                         new_alumni.save()
-                        messages.success('Sucess Add alumni.')
+                        messages.success(request,'Sucess Add alumni.')
             elif not fname or not lname or not course_id or not date_of_birth or not religion or not marital_status or not sex:
                 raise ValueError('Please Provide a Valid Alumni Input.')
                 
@@ -153,13 +175,43 @@ def alumni(request):
             print(e)
 
         return redirect('AlumniManagement:alumni')
-        
+
+    paginator = Paginator(profiles, 10)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (EmptyPage, PageNotAnInteger):
+        # Redirect or handle the invalid page number case
+        page_obj = paginator.get_page(1)  # Redirect to the first page
+
+    total_pages = paginator.num_pages
+    max_page_buttons = 5
+
+    # Calculate the range of page numbers to show
+    middle_button = max_page_buttons // 2
+
+    if total_pages <= max_page_buttons:
+        page_range = range(1, total_pages + 1)
+    elif page_obj.number <= middle_button:
+        page_range = range(1, max_page_buttons + 1)
+    elif page_obj.number >= total_pages - middle_button:
+        page_range = range(total_pages - max_page_buttons + 1, total_pages + 1)
+    else:
+        page_range = range(page_obj.number - middle_button, page_obj.number + middle_button + 1)
 
     context = {
-        'profiles': profiles,
         'countries': countries,
         'courses': courses,
-        'field_choices': field_choices,
+        'field_choices': FIELD_CHOICES,
+        'sex_choices': SEX_CHOICES,
+        'profiles': page_obj.object_list,
+        'page':page_obj,
+        'has_previous': page_obj.has_previous(),
+        'has_next': page_obj.has_next(),
+        'previous_page_number': page_obj.previous_page_number() if page_obj.has_previous() else None,
+        'next_page_number': page_obj.next_page_number() if page_obj.has_next() else None,
+        'page_range': page_range,
     }
     return render(request, "AlumniManagement/alumni.html", context)
     
