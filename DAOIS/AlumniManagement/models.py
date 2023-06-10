@@ -76,7 +76,6 @@ class Alumni_Demographic_Profile(models.Model):
     mi = models.CharField(max_length=2, blank=True)
     suffix = models.CharField(max_length=3, blank=True)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-    
     sex = models.CharField(max_length=10, choices=SEX_CHOICES)
     religion = models.CharField(max_length=64)
     marital_status = models.CharField(max_length=64)

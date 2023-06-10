@@ -88,7 +88,7 @@ def dashboard(request):
 
 @login_required(login_url='Authentication:login')
 def alumni(request):
-    profiles = Alumni_Demographic_Profile.objects.all()
+    profiles = Alumni_Demographic_Profile.objects.order_by('sex')
     countries = Country.objects.all()
     courses = Course.objects.all()
     
