@@ -340,8 +340,13 @@
                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.date_of_birth}}</td>
                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.country}}, {{profile.province}}, {{profile.city}}, {{profile.barangay}}</td>
                 <td class="text-blue-500">
-                    <button><a href="#" class="hover:underline">Update</a></button>
-                    <button><a href="#" class="hover:underline">Delete</a></button>
+                    {% if profile.alumni_id %}
+                        <button><a href="{% url 'AlumniManagement:alumni_profile' alumni_id=profile.alumni_id %}" class="hover:underline">Update</a></button>
+                    {% else %}
+                        <!-- Handle case where alumni_id is missing or empty -->
+                        <!-- You can display an alternative message or handle it as needed -->
+                        No alumni ID available
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

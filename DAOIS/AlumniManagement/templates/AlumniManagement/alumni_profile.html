@@ -1,0 +1,91 @@
+{% extends 'base_alumni_management.html' %}
+{% block content %}
+{% load static %}
+<style type="text/css">
+    .tab-content {
+      display: none; /* Hide all tab content by default */
+      transition: display 0.3s ease-in-out; /* Add smooth transition for display property */
+    }
+
+    .tab {
+      cursor: pointer;
+    }
+
+    .active {
+      border-bottom: blue solid 2px;
+    }
+
+</style>
+<div>
+    <div class="relative">
+        <img src="{% static 'AlumniManagement/img/bg.svg' %}" class="w-full h-72 object-cover rounded-lg" alt="">
+        </a>
+    </div>
+    <div class="flex items-center gap-4 mt-4">
+        {% if alumni.sex == 'male' %}
+            <img src="{% static "AlumniManagement/img/avatar-male.jpg" %}" class="w-28 h-28 object-cover rounded-full" alt="">
+        {% else %}
+            <img src="{% static "AlumniManagement/img/avatar-female.jpg" %}" class="w-28 h-28 object-cover rounded-full" alt="">
+        {% endif %}
+        
+        <div>
+            <h2 class="text-2xl font-semibold mb-2">{{alumni.fname}} {{alumni.mi}} {{alumni.lname}}</h2>
+            <span class="text-lg text-gray-500">{{alumni.course_id}}</span>
+        </div>
+        <a href="#" class="py-2 px-4 rounded bg-blue-600 sm:flex items-center gap-2 text-white hover:bg-blue-700 ml-auto hidden">
+            <i class='bx bx-edit-alt' ></i>
+            Save Profile
+        </a>
+    </div>
+
+
+    <div class="tabs mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0">
+        <div class="flex-auto text-center">
+            <div class="tab" onclick="openTab(event, 'tab1')" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent">Profile</div>
+        </div>
+        <div class="flex-auto text-center">
+
+            <div class="tab" onclick="openTab(event, 'tab2')" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent">Messages</div>
+        </div>
+        <div class="flex-auto text-center">
+
+            <div class="tab" onclick="openTab(event, 'tab3')" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent">Educational Background</div>
+        </div>
+    </div>
+    <div class="mb-6">
+        <div id="tab1" class="tab-content  opacity-100 transition-opacity duration-150 ease-linear">
+          <!-- Content for Tab 1 -->asdsadasdasda
+        </div>
+
+        <div id="tab2" class="tab-content  opacity-100 transition-opacity duration-150 ease-linear">
+          <!-- Content for Tab 2 -->asdsadsadasd
+        </div>
+
+        <div id="tab3" class="tab-content  opacity-100 transition-opacity duration-150 ease-linear">
+          <!-- Content for Tab 3 -->asdsadsad
+        </div>
+    </div>
+<script type="text/javascript">
+function openTab(evt, tabName) {
+  var i, tabContent, tabLinks;
+
+  // Get all tab content elements
+  tabContent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabContent.length; i++) {
+    tabContent[i].style.display = "none"; // Hide all tab content
+  }
+
+  // Get all tab link elements and remove the "active" class
+  tabLinks = document.getElementsByClassName("tab");
+  for (i = 0; i < tabLinks.length; i++) {
+    tabLinks[i].classList.remove("active");
+  }
+
+  // Show the current tab content and add the "active" class to the clicked tab
+  var currentTabContent = document.getElementById(tabName);
+  currentTabContent.style.display = "block";
+  evt.currentTarget.classList.add("active");
+}
+
+</script>
+{% endblock content %}

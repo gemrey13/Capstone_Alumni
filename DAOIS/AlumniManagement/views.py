@@ -214,6 +214,15 @@ def alumni(request):
         'page_range': page_range,
     }
     return render(request, "AlumniManagement/alumni.html", context)
+
+
+def alumni_profile(request, alumni_id):
+    alumni = Alumni_Demographic_Profile.objects.get(alumni_id=alumni_id)
+    context = {
+        'alumni':alumni
+    }
+
+    return render(request, 'AlumniManagement/alumni_profile.html', context)
     
 
 @login_required(login_url='Authentication:login')
