@@ -217,6 +217,7 @@ def alumni(request):
 
 
 def alumni_profile(request, alumni_id):
+    print(f'***********************{alumni_id}')
     alumni = Alumni_Demographic_Profile.objects.get(alumni_id=alumni_id)
     context = {
         'alumni':alumni

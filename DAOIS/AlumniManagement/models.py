@@ -119,7 +119,6 @@ class Previous_Job(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     company_name = models.CharField(max_length=64)
-    company_address = models.CharField(max_length=64)
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE, null=True, blank=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, default=1)
     province = models.ForeignKey(Province, on_delete=models.CASCADE, default=1)
@@ -137,16 +136,14 @@ class Curriculum(models.Model):
         return self.curriculum_name
 
 
-class Segment(models.Model):
-    segment_id = models.IntegerField(primary_key=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    current_job = models.ForeignKey(Current_Job, on_delete=models.CASCADE)
-    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
-
-
 class Graduate(models.Model):
     graduate_id = models.CharField(max_length=6, primary_key=True)
-    alumni_id = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE)
+    alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE)
     graduation_date = models.DateField()
     honor = models.CharField(max_length=64, blank=True)
 
+class Segment(models.Model):
+    segment_id = models.IntegerField(primary_key=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    graduate = models.ForeignKey(Graduate, on_delete=models.CASCADE, default="G10000")
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
