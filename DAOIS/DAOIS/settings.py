@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'AlumniManagement',
     'Authentication',
+    'Analysis',
 
 ]
 

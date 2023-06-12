@@ -5,46 +5,8 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from .models import *
-from .utils import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-
-
-def your_view(request):
-    items = Alumni_Demographic_Profile.objects.all()
-    paginator = Paginator(items, 1)
-    page_number = request.GET.get('page')
-
-    try:
-        page_obj = paginator.get_page(page_number)
-    except (EmptyPage, PageNotAnInteger):
-        # Redirect or handle the invalid page number case
-        page_obj = paginator.get_page(1)  # Redirect to the first pag
-
-    total_pages = paginator.num_pages
-    max_page_buttons = 5
-
-    # Calculate the range of page numbers to show
-    middle_button = max_page_buttons // 2
-
-    if total_pages <= max_page_buttons:
-        page_range = range(1, total_pages + 1)
-    elif page_obj.number <= middle_button:
-        page_range = range(1, max_page_buttons + 1)
-    elif page_obj.number >= total_pages - middle_button:
-        page_range = range(total_pages - max_page_buttons + 1, total_pages + 1)
-    else:
-        page_range = range(page_obj.number - middle_button, page_obj.number + middle_button + 1)
-    context = {
-        'items': page_obj.object_list,
-        'page':page_obj,
-        'has_previous': page_obj.has_previous(),
-        'has_next': page_obj.has_next(),
-        'previous_page_number': page_obj.previous_page_number() if page_obj.has_previous() else None,
-        'next_page_number': page_obj.next_page_number() if page_obj.has_next() else None,
-        'page_range': page_range,
-    }
-    return render(request, 'power.html', context)
 
 def get_barangays(request):
     city_id = request.GET.get('city_id')
@@ -70,9 +32,7 @@ def get_cities(request):
 
 @login_required(login_url='Authentication:login')
 def dashboard(request):
-    course_analysis = course_related_job_analysis()
     context = {
-        'course_analysis': course_analysis,
     }
     return render(request, 'AlumniManagement/Dashboard.html', context)
 
@@ -216,33 +176,5 @@ def alumni_profile(request, alumni_id):
     return render(request, 'AlumniManagement/alumni_profile.html', context)
     
 
-@login_required(login_url='Authentication:login')
-def sample(request):
-    jobless_percentage, employed_alumni_percentage, employed_alumni_count = employment_percentage()
-
-    courses_total_count = course_total_students()
-
-    course_analysis = course_related_job_analysis()
-
-    percent_students_list, total_students_list, job_students_list, course_title_list = job_within_six_months()
-    combination = zip(percent_students_list, total_students_list, job_students_list, course_title_list)
-
-
-    alumni_counts = jobs_per_field()
-    
-    country_data, province_data, city_data, barangay_data = alumni_per_place()
-    print(country_data)
-    print(province_data)
-    print(city_data)
-    print(barangay_data)
-    context = {
-        'jobless_percentage':jobless_percentage,
-        'employed_alumni_percentage':employed_alumni_percentage,
-        'courses_total_count':courses_total_count,
-        'course_analysis': course_analysis,
-        'combination': combination,
-        'alumni_counts': alumni_counts.to_dict('records'),
-    }
-    return render(request, 'AlumniManagement/sample.html', context)
-
-
+def sample2(request):
+    return render(request, 'AlumniManagement/sample2.html')

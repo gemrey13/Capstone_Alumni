@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employment Percentage Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="loadingIndicator">Loading...</div>
+    <canvas id="employmentChart" style="display: none;"></canvas>
+
+    <script>
+        async function fetchEmploymentData() {
+            const response = await fetch('/analysis/employment-percentage/');
+            const data = await response.json();
+            return data;
+        }
+
+        (async function() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const employmentChart = document.getElementById('employmentChart');
+
+            loadingIndicator.textContent = 'Loading...';
+
+            try {
+                const data = await fetchEmploymentData();
+                loadingIndicator.style.display = 'none';
+                employmentChart.style.display = 'block';
+
+                const ctx = employmentChart.getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Employment Percentage',
+                            data: data.data,
+                            backgroundColor: ['#36A2EB', '#FF6384'],
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: 'Percentage (%)'
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching employment data:', error);
+                loadingIndicator.textContent = 'Error loading data.';
+            }
+        })();
+    </script>
+</body>
+</html>

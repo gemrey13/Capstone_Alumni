@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('AlumniManagement.urls', namespace="AlumniManagement")),
     path('auth/', include('Authentication.urls')),
+    path('analysis/', include('Analysis.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
