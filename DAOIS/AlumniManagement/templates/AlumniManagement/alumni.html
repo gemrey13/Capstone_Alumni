@@ -294,11 +294,11 @@
         <button class="showModal bg-blue-600 hover:bg-blue-700 px-5 py-2.5 sm:py-2.5 sm:px-6 rounded text-white">Add</button>
     </div>
     <div>
-        <form action="" class="mx-auto" id="search-form">
+        <form class="mx-auto">
             <div class="flex items-center justify-end">
                 <div class="flex border-2 border-gray-200 rounded">
-                    <input type="text" class="px-4 py-2 w-32 sm:w-20 md:w-80" placeholder="Search..." id="search-input">
-                    <button class="px-2 sm:px-4 text-white bg-gray-600 border-l ">
+                    <input disabled name="query" type="text" class="px-4 py-2 w-32 sm:w-20 md:w-80" placeholder="Search... Under Development" id="search-input">
+                    <button disabled class="px-2 sm:px-4 text-white bg-gray-600 border-l ">
                         Search
                     </button>
                 </div>
@@ -306,6 +306,7 @@
         </form>
     </div>
 </div>
+
 <div class="overflow-auto rounded-lg shadow hidden md:block" id="table-container">
     <table class="w-full">
         <thead class="bg-gray-50 border-b-2 border-gray-200">
@@ -341,7 +342,7 @@
                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.country}}, {{profile.province}}, {{profile.city}}, {{profile.barangay}}</td>
                 <td class="text-blue-500">
                     {% if profile.alumni_id %}
-                        <button><a href="{% url 'AlumniManagement:alumni_profile' alumni_id=profile.alumni_id %}" class="hover:underline">Update</a></button>
+                        <a href="{% url 'AlumniManagement:alumni_profile' alumni_id=profile.alumni_id %}" class="hover:underline">Update</a>
                     {% else %}
                         <!-- Handle case where alumni_id is missing or empty -->
                         <!-- You can display an alternative message or handle it as needed -->

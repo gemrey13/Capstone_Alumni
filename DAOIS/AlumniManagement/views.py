@@ -68,15 +68,6 @@ def get_cities(request):
 
 
 
-def alumni_search(request):
-    query = request.GET.get('query', '')
-    profiles = Alumni_Demographic_Profile.objects.filter(
-        fname__icontains=query
-    )
-    html = render_to_string('AlumniManagement/components/alumni_search.html', {'profiles': profiles})
-    return JsonResponse({'html': html})
-
-
 @login_required(login_url='Authentication:login')
 def dashboard(request):
     course_analysis = course_related_job_analysis()

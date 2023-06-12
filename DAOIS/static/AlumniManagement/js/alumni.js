@@ -16,30 +16,6 @@ closeModal.forEach(close => {
 
 
 $(document).ready(function() {
-    $('#search-form').submit(function(event) {
-        event.preventDefault();
-        var query = $('#search-input').val();
-        console.log(query)
-        $.ajax({
-            type: 'GET',
-            url: '/alumni/search/',
-            data: {
-                'query': query
-            },
-            success: function(response) {
-                $('#table-container').html(response.html),
-                    $('#card-container').html(response.html);
-            },
-            error: function(xhr, status, error) {
-                // Handle error if needed
-            }
-        });
-    });
-});
-
-
-
-$(document).ready(function() {
     $('#jobCountry').change(function() {
         var jobCountryId = $(this).val();
         if (jobCountryId !== '') {
