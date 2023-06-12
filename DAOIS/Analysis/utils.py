@@ -116,7 +116,7 @@ def analyze_job_field_distribution(request):
 
     return JsonResponse(data, safe=False)
 
-
+# Average salary by field
 def analyze_salary_by_field(request):
     current_jobs = Current_Job.objects.all()
 
