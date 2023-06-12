@@ -115,3 +115,26 @@ def analyze_job_field_distribution(request):
         item['percentage'] = round((item['job_count'] / total_jobs) * 100, 2)
 
     return JsonResponse(data, safe=False)
+
+
+def analyze_salary_by_field(request):
+    current_jobs = Current_Job.objects.all()
+
+    current_jobs_data = []
+    for job in current_jobs:
+        current_jobs_data.append({
+            'field_type': job.field_type,
+            'salary': job.salary,
+        })
+
+    current_jobs_df = pd.DataFrame(current_jobs_data)
+
+    average_salary_by_field = current_jobs_df.groupby('field_type')['salary'].mean().reset_index()
+    average_salary_by_field['salary'] = average_salary_by_field['salary'].round(2)
+
+    analysis_result = average_salary_by_field.to_dict(orient='records')
+    data = {
+        'analysis': analysis_result
+    }
+
+    return JsonResponse(data)
