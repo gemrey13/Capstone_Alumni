@@ -138,3 +138,109 @@ def analyze_salary_by_field(request):
     }
 
     return JsonResponse(data)
+
+
+def analyze_employment_gap(request):
+    alumni = Alumni_Demographic_Profile.objects.all()
+    employment_gaps = []
+
+    for alumnus in alumni:
+        previous_jobs = Previous_Job.objects.filter(alumni=alumnus).order_by('-end_date')
+        current_job = Current_Job.objects.filter(alumni=alumnus).first()
+
+        if previous_jobs and current_job:
+            latest_end_date = previous_jobs[0].end_date
+            gap = (current_job.start_date - latest_end_date).days
+            employment_gaps.append({
+                'alumni_id': alumnus.alumni_id,
+                'employment_gap': gap
+            })
+
+    if employment_gaps:
+        employment_gaps_df = pd.DataFrame(employment_gaps)
+        avg_employment_gap = employment_gaps_df['employment_gap'].mean()
+    else:
+        avg_employment_gap = 0
+
+    response_data = {
+        'average_employment_gap': avg_employment_gap
+    }
+
+    return JsonResponse(response_data)
+
+
+# The calculation of the promotion rate is based on the salary comparison between consecutive jobs. If the salary of a 
+# job is higher than the salary of the previous job, it is considered a promotion. However, 
+# if there are no instances where the salary increases from one job to the next, the promotion rate will be zero.
+def analyze_promotion_rates(request):
+    alumni = Alumni_Demographic_Profile.objects.all()
+    promotion_rates = []
+
+    for alumnus in alumni:
+        current_jobs = Current_Job.objects.filter(alumni=alumnus).order_by('start_date')
+        previous_jobs = Previous_Job.objects.filter(alumni=alumnus).order_by('end_date')
+        
+        job_count = len(current_jobs) + len(previous_jobs)
+        
+        if job_count > 1:
+            promotions = 0
+
+            # Check promotions in current jobs
+            for i in range(1, len(current_jobs)):
+                if current_jobs[i].salary > current_jobs[i-1].salary:
+                    promotions += 1
+
+            # Check promotions from previous jobs to current jobs
+            if previous_jobs:
+                if previous_jobs.last().salary < current_jobs.first().salary:
+                    promotions += 1
+
+            promotion_rate = promotions / (job_count - 1)  # Exclude the first job
+
+            promotion_rates.append({
+                'alumni_id': alumnus.alumni_id,
+                'promotion_rate': promotion_rate
+            })
+
+    if promotion_rates:
+        promotion_rates_df = pd.DataFrame(promotion_rates)
+        avg_promotion_rate = promotion_rates_df['promotion_rate'].mean()
+    else:
+        avg_promotion_rate = 0
+
+    response_data = {
+        'average_promotion_rate': avg_promotion_rate
+    }
+
+    return JsonResponse(response_data)
+
+
+def analyze_job_duration(request):
+    alumni = Alumni_Demographic_Profile.objects.all()
+    job_durations = []
+
+    for alumnus in alumni:
+        jobs = Current_Job.objects.filter(alumni=alumnus).order_by('start_date')
+        job_count = len(jobs)
+
+        if job_count > 0:
+            start_date = jobs[0].start_date
+            end_date = jobs[job_count-1].start_date
+            duration = (end_date - start_date).days
+
+            job_durations.append({
+                'alumni_id': alumnus.alumni_id,
+                'job_duration': duration
+            })
+
+    if job_durations:
+        job_durations_df = pd.DataFrame(job_durations)
+        avg_job_duration = job_durations_df['job_duration'].mean()
+    else:
+        avg_job_duration = 0
+
+    response_data = {
+        'average_job_duration': avg_job_duration
+    }
+
+    return JsonResponse(response_data)

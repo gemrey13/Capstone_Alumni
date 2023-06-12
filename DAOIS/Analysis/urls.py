@@ -10,4 +10,7 @@ urlpatterns = [
     path('alumni-with-jobs-within-six-months/', utils.analyze_alumni_with_jobs_within_six_months, name="analyze_alumni_with_jobs_within_six_months"),
     path('job-field-distribution/', utils.analyze_job_field_distribution, name='analyze_job_field_distribution'),
     path('salary-by-field/', utils.analyze_salary_by_field, name='analyze_salary_by_field'),
+    path('employment-gap/', utils.analyze_employment_gap, name='analyze_employment_gap'),
+    path('promotion-rates/', utils.analyze_promotion_rates, name='analyze_promotion_rates'),
+    path('job-duration/', utils.analyze_job_duration, name='analyze_job_duration'),
 ]

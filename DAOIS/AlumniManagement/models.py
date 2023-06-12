@@ -125,23 +125,8 @@ class Previous_Job(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE, default=1)
     barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE, default=2)
 
-# from django.db.models.signals import pre_delete
-# from django.dispatch import receiver
-# @receiver(pre_delete, sender=Current_Job)
-# def move_to_previous_job(sender, instance, **kwargs):
-#     previous_job = Previous_Job(
-#         job_title=instance.job_title,
-#         salary=instance.salary,
-#         start_date=instance.start_date,
-#         end_date=date.today(),
-#         company_name=instance.company_name,
-#         alumni=instance.alumni,
-#         country=instance.country,
-#         province=instance.province,
-#         city=instance.city,
-#         barangay=instance.barangay
-#     )
-#     previous_job.save()
+    def __str__(self):
+        return f'{self.alumni}'
 
 class Curriculum(models.Model):
     curriculum_id = models.CharField(max_length=6, primary_key=True)
