@@ -12,5 +12,4 @@ urlpatterns = [
     path('salary-by-field/', utils.analyze_salary_by_field, name='analyze_salary_by_field'),
     path('employment-gap/', utils.analyze_employment_gap, name='analyze_employment_gap'),
     path('promotion-rates/', utils.analyze_promotion_rates, name='analyze_promotion_rates'),
-    path('job-duration/', utils.analyze_job_duration, name='analyze_job_duration'),
 ]

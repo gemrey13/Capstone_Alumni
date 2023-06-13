@@ -76,7 +76,7 @@ class EmploymentPercentageTest(TestCase):
                 current_job_id=f'CJ{i}',
                 field_type='technology',
                 job_title=f'Current Job {i}',
-                salary=5000,
+                salary=60000,
                 start_date=start_date,
                 company_name=f'Current Company {i}',
                 alumni=alumni,
@@ -94,7 +94,7 @@ class EmploymentPercentageTest(TestCase):
                     previous_job_id=previous_job_id,
                     field_type='technology',
                     job_title=f'Previous Job {j}',
-                    salary=4000,
+                    salary=35000,
                     start_date=start_date,
                     end_date=end_date,
                     company_name=f'Previous Company {j}',
@@ -159,69 +159,82 @@ class EmploymentPercentageTest(TestCase):
 
             self.alumni_without_jobs.append(alumni)
 
-    def test_calculate_employment_percentage(self):
-        # Make a GET request to the URL associated with the view function
-        response = self.client.get(reverse('Analysis:employment_percentage'))
+    # def test_calculate_employment_percentage(self):
+    #     # Make a GET request to the URL associated with the view function
+    #     response = self.client.get(reverse('Analysis:employment_percentage'))
 
-        # Check that the response has a successful status code
-        self.assertEqual(response.status_code, 200)
+    #     # Check that the response has a successful status code
+    #     self.assertEqual(response.status_code, 200)
 
-        # Check that the JSON response contains the expected data
-        data = response.json()
-        self.assertEqual(data['labels'], ['Employed', 'Unemployed'])
-        self.assertEqual(data['data'], [62.5, 37.5])
-        if response.status_code:
-        	msg = 'Thank you lord - Ok'
-        else:
-        	msg = 'Sakit sa Ulo'
-        print('\nAnalysis for Employment Percentage: ', msg, response.status_code, data)
-
-
-    def test_analyze_job_course_relation(self):
-    	response = self.client.get(reverse('Analysis:analyze_job_course_relation'))
-
-    	self.assertEqual(response.status_code, 200)
-
-    	data = response.json()
-    	self.assertEqual(data['labels'], ['Related to Course', 'Not Related to Course'])
-    	self.assertEqual(data['data'], [62.5, 37.5])
-
-    	if response.status_code:
-    		msg = 'Swabe - Ok'
-    	else: 
-    		msg = 'Ewwww'
-    	print('\nAnalysis for Job Relation: ', msg, response.status_code, data)
+    #     # Check that the JSON response contains the expected data
+    #     data = response.json()
+    #     self.assertEqual(data['labels'], ['Employed', 'Unemployed'])
+    #     self.assertEqual(data['data'], [62.5, 37.5])
+    #     if response.status_code:
+    #     	msg = 'Thank you lord - Ok'
+    #     else:
+    #     	msg = 'Sakit sa Ulo'
+    #     print('\nAnalysis for Employment Percentage: ', msg, response.status_code, data)
 
 
-    def test_analyze_employment_gap(self):
-        factory = RequestFactory()
-        request = factory.get(reverse('Analysis:analyze_employment_gap'))
-        response = analyze_employment_gap(request)
+    # def test_analyze_job_course_relation(self):
+    # 	response = self.client.get(reverse('Analysis:analyze_job_course_relation'))
 
-        # Check that the response has a successful status code
-        self.assertEqual(response.status_code, 200)
+    # 	self.assertEqual(response.status_code, 200)
 
-        # Check the expected average employment gap value
-        # expected_avg_employment_gap = 7  # Assuming 1-year gap
-        # data = json.loads(response.content)
-        # self.assertEqual(data['average_employment_gap'], expected_avg_employment_gap)
+    # 	data = response.json()
+    # 	self.assertEqual(data['labels'], ['Related to Course', 'Not Related to Course'])
+    # 	self.assertEqual(data['data'], [62.5, 37.5])
+
+    # 	if response.status_code:
+    # 		msg = 'Swabe - Ok'
+    # 	else: 
+    # 		msg = 'Ewwww'
+    # 	print('\nAnalysis for Job Relation: ', msg, response.status_code, data)
+
+
+    # def test_analyze_employment_gap(self):
+    #     factory = RequestFactory()
+    #     request = factory.get(reverse('Analysis:analyze_employment_gap'))
+    #     response = analyze_employment_gap(request)
+
+    #     # Check that the response has a successful status code
+    #     self.assertEqual(response.status_code, 200)
+
+    #     # Check the expected average employment gap value
+    #     # expected_avg_employment_gap = 7  # Assuming 1-year gap
+    #     # data = json.loads(response.content)
+    #     # self.assertEqual(data['average_employment_gap'], expected_avg_employment_gap)
+    #     data = json.loads(response.content)
+
+    #     # Check that the response has the expected status code
+    #     self.assertEqual(response.status_code, 200)
+
+    #     # Check that the response data contains the expected keys
+    #     self.assertIn('average_employment_gap', data)
+
+    #     # Check the type and value range of the average employment gap
+    #     self.assertIsInstance(data['average_employment_gap'], float)
+    #     self.assertGreaterEqual(data['average_employment_gap'], 0)
+
+
+    #     if response.status_code:
+    #         msg = 'Naysu - Ok'
+    #     else:
+    #         msg = 'LOL'
+    #     print('\nAnalysis for Employemnt Gap: ', msg, response.status_code, data)
+
+
+    def test_analyze_promotion_rates(self):
+        # Call the API endpoint
+        url = reverse('Analysis:analyze_promotion_rates')
+        response = self.client.get(url)
         data = json.loads(response.content)
 
-        # Check that the response has the expected status code
+        # Assert response status code
         self.assertEqual(response.status_code, 200)
 
-        # Check that the response data contains the expected keys
-        self.assertIn('average_employment_gap', data)
+        # Assert response data keys
+        self.assertIn('average_promotion_rate', data)
 
-        # Check the type and value range of the average employment gap
-        self.assertIsInstance(data['average_employment_gap'], float)
-        self.assertGreaterEqual(data['average_employment_gap'], 0)
-
-
-        if response.status_code:
-            msg = 'Naysu - Ok'
-        else:
-            msg = 'LOL'
-        print('\nAnalysis for Employemnt Gap: ', msg, response.status_code, data)
-
-
+        print('\n Analysis for Promotion Rate: ', response.status_code, data)

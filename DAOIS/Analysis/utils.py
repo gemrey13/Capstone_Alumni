@@ -206,6 +206,7 @@ def analyze_promotion_rates(request):
     if promotion_rates:
         promotion_rates_df = pd.DataFrame(promotion_rates)
         avg_promotion_rate = promotion_rates_df['promotion_rate'].mean()
+        avg_promotion_rate = round(avg_promotion_rate, 2)
     else:
         avg_promotion_rate = 0
 
