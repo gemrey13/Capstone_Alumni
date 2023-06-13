@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-
 from django.db import models
 from datetime import date
 
@@ -26,10 +25,14 @@ FIELD_CHOICES = [
         ('nonprofit', 'Nonprofit/Volunteering'),
         ('government', 'Government/Public Administration'),
     ]
+
+
 SEX_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female')
     ]
+
+
 class Country(models.Model):
     country_name = models.CharField(max_length=64)
 
@@ -44,12 +47,14 @@ class Province(models.Model):
     def __str__(self):
         return self.province_name
 
+
 class City(models.Model):
     city_name = models.CharField(max_length=64)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.city_name
+
 
 class Barangay(models.Model):
     barangay_name = models.CharField(max_length=64)
@@ -68,6 +73,7 @@ class Course(models.Model):
     def __str__(self):
         return f'{self.course_id}'
 
+
 class Alumni_Demographic_Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     alumni_id = models.CharField(primary_key=True, max_length=6)
@@ -80,10 +86,10 @@ class Alumni_Demographic_Profile(models.Model):
     religion = models.CharField(max_length=64)
     marital_status = models.CharField(max_length=64)
     date_of_birth = models.DateField()
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, default='Philippines')
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, default="Quezon")
-    city = models.ForeignKey(City, on_delete=models.CASCADE, default='Lucena City')
-    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE, default='Dalahican')
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.alumni_id} | {self.fname} {self.lname}'
@@ -95,6 +101,7 @@ class Alumni_Demographic_Profile(models.Model):
             age -= 1
         return age
 
+
 class Current_Job(models.Model):
     current_job_id = models.CharField(primary_key=True, max_length=6)
     field_type = models.CharField(max_length=64, choices=FIELD_CHOICES, default='technology')
@@ -103,10 +110,10 @@ class Current_Job(models.Model):
     start_date = models.DateField()
     company_name = models.CharField(max_length=64)
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE, null=True, blank=True)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, default=1)
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, default=1)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, default=1)
-    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE, default=2)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -120,13 +127,14 @@ class Previous_Job(models.Model):
     end_date = models.DateField()
     company_name = models.CharField(max_length=64)
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE, null=True, blank=True)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, default=1)
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, default=1)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, default=1)
-    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE, default=2)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    barangay = models.ForeignKey(Barangay, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.alumni}'
+
 
 class Curriculum(models.Model):
     curriculum_id = models.CharField(max_length=6, primary_key=True)
@@ -143,6 +151,7 @@ class Graduate(models.Model):
     alumni = models.ForeignKey(Alumni_Demographic_Profile, on_delete=models.CASCADE)
     graduation_date = models.DateField()
     honor = models.CharField(max_length=64, blank=True)
+
 
 class Segment(models.Model):
     segment_id = models.IntegerField(primary_key=True)

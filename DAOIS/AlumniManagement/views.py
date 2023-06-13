@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from datetime import datetime
 from django.contrib import messages
-from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
