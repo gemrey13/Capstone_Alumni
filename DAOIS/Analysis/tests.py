@@ -223,3 +223,5 @@ class EmploymentPercentageTest(TestCase):
         else:
             msg = 'LOL'
         print('\nAnalysis for Employemnt Gap: ', msg, response.status_code, data)
+
+

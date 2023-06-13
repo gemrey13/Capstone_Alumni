@@ -140,6 +140,7 @@ def analyze_salary_by_field(request):
     return JsonResponse(data)
 
 
+# Analyze End date of previous job and start date of current job to  get the average employment gap
 def analyze_employment_gap(request):
     alumni = Alumni_Demographic_Profile.objects.all()
     employment_gaps = []
@@ -210,37 +211,6 @@ def analyze_promotion_rates(request):
 
     response_data = {
         'average_promotion_rate': avg_promotion_rate
-    }
-
-    return JsonResponse(response_data)
-
-
-def analyze_job_duration(request):
-    alumni = Alumni_Demographic_Profile.objects.all()
-    job_durations = []
-
-    for alumnus in alumni:
-        jobs = Current_Job.objects.filter(alumni=alumnus).order_by('start_date')
-        job_count = len(jobs)
-
-        if job_count > 0:
-            start_date = jobs[0].start_date
-            end_date = jobs[job_count-1].start_date
-            duration = (end_date - start_date).days
-
-            job_durations.append({
-                'alumni_id': alumnus.alumni_id,
-                'job_duration': duration
-            })
-
-    if job_durations:
-        job_durations_df = pd.DataFrame(job_durations)
-        avg_job_duration = job_durations_df['job_duration'].mean()
-    else:
-        avg_job_duration = 0
-
-    response_data = {
-        'average_job_duration': avg_job_duration
     }
 
     return JsonResponse(response_data)
