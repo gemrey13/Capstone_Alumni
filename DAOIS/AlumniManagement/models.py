@@ -121,6 +121,7 @@ class Current_Job(models.Model):
 
 class Previous_Job(models.Model):
     previous_job_id = models.CharField(primary_key=True, max_length=10)
+    field_type = models.CharField(max_length=64, choices=FIELD_CHOICES, default='technology')
     job_title = models.CharField(max_length=64)
     salary = models.IntegerField()
     start_date = models.DateField()

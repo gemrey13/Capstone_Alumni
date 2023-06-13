@@ -1,7 +1,14 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from django.urls import reverse
 from django.contrib.auth.models import User
 from AlumniManagement.models import *
+
+
+from .utils import analyze_employment_gap
+from datetime import datetime, timedelta
+import uuid
+
+import json
 import random
 import string
 
@@ -14,9 +21,6 @@ def generate_username():
 
 
 class EmploymentPercentageTest(TestCase):
-
-	
-
     def setUp(self):
         # Create alumni with jobs
         self.alumni_with_jobs = []
@@ -69,19 +73,39 @@ class EmploymentPercentageTest(TestCase):
                 barangay_id=barangay.id
             )
 
+            start_date = datetime(2023, 1, 1) + timedelta(days=i)
             Current_Job.objects.create(
-                current_job_id=f'J{i}',
+                current_job_id=f'CJ{i}',
                 field_type='technology',
-                job_title=f'Software Engineer {i}',
+                job_title=f'Current Job {i}',
                 salary=5000,
-                start_date='2023-01-01',
-                company_name=f'ABC Company {i}',
+                start_date=start_date,
+                company_name=f'Current Company {i}',
                 alumni=alumni,
                 country_id=country.id,
                 province_id=province.id,
                 city_id=city.id,
                 barangay_id=barangay.id
             )
+
+            for j in range(i):
+                previous_job_id = f'J{i}_{uuid.uuid4().hex}'
+                start_date = datetime(2022, 1, 1) + timedelta(days=j)
+                end_date = datetime(2022, 12, 31) - timedelta(days=i-j)
+                Previous_Job.objects.create(
+                    previous_job_id=previous_job_id,
+                    field_type='technology',
+                    job_title=f'Previous Job {j}',
+                    salary=4000,
+                    start_date=start_date,
+                    end_date=end_date,
+                    company_name=f'Previous Company {j}',
+                    alumni=alumni,
+                    country_id=country.id,
+                    province_id=province.id,
+                    city_id=city.id,
+                    barangay_id=barangay.id
+                )
 
             self.alumni_with_jobs.append(alumni)
 
@@ -170,3 +194,23 @@ class EmploymentPercentageTest(TestCase):
     		msg = 'Ewwww'
     	print('\nAnalysis for Job Relation: ', msg, response.status_code)
 
+
+    def test_analyze_employment_gap(self):
+        factory = RequestFactory()
+        request = factory.get(reverse('Analysis:analyze_employment_gap'))
+        response = analyze_employment_gap(request)
+
+        # Check that the response has a successful status code
+        self.assertEqual(response.status_code, 200)
+
+        # Check the expected average employment gap value
+        expected_avg_employment_gap = 7  # Assuming 1-year gap
+        data = json.loads(response.content)
+        self.assertEqual(data['average_employment_gap'], expected_avg_employment_gap)\
+
+
+        if response.status_code:
+            msg = 'Naysu - Ok'
+        else:
+            msg = 'LOL'
+        print('\nAnalysis for Employemnt Gap: ', msg, response.status_code)
