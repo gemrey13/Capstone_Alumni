@@ -6,6 +6,23 @@ from django.http import JsonResponse
 from AlumniManagement.models import *
 
 
+def alumi_per_course(request):
+    courses = Course.objects.all()
+    data = []
+    
+    for course in courses:
+        alumni_count = Alumni_Demographic_Profile.objects.filter(course_id=course).count()
+
+        course_data = {
+            'course_name': course.course_id,
+            'alumni_count': alumni_count
+        }
+        data.append(course_data)
+
+    return JsonResponse(data, safe=False)
+
+
+
 # Analyze the employment of all alumni
 # response is labels and data
 def calculate_employment_percentage(request):

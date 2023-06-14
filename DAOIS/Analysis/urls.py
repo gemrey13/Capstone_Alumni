@@ -12,4 +12,5 @@ urlpatterns = [
     path('salary-by-field/', utils.analyze_salary_by_field, name='analyze_salary_by_field'),
     path('employment-gap/', utils.analyze_employment_gap, name='analyze_employment_gap'),
     path('promotion-rates/', utils.analyze_promotion_rates, name='analyze_promotion_rates'),
+    path('alumi-per-course/', utils.alumi_per_course, name='alumi_per_course'),
 ]

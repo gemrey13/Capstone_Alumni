@@ -3,7 +3,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "AlumniManagement/css/alumni.css" %}">
 
-<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pb-6 gap-6">
+<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 pb-6 gap-6">
     <div class="rounded-3xl shadow-xl bg-blend-color bg-white p-4">
         <span class="text-gray-700 lg:text-xl">Total Alumni</span>
         <div class="text-2xl text-gray-800 lg:text-3xl flex items-center">
@@ -14,12 +14,12 @@
         <span><canvas id="employmentChart"></canvas></span>
     </div>
     <div class="rounded-3xl shadow-xl bg-blend-color bg-white p-4">
-        <span class="text-gray-700 lg:text-xl">Curriculum</span>
+        <span class="text-gray-700 lg:text-xl">Alumni Count Per Course</span>
         <div class="text-2xl text-gray-800 lg:text-3xl flex items-center">
             <strong class="flex-grow ">5</strong>
             <i class='bx bx-book-bookmark text-5xl'></i>
         </div>
-        <span class="text-gray-600">2015-2023</span>
+        <span><canvas id="alumniPerCourse"></canvas></span>
     </div>
 </div>
 
@@ -432,6 +432,7 @@
       </div>
 </div>
 <script type="text/javascript" src="{% static "AlumniManagement/js/alumni.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chroma-js@2.1.1/chroma.min.js"></script>
 
 
     <script>
@@ -470,6 +471,62 @@
                     }
                 });
             });
+
+        fetch('/analysis/alumi-per-course/')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(item => item.course_name);
+                const values = data.map(item => item.alumni_count);
+                const totalCourses = labels.length;
+
+                const backgroundColor =  generateDynamicColors(totalCourses, 0.2);
+                const borderColor =  generateDynamicColors(totalCourses, 1);
+
+                console.log(backgroundColor)
+                console.log(borderColor)
+
+                const ctx = document.getElementById('alumniPerCourse').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Alumni Count Per Course',
+                            data: values,
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'left',
+                                align: 'center',
+                            }
+                        }
+                    }
+                });
+            })
+
+
+            function generateDynamicColors(count, alpha) {
+              const baseColors = ['#008080', '#FF0000', '#00FF00', '#0000FF', '#FF00FF']; // Adjust the base colors as needed
+              const colors = [];
+
+              for (let i = 0; i < count; i++) {
+                const baseColor = baseColors[i % baseColors.length];
+                const color = chroma.scale([chroma(baseColor).darken(2), baseColor]).mode('lch')(1);
+                colors.push(chroma(color).alpha(alpha).css());
+              }
+
+              return colors;
+            }
+
+
+
     </script>
 
 {% endblock content %}
