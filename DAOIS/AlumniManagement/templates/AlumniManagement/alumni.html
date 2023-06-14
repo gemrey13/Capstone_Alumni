@@ -2,6 +2,29 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "AlumniManagement/css/alumni.css" %}">
+
+<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pb-6 gap-6">
+    <div class="rounded-3xl shadow-xl bg-blend-color bg-white p-4">
+        <span class="text-gray-700 lg:text-xl">Total Alumni</span>
+        <div class="text-2xl text-gray-800 lg:text-3xl flex items-center">
+            <strong class="flex-grow ">{{alumni_count}}</strong>
+            <i class='bx bx-user text-5xl'></i>
+        </div>
+        <span class="text-gray-600">June 03, 2023</span>
+        <span><canvas id="employmentChart"></canvas></span>
+    </div>
+    <div class="rounded-3xl shadow-xl bg-blend-color bg-white p-4">
+        <span class="text-gray-700 lg:text-xl">Curriculum</span>
+        <div class="text-2xl text-gray-800 lg:text-3xl flex items-center">
+            <strong class="flex-grow ">5</strong>
+            <i class='bx bx-book-bookmark text-5xl'></i>
+        </div>
+        <span class="text-gray-600">2015-2023</span>
+    </div>
+</div>
+
+
+
 <div class="modal h-screen w-full absolute sm:mt-0 mt-96 left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
     <div class="bg-white rounder shadow-lg sm:w-2/3">
         <div class="border-b px-4 py-2 flex justify-between items-center">
@@ -409,4 +432,44 @@
       </div>
 </div>
 <script type="text/javascript" src="{% static "AlumniManagement/js/alumni.js" %}"></script>
+
+
+    <script>
+        // Retrieve data from the JSON URL
+        fetch('/analysis/employment-percentage/')
+            .then(response => response.json())
+            .then(data => {
+                // Process the data
+                const labels = data.labels;
+                const values = data.data;
+
+                // Create the chart
+                const ctx = document.getElementById('employmentChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Employment Percentage',
+                            data: values,
+                            backgroundColor: 'rgba(0,255,255, 0.2)',
+                            borderColor: 'rgba(0,128,128, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+
 {% endblock content %}

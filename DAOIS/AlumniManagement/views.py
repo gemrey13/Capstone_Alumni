@@ -39,6 +39,7 @@ def dashboard(request):
 @login_required(login_url='Authentication:login')
 def alumni(request):
     profiles = Alumni_Demographic_Profile.objects.order_by('sex')
+    alumni_count = Alumni_Demographic_Profile.objects.all().count()
     countries = Country.objects.all()
     courses = Course.objects.all()
     
@@ -162,6 +163,7 @@ def alumni(request):
         'previous_page_number': page_obj.previous_page_number() if page_obj.has_previous() else None,
         'next_page_number': page_obj.next_page_number() if page_obj.has_next() else None,
         'page_range': page_range,
+        'alumni_count': alumni_count,
     }
     return render(request, "AlumniManagement/alumni.html", context)
 
