@@ -3,7 +3,17 @@ from datetime import timedelta
 from django.utils import timezone
 from django.db.models import Count
 from django.http import JsonResponse
+from django.db.models.functions import ExtractYear
 from AlumniManagement.models import *
+
+
+def graduate_by_year(request):
+    graduate_counts = Graduate.objects.annotate(year=ExtractYear('graduation_date')).values('year').annotate(count=Count('alumni')).order_by('year')
+    data = {
+        'labels': [item['year'] for item in graduate_counts],
+        'data': [item['count'] for item in graduate_counts]
+    }
+    return JsonResponse(data)
 
 
 def alumi_per_course(request):

@@ -3,7 +3,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "AlumniManagement/css/alumni.css" %}">
 
-<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 pb-6 gap-6">
+<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 pb-6 gap-6 mt-14">
 
     <div class="rounded-3xl shadow-xl bg-blend-color bg-white pt-4 pb-6 px-2 md:p-4 flex justify-center flex-col">
         <span class="text-gray-700 lg:text-xl self-center">Total Alumni <span>(<strong class="flex-grow ">{{alumni_count}}</strong>)</span></span>
@@ -388,7 +388,7 @@
 </div>
 
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center mt-2">
       <!-- Help text -->
       <span class="text-sm text-gray-700 dark:text-gray-400">
           Showing <span class="font-semibold text-gray-900 dark:text-white">{{page.number}}</span> to <span class="font-semibold text-gray-900 dark:text-white">{{page.paginator.num_pages}}</span> Pages
@@ -424,11 +424,54 @@
 
       </div>
 </div>
+
+<hr class="h-px mt-8 bg-gray-400 border-0">
+
+<section class="bg-white dark:bg-gray-900 mt-8 rounded-lg">
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Alumni Employment Analysis: Celebrating Career Paths</h2>
+            <p class="mb-4">Welcome to our alumni employment analysis, where we celebrate the diverse career paths of our graduates. From those employed to those seeking new opportunities, we recognize the accomplishments and journeys of our alumni community.</p>
+            
+            <p>Explore the diverse career paths of our alumni community. This line chart showcases the number of graduates per year, providing a visual representation of the trend in graduate counts over time. Celebrate their accomplishments and the impact they've made in their respective fields.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-8">
+            <canvas id="graduateChart"></canvas>
+        </div>
+    </div>
+</section>
+
+
 <script type="text/javascript" src="{% static "AlumniManagement/js/alumni.js" %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.1.1/chroma.min.js"></script>
 
 
     <script>
+        fetch('/analysis/graduate-by-year/')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('graduateChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Graduate Counts',
+                        data: data.data,
+                        borderColor: 'rgb(75, 192, 192)',
+                        lineTension: 0.1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+
+
+
         // Retrieve data from the JSON URL
         fetch('/analysis/employment-percentage/')
             .then(response => response.json())
