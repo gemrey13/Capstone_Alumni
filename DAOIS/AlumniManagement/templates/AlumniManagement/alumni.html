@@ -375,7 +375,12 @@
     {% for profile in profiles %}
     <div class="bg-white space-y-2 p-4 rounded-lg shadow">
         <div class="flex items-center space-x-2 text-sm">
-            <div class="text-blue-500 font-semibold hover:underline">{{profile.alumni_id}} <br>{{profile.course_id}}</div>
+            
+            {% if profile.alumni_id %}
+                <a href="{% url 'AlumniManagement:alumni_profile' alumni_id=profile.alumni_id %}" class="text-blue-500 font-semibold hover:underline">{{profile.alumni_id}} <br>{{profile.course_id}}</a>
+            {% else %}
+                <div class="text-blue-500 font-semibold hover:underline">{{profile.alumni_id}} <br>{{profile.course_id}}</div>
+            {% endif %}
             <div class="text-gray-500">{{profile.marital_status}} <br>{{profile.sex}}</div>
             <div class="p-3 text-sm text-gray-700 whitespace-nowrap text-left"> {{profile.religion}} <br>{{profile.date_of_birth}}</div>
         </div>
@@ -430,7 +435,7 @@
 <section class="bg-white dark:bg-gray-900 mt-8 rounded-lg">
     <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Alumni Employment Analysis: Celebrating Career Paths</h2>
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Alumni Employment Analysis</h2>
             <p class="mb-4">Welcome to our alumni employment analysis, where we celebrate the diverse career paths of our graduates. From those employed to those seeking new opportunities, we recognize the accomplishments and journeys of our alumni community.</p>
             
             <p>Explore the diverse career paths of our alumni community. This line chart showcases the number of graduates per year, providing a visual representation of the trend in graduate counts over time. Celebrate their accomplishments and the impact they've made in their respective fields.</p>
