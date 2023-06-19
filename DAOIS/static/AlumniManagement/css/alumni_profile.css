@@ -1,0 +1,12 @@
+.tab-content {
+  display: none; /* Hide all tab content by default */
+  transition: display 0.3s ease-in-out; /* Add smooth transition for display property */
+}
+
+.tab {
+  cursor: pointer;
+}
+
+.active {
+  border-bottom: blue solid 2px;
+}
