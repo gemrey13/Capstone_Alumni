@@ -61,6 +61,10 @@ def alumni(request):
             city = request.POST.get('city')
             barangay = request.POST.get('barangay')
             #-----------------------------------------------
+            graduate_id = request.POST.get('graduate_id')
+            graduation_date = request.POST.get('graduation_date')
+            honor = request.POST.get('honor')
+            #-----------------------------------------------
             current_job_id = request.POST.get('current_job_id')
             field_type = request.POST.get('field_type')
             job_title = request.POST.get('job_title')
@@ -87,6 +91,9 @@ def alumni(request):
                                                             country=country, province=province, city=city, barangay=barangay)
                     new_alumni.save()
                     
+                    new_alumni_graduate = Graduate(graduate_id=graduate_id, alumni=new_alumni, graduation_date=graduation_date, honor=honor)
+                    new_alumni_graduate.save()
+
                     job_country = Country.objects.get(id=job_country)
                     job_province = Province.objects.get(id=job_province)
                     job_city = City.objects.get(id=job_city)
@@ -112,6 +119,10 @@ def alumni(request):
                                                                 marital_status=marital_status, date_of_birth=date_of_birth, 
                                                                 country=country, province=province, city=city, barangay=barangay)
                         new_alumni.save()
+                        
+                        new_alumni_graduate = Graduate(graduate_id=graduate_id, alumni=new_alumni, graduation_date=graduation_date, honor=honor)
+                        new_alumni_graduate.save()
+
                         messages.success(request,'Sucess Add alumni.')
             elif not fname or not lname or not course_id or not date_of_birth or not religion or not marital_status or not sex:
                 raise ValueError('Please Provide a Valid Alumni Input.')
