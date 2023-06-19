@@ -18,7 +18,7 @@
 
 
 
-<div class="modal h-screen w-full absolute sm:mt-0 mt-96 left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+<div class="modal h-screen w-full fixed sm:mt-0 mt-96 left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
     <div class="bg-white rounder shadow-lg sm:w-2/3">
         <div class="border-b px-4 py-2 flex justify-between items-center">
             <h3 class="font-semibold text-lg">Add Alumni</h3>
@@ -338,7 +338,7 @@
                 <th class="w-16 p-3 text-sm font-semibold tracking-wide text-left">M/S</th>
                 <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Date of Birth</th>
                 <th class="w-18 p-3 text-sm font-semibold tracking-wide text-left">Address</th>
-                <th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">Action</th>
+                <th class="w-32 p-3 text-sm font-semibold tracking-wide text-center">Action</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
@@ -356,7 +356,7 @@
                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.marital_status}}</td>
                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.date_of_birth}}</td>
                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{profile.country}}, {{profile.province}}, {{profile.city}}, {{profile.barangay}}</td>
-                <td class="text-blue-500">
+                <td class="text-blue-500 whitespace-nowrap p-3 text-sm text-center">
                     {% if profile.alumni_id %}
                         <a href="{% url 'AlumniManagement:alumni_profile' alumni_id=profile.alumni_id %}" class="hover:underline">Update</a>
                     {% else %}
