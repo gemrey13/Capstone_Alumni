@@ -29,13 +29,17 @@
         <div class="flex-auto text-center">
             <div onclick="openTab(event, 'tab1')" data-tab="tab1" class="tab my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-white hover:isolate bg-sky-500 hover:bg-sky-700 hover:border-transparent  focus:isolate focus:border-transparent">Profile</div>
         </div>
-        <div class="flex-auto text-center">
 
+        <div class="flex-auto text-center">
             <div onclick="openTab(event, 'tab2')" class="tab my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-white hover:isolate hover:border-transparent  bg-sky-500 hover:bg-sky-700 focus:isolate focus:border-transparent">Educational Background</div>
         </div>
-        <div class="flex-auto text-center">
 
-            <div onclick="openTab(event, 'tab3')" class="tab my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-white hover:isolate hover:border-transparent bg-sky-500 hover:bg-sky-700 focus:isolate focus:border-transparent">Account </div>
+        <div class="flex-auto text-center">
+            <div onclick="openTab(event, 'tab3')" class="tab my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-white hover:isolate hover:border-transparent  bg-sky-500 hover:bg-sky-700 focus:isolate focus:border-transparent">Job History</div>
+        </div>
+
+        <div class="flex-auto text-center">
+            <div onclick="openTab(event, 'tab4')" class="tab my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-white hover:isolate hover:border-transparent bg-sky-500 hover:bg-sky-700 focus:isolate focus:border-transparent">Account </div>
         </div>
     </div>
 
@@ -196,12 +200,31 @@
             </div>
         </div>
 
-        <div id="tab2" class="tab-content opacity-100 transition-opacity duration-150 ease-linear">
-         asd
+        <div id="tab2" class="tab-content opacity-100 transition-opacity duration-150 ease-linear rounded-3xl shadow-xl bg-blend-color bg-white p-2 pb-0 pt-4 md:p-4"">
+          <div class="form w-full max-w-full">
+              <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-id">
+                  Graduation ID
+              </label>
+              <input name="graduate_id" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-id" type="text" placeholder="No.">
+
+              <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-date">
+                  Graduation date
+              </label>
+              <input name="graduation_date" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-date" type="date" placeholder="No.">
+
+              <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-honor">
+                  Honor
+              </label>
+              <input name="honor" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-honor" type="text" placeholder="No.">
+          </div>
         </div>
 
         <div id="tab3" class="tab-content opacity-100 transition-opacity duration-150 ease-linear">
           <!-- Content for Tab 3 -->asdsadsad
+        </div>
+
+        <div id="tab4" class="tab-content opacity-100 transition-opacity duration-150 ease-linear">
+          <!-- Content for Tab 3 -->asdas
         </div>
     </form>
 
