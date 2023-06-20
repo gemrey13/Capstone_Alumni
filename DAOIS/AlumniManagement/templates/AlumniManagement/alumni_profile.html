@@ -200,7 +200,7 @@
             </div>
         </div>
 
-        <div id="tab2" class="tab-content opacity-100 transition-opacity duration-150 ease-linear rounded-3xl shadow-xl bg-blend-color bg-white p-2 pb-0 pt-4 md:p-4"">
+        <div id="tab2" class="tab-content opacity-100 transition-opacity duration-150 ease-linear rounded-3xl shadow-xl bg-blend-color bg-white p-2 pb-0 pt-4 md:p-4">
           <div class="form w-full max-w-full">
               <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-id">
                   Graduation ID
@@ -220,7 +220,34 @@
         </div>
 
         <div id="tab3" class="tab-content opacity-100 transition-opacity duration-150 ease-linear">
-          <!-- Content for Tab 3 -->asdsadsad
+          <div class="overflow-auto rounded-lg shadow hidden md:block" id="table-container">
+              <table class="w-full">
+                  <thead class="bg-gray-50 border-b-2 border-gray-200">
+                      <tr>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job ID</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Field Type</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job Title</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Salary</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Start Date</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">End Date</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Company Name</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+                      </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-100">
+                      <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"></td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
         </div>
 
         <div id="tab4" class="tab-content opacity-100 transition-opacity duration-150 ease-linear">
