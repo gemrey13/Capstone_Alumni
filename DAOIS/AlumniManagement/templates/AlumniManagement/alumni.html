@@ -5,12 +5,12 @@
 
 <div class="mx-auto grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 pb-6 gap-6 mt-14">
 
-    <div class="rounded-3xl shadow-xl bg-blend-color bg-white pt-4 pb-6 px-2 md:p-4 flex justify-center flex-col">
+    <div class="rounded-3xl shadow-xl bg-blend-color color pt-4 pb-6 px-2 md:p-4 flex justify-center flex-col">
         <span class="text-gray-700 lg:text-xl self-center">Total Alumni <span>(<strong class="flex-grow ">{{alumni_count}}</strong>)</span></span>
         
         <span><canvas id="employmentChart"></canvas></span>
     </div>
-    <div class="rounded-3xl shadow-xl bg-blend-color bg-white p-2 pb-0 pt-4 md:p-4 flex flex-col justify-around">
+    <div class="rounded-3xl shadow-xl bg-blend-color color p-2 pb-0 pt-4 md:p-4 flex flex-col justify-around">
         <span class="text-gray-700 lg:text-xl self-center">Alumni Count Per Course</span>
         <span><canvas id="alumniPerCourse"></canvas></span>
     </div>
@@ -66,7 +66,7 @@
                                 Course
                             </label>
                             <div class="relative">
-                                <select name="course" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                <select name="course" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="course">
                                     <option value="">Select Course</option>
                                     {% for course in courses %}
                                     <option value="{{course.course_id}}">{{course.course_name}}</option>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="flex flex-wrap -mx-3 ">
                         <div class="w-full md:w-1/4 px-3 mb-6 sm:mb-0">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="country">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"for="country">
                                 Country
                             </label>
                             <div class="relative">
@@ -542,9 +542,6 @@
 
                 const backgroundColor =  generateDynamicColors(totalCourses, 0.2);
                 const borderColor =  generateDynamicColors(totalCourses, 1);
-
-                console.log(backgroundColor)
-                console.log(borderColor)
 
                 const ctx = document.getElementById('alumniPerCourse').getContext('2d');
                 new Chart(ctx, {

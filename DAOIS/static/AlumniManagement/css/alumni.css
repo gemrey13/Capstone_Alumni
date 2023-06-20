@@ -20,3 +20,7 @@
     font-weight: bold;
     /* Add any other styles as desired */
 }
+
+.color {
+    background-color: var(--white-to-grey-color);
+}
