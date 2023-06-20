@@ -181,8 +181,10 @@ def alumni(request):
 
 def alumni_profile(request, alumni_id):
     alumni = Alumni_Demographic_Profile.objects.get(alumni_id=alumni_id)
+    prev_jobs = Previous_Job.objects.filter(alumni__alumni_id=alumni_id)
     context = {
-        'alumni':alumni
+        'alumni':alumni,
+        'prev_jobs': prev_jobs
     }
 
     return render(request, 'AlumniManagement/alumni_profile.html', context)

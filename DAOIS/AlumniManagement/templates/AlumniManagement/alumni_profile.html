@@ -225,8 +225,8 @@
                   <thead class="bg-gray-50 border-b-2 border-gray-200">
                       <tr>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job ID</th>
-                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Field Type</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job Title</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Field Type</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Salary</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Start Date</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">End Date</th>
@@ -235,16 +235,18 @@
                       </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-100">
+                    {% for prev_job in prev_jobs %}
                       <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"></td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">sdf</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.previous_job_id}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.job_title}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.field_type}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.salary}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.start_date}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.end_date}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.company_name}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.country}} {{prev_job.province}} {{prev_job.city}} {{prev_job.barangay}}</td>
                       </tr>
+                    {% endfor %}
                   </tbody>
               </table>
           </div>
