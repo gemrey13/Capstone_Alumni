@@ -24,3 +24,7 @@
 .color {
     background-color: var(--white-to-grey-color);
 }
+
+.top-text {
+    color: var(--black-color);
+}
