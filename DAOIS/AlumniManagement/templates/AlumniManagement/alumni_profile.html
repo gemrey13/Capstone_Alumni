@@ -18,7 +18,7 @@
             <h2 class="text-2xl font-semibold mb-2">{{alumni.fname}} {{alumni.mi}} {{alumni.lname}}</h2>
             <span class="text-lg text-gray-500">{{alumni.course_id}}</span>
         </div>
-        <a href="#" class="py-2 px-4 rounded bg-blue-600 sm:flex items-center gap-2 text-white hover:bg-blue-700 ml-auto hidden">
+        <a href="#" id="saveProfile" class="py-2 px-4 rounded bg-blue-600 sm:flex items-center gap-2 text-white hover:bg-blue-700 ml-auto hidden">
             <i class='bx bx-edit-alt' ></i>
             Save Profile
         </a>
@@ -44,7 +44,8 @@
     </div>
 
 
-    <form class="mb-6">
+    <form class="mb-6" id="myForm" method="POST">
+        {% csrf_token %}
         <div id="tab1" class="tab-content flex flex-wrap rounded-3xl shadow-xl bg-blend-color bg-white p-2 pb-0 pt-4 md:p-4">
             
             <div class="flex flex-wrap -mx-3">
@@ -86,7 +87,7 @@
                         Course
                     </label>
                     <div class="relative">
-                        <select name="course" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <select name="course" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="course">
                             <option value="">Select Course</option>
                             {% for course in courses %}
                                 <option value="{{ course.course_id }}" {% if course.course_id == alumni_course_id %}
@@ -277,7 +278,7 @@
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Start Date</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">End Date</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Company Name</th>
-                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-center">Address</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Address</th>
                       </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-100">
@@ -310,6 +311,17 @@
 
 <script type="text/javascript" src="{% static 'AlumniManagement/js/alumni_profile.js' %}"></script>
 <script type="text/javascript">
+
+// Add event listener to the outside button
+let outsideButton = document.getElementById("saveProfile");
+outsideButton.addEventListener("click", function() {
+  // Trigger form submission
+  let form = document.getElementById("myForm");
+  form.submit();
+});
+
+
+
     $(document).ready(function() {
     // Function to fetch provinces for the selected country
     function fetchProvinces(countryId) {
