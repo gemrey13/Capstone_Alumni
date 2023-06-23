@@ -4,6 +4,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
+import json
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -182,15 +183,29 @@ def alumni(request):
 def alumni_profile(request, alumni_id):
     alumni = Alumni_Demographic_Profile.objects.get(alumni_id=alumni_id)
     prev_jobs = Previous_Job.objects.filter(alumni__alumni_id=alumni_id)
+    countries = Country.objects.all()
     courses = Course.objects.all()
-    
+
+    alumni_country = alumni.country
+    alumni_province = alumni.province
+    alumni_city = alumni.city
+    alumni_barangay = alumni.barangay
+
+    print(alumni_province)
     alumni_course_id = str(alumni.course_id)
 
     context = {
         'alumni':alumni,
+        'countries': countries,
         'prev_jobs': prev_jobs,
         'courses': courses,
         'alumni_course_id': alumni_course_id,
+        'field_choices': FIELD_CHOICES,
+        'sex_choices': SEX_CHOICES,
+        'alumni_country': alumni_country,
+        'alumni_province': alumni_province,
+        'alumni_city': alumni_city,
+        'alumni_barangay': alumni_barangay,
     }
 
     return render(request, 'AlumniManagement/alumni_profile.html', context)

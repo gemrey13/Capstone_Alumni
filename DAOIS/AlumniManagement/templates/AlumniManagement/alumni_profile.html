@@ -123,7 +123,9 @@
                         <select name="sex" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="sex">
                             <option value="">Select Sex</option>
                             {% for sex_choice in sex_choices %}
-                            <option value="{{ sex_choice.0 }}">{{ sex_choice.1 }}</option>
+                            <option value="{{ sex_choice.0 }}" {% if sex_choice.0 == alumni.sex %}
+                                selected 
+                            {% endif %}>{{ sex_choice.1 }}</option>
                             {% endfor %}
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -148,7 +150,9 @@
                         <select name="country" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="country">
                             <option value="">Select Country</option>
                             {% for country in countries %}
-                            <option value="{{ country.id }}">{{ country.country_name }}</option>
+                            <option value="{{ country.id }}" {% if country.id == alumni.country.id %}
+                                selected 
+                            {% endif %}>{{ country.country_name }}</option>
                             {% endfor %}
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -164,6 +168,9 @@
                     <div class="relative">
                         <select name="province" required class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="province">
                             <option value="">Select Province</option>
+                            {% if alumni_province %}
+                                <option value="{{ alumni_province.id }}" selected>{{ alumni_province.province_name }}</option>
+                            {% endif %}
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -260,4 +267,127 @@
     </form>
 
 <script type="text/javascript" src="{% static 'AlumniManagement/js/alumni_profile.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+    // Function to fetch provinces for the selected country
+    function fetchProvinces(countryId) {
+        $.ajax({
+            url: '/get_provinces/',
+            type: 'GET',
+            data: { country_id: countryId },
+            success: function(response) {
+                // Clear previous options
+                $('#province').empty().append('<option value="">Select Province</option>');
+                $('#city').empty().append('<option value="">Select City</option>');
+                $('#barangay').empty().append('<option value="">Select Barangay</option>');
+
+                // Populate provinces
+                response.provinces.forEach(function(province) {
+                    $('#province').append('<option value="' + province.id + '">' + province.province_name + '</option>');
+                });
+
+                // Preselect the province if available
+                var alumniProvinceId = '{{ alumni.province.id }}';
+                if (alumniProvinceId !== '') {
+                    $('#province').val(alumniProvinceId);
+                    fetchCities(alumniProvinceId);
+                }
+            }
+        });
+    }
+
+    // Function to fetch cities for the selected province
+    function fetchCities(provinceId) {
+        $.ajax({
+            url: '/get_cities/',
+            type: 'GET',
+            data: { province_id: provinceId },
+            success: function(response) {
+                // Clear previous options
+                $('#city').empty().append('<option value="">Select City</option>');
+                $('#barangay').empty().append('<option value="">Select Barangay</option>');
+
+                // Populate cities
+                response.cities.forEach(function(city) {
+                    $('#city').append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                });
+
+                // Preselect the city if available
+                var alumniCityId = '{{ alumni.city.id }}';
+                if (alumniCityId !== '') {
+                    $('#city').val(alumniCityId);
+                    fetchBarangays(alumniCityId);
+                }
+            }
+        });
+    }
+
+    // Function to fetch barangays for the selected city
+    function fetchBarangays(cityId) {
+        $.ajax({
+            url: '/get_barangays/',
+            type: 'GET',
+            data: { city_id: cityId },
+            success: function(response) {
+                // Clear previous options
+                $('#barangay').empty().append('<option value="">Select Barangay</option>');
+
+                // Populate barangays
+                response.barangays.forEach(function(barangay) {
+                    $('#barangay').append('<option value="' + barangay.id + '">' + barangay.barangay_name + '</option>');
+                });
+
+                // Preselect the barangay if available
+                var alumniBarangayId = '{{ alumni.barangay.id }}';
+                if (alumniBarangayId !== '') {
+                    $('#barangay').val(alumniBarangayId);
+                }
+            }
+        });
+    }
+
+    // Trigger change event for country selection on page load
+    var countryId = $('#country').val();
+    if (countryId !== '') {
+        fetchProvinces(countryId);
+    }
+
+    // Triggered when the country selection changes
+    $('#country').change(function() {
+        var countryId = $(this).val();
+        if (countryId !== '') {
+            fetchProvinces(countryId);
+        } else {
+            // Clear province, city, and barangay options if country is not selected
+            $('#province').empty().append('<option value="">Select Province</option>');
+            $('#city').empty().append('<option value="">Select City</option>');
+            $('#barangay').empty().append('<option value="">Select Barangay</option>');
+        }
+    });
+
+    // Triggered when the province selection changes
+    $('#province').change(function() {
+        var provinceId = $(this).val();
+        if (provinceId !== '') {
+            fetchCities(provinceId);
+        } else {
+            // Clear city and barangay options if province is not selected
+            $('#city').empty().append('<option value="">Select City</option>');
+            $('#barangay').empty().append('<option value="">Select Barangay</option>');
+        }
+    });
+
+    // Triggered when the city selection changes
+    $('#city').change(function() {
+        var cityId = $(this).val();
+        if (cityId !== '') {
+            fetchBarangays(cityId);
+        } else {
+            // Clear barangay options if city is not selected
+            $('#barangay').empty().append('<option value="">Select Barangay</option>');
+        }
+    });
+});
+
+</script>
 {% endblock content %}
