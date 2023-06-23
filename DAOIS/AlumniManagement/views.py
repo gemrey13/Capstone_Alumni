@@ -182,9 +182,12 @@ def alumni(request):
 
 def alumni_profile(request, alumni_id):
     alumni = Alumni_Demographic_Profile.objects.get(alumni_id=alumni_id)
+    graduate = Graduate.objects.get(alumni=alumni)
     prev_jobs = Previous_Job.objects.filter(alumni__alumni_id=alumni_id)
     countries = Country.objects.all()
     courses = Course.objects.all()
+
+    print(f'Honor :{graduate.honor}')
 
     alumni_country = alumni.country
     alumni_province = alumni.province
@@ -196,6 +199,7 @@ def alumni_profile(request, alumni_id):
 
     context = {
         'alumni':alumni,
+        'graduate': graduate,
         'countries': countries,
         'prev_jobs': prev_jobs,
         'courses': courses,

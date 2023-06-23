@@ -214,17 +214,17 @@
               <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-id">
                   Graduation ID
               </label>
-              <input name="graduate_id" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-id" type="text" placeholder="No.">
+              <input name="graduate_id" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-id" type="text" value="{{graduate.graduate_id}}">
 
               <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-date">
                   Graduation date
               </label>
-              <input name="graduation_date" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-date" type="date" placeholder="No.">
+              <input name="graduation_date" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-date" type="date" value="{{graduate.graduation_date|date:'Y-m-d'}}">
 
               <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-honor">
                   Honor
               </label>
-              <input name="honor" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-honor" type="text" placeholder="No.">
+              <input name="honor" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-honor" type="text" value="{{graduate.honor}}">
           </div>
         </div>
 
