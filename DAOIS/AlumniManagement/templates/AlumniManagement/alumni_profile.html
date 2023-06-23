@@ -61,27 +61,23 @@
                     </label>
                     <input name="lname" required maxlength="64" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" value="{{alumni.lname}}">
                 </div>
-                <div class="w-full md:w-1/6 px-3 mb-5 sm:mb-0">
+                <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-mi-name">
                         M.I.
                     </label>
                     <input name="mi" maxlength="2" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-mi-name" type="text" value="{{alumni.mi}}">
                 </div>
-                <div class="w-full md:w-1/6 px-3 mb-5 sm:mb-0">
+                
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-2">
+                <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-suffix-name">
                         Suffix
                     </label>
                     <input name="suffix" maxlength="3s" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-suffix-name" type="text" value="{{alumni.suffix}}">
                 </div>
-            </div>
-
-            <div class="flex flex-wrap -mx-3 mb-2">
-                <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-alumni-id-name">
-                        Alumni ID
-                    </label>
-                    <input name="alumni_id" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-105 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-alumni-id-name" type="text" value="{{alumni.alumni_id}}">
-                </div>
+                
                 <div class="w-full md:w-1/3 px-3 mb-5 sm:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="course">
                         Course
@@ -212,11 +208,7 @@
 
         <div id="tab2" class="tab-content opacity-100 transition-opacity duration-150 ease-linear rounded-3xl shadow-xl bg-blend-color bg-white p-2 pb-0 pt-4 md:p-4">
           <div class="form w-full max-w-full">
-              <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-id">
-                  Graduation ID
-              </label>
-              <input name="graduate_id" required maxlength="6" class="transition ease-linear delay-75 bg-blue-500 focus:-translate-y-1 focus:scale-100 focus:bg-indigo-500 duration-300 appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grad-id" type="text" value="{{graduate.graduate_id}}">
-
+              
               <label class=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grad-date">
                   Graduation date
               </label>

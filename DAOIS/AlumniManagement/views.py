@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from datetime import datetime
+import datetime 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -194,6 +194,62 @@ def alumni_profile(request, alumni_id):
     alumni_barangay = alumni.barangay
 
     alumni_course_id = str(alumni.course_id)
+
+    if request.method == "POST":
+
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        mi = request.POST.get('mi')
+        suffix = request.POST.get('suffix')
+        course_id = request.POST.get('course')
+        marital_status = request.POST.get('marital_status')
+        date_of_birth = request.POST.get('date_of_birth')
+        religion = request.POST.get('religion')
+        sex = request.POST.get('sex')
+        country = request.POST.get('country')
+        province = request.POST.get('province')
+        city = request.POST.get('city')
+        barangay = request.POST.get('barangay')
+        #-----------------------------------------------
+        graduate_id = request.POST.get('graduate_id')
+        graduation_date = request.POST.get('graduation_date')
+        honor = request.POST.get('honor')
+        #-----------------------------------------------
+        print(alumni_id)
+
+        course = Course.objects.get(course_id=course_id)
+        country = Country.objects.get(id=country)
+        province = Province.objects.get(id=province)
+        city = City.objects.get(id=city)
+        barangay = Barangay.objects.get(id=barangay)
+        date_of_birth = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date().isoformat()
+        graduation_date = datetime.datetime.strptime(graduation_date, "%Y-%m-%d").date().isoformat()
+
+        alumni.fname = fname
+        alumni.lname = lname
+        alumni.mi = mi
+        alumni.suffix = suffix
+        alumni.course_id = course
+        alumni.alumni_id = alumni_id
+        alumni.marital_status = marital_status
+        alumni.date_of_birth = date_of_birth
+        alumni.religion = religion
+        alumni.sex = sex
+        alumni.country = country
+        alumni.province = province
+        alumni.city = city
+        alumni.barangay = barangay
+        alumni.save()
+
+
+        graduate.graduation_date = graduation_date
+        graduate.honor = honor
+        graduate.save()
+
+        print('SUccess')
+        print(fname)
+        print(lname)
+       
 
     context = {
         'alumni':alumni,
