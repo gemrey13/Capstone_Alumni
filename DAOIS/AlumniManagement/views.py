@@ -188,14 +188,11 @@ def alumni_profile(request, alumni_id):
     countries = Country.objects.all()
     courses = Course.objects.all()
 
-    print(f'Honor :{graduate.honor}')
-
     alumni_country = alumni.country
     alumni_province = alumni.province
     alumni_city = alumni.city
     alumni_barangay = alumni.barangay
 
-    print(alumni_province)
     alumni_course_id = str(alumni.course_id)
 
     context = {

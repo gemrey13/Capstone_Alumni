@@ -235,25 +235,27 @@
             <table class="w-full">
                   <thead class="bg-gray-50 border-b-2 border-gray-200">
                       <tr>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Action</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job ID</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job Title</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Field Type</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Salary</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Start Date</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Company Name</th>
-                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-center">Address</th>
                       </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-100">
                     {% for current_job in current_jobs %}
                       <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><a href="#">Delete</a></td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.current_job_id}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.job_title}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.field_type}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.salary}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.start_date}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.company_name}}</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.country}} {{current_job.province}} {{current_job.city}} {{current_job.barangay}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.country}}, {{current_job.province}}, {{current_job.city}}, {{current_job.barangay}}</td>
                       </tr>
                     {% endfor %}
                   </tbody>
@@ -267,6 +269,7 @@
             <table class="w-full">
                   <thead class="bg-gray-50 border-b-2 border-gray-200">
                       <tr>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Action</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job ID</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job Title</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Field Type</th>
@@ -274,12 +277,13 @@
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Start Date</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">End Date</th>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Company Name</th>
-                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-center">Address</th>
                       </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-100">
                     {% for prev_job in prev_jobs %}
                       <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><a href="#">Delete</a></td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.previous_job_id}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.job_title}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.field_type}}</td>
@@ -287,7 +291,7 @@
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.start_date}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.end_date}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.company_name}}</td>
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.country}} {{prev_job.province}} {{prev_job.city}} {{prev_job.barangay}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.country}}, {{prev_job.province}}, {{prev_job.city}}, {{prev_job.barangay}}</td>
                       </tr>
                     {% endfor %}
                   </tbody>
