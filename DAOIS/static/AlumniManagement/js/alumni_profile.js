@@ -16,7 +16,10 @@ function openTab(evt, tabName) {
   // Show the current tab content and add the "active" class to the clicked tab
   var currentTabContent = document.getElementById(tabName);
   currentTabContent.style.display = "block";
-  evt.currentTarget.classList.add("active");
+  
+  if (evt) {
+    evt.currentTarget.classList.add("active");
+  }
 }
 
 // Show the first tab by default when the page loads
@@ -25,5 +28,3 @@ document.addEventListener("DOMContentLoaded", function() {
   var firstTabName = firstTab.getAttribute("data-tab");
   openTab(null, firstTabName);
 });
-
-

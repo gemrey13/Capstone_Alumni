@@ -230,7 +230,41 @@
 
         <div id="tab3" class="tab-content opacity-100 transition-opacity duration-150 ease-linear">
           <div class="overflow-auto rounded-lg shadow hidden md:block" id="table-container">
-              <table class="w-full">
+            {% if current_jobs %}
+            <h1 class="text-center">Current Jobs</h1>
+            <table class="w-full">
+                  <thead class="bg-gray-50 border-b-2 border-gray-200">
+                      <tr>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job ID</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job Title</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Field Type</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Salary</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Start Date</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Company Name</th>
+                          <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+                      </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-100">
+                    {% for current_job in current_jobs %}
+                      <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.current_job_id}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.job_title}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.field_type}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.salary}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.start_date}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.company_name}}</td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.country}} {{current_job.province}} {{current_job.city}} {{current_job.barangay}}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+            {% else %}
+            <h1 class="text-center">No Current Jobs.</h1>
+            {% endif %}
+            <br>
+            {% if prev_jobs %}
+            <h1 class="text-center">Previous Jobs</h1>
+            <table class="w-full">
                   <thead class="bg-gray-50 border-b-2 border-gray-200">
                       <tr>
                           <th class="w-auto p-3 text-sm font-semibold tracking-wide text-left">Job ID</th>
@@ -258,6 +292,10 @@
                     {% endfor %}
                   </tbody>
               </table>
+            {% else %}
+            <h1 class="text-center">No Previous Jobs.</h1>
+            {% endif %}
+              
           </div>
         </div>
 

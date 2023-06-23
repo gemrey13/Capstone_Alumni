@@ -183,6 +183,7 @@ def alumni(request):
 def alumni_profile(request, alumni_id):
     alumni = Alumni_Demographic_Profile.objects.get(alumni_id=alumni_id)
     graduate = Graduate.objects.get(alumni=alumni)
+    current_jobs = Current_Job.objects.filter(alumni__alumni_id=alumni_id)
     prev_jobs = Previous_Job.objects.filter(alumni__alumni_id=alumni_id)
     countries = Country.objects.all()
     courses = Course.objects.all()
@@ -201,6 +202,7 @@ def alumni_profile(request, alumni_id):
         'alumni':alumni,
         'graduate': graduate,
         'countries': countries,
+        'current_jobs': current_jobs,
         'prev_jobs': prev_jobs,
         'courses': courses,
         'alumni_course_id': alumni_course_id,
