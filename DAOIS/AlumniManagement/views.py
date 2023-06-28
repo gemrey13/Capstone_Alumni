@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import JsonResponse
 from datetime import datetime
 from django.contrib import messages
@@ -275,10 +275,32 @@ def alumni_profile(request, alumni_id):
 
 
 def del_current_job(request, job_id):
-    job = Current_Job.objects.get(current_job_id=job_id)
-    job.delete()
-    return redirect('AlumniManagement:alumni')
-    
+    try:
+        job = Current_Job.objects.get(current_job_id=job_id)
+        alumni_id = job.alumni_id
+        job.delete()
+        messages.success(request, "Current Job Deleted")
+        return redirect(reverse('AlumniManagement:alumni_profile', args=(alumni_id, )))
+    except ValueError as e:
+        print(e)
+        pass
+    except DoesNotExist as e:
+        print(e)
+        pass
+
+def del_prev_job(request, job_id):
+    try:
+        job = Previous_Job.objects.get(previous_job_id=job_id)
+        alumni_id = job.alumni_id
+        job.delete()
+        messages.success(request, "Job Deleted")
+        return redirect(reverse('AlumniManagement:alumni_profile', args=(alumni_id, )))
+    except ValueError as e:
+        print(e)
+        pass
+    except DoesNotExist as e:
+        print(e)
+        pass
 
 def sample2(request):
     return render(request, 'AlumniManagement/sample2.html')

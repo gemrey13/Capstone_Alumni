@@ -276,7 +276,7 @@
                   <tbody class="divide-y divide-gray-100">
                     {% for prev_job in prev_jobs %}
                       <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><a href="#">Delete</a></td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><a href="{% url 'AlumniManagement:delete_prev_job' prev_job.previous_job_id %}">Delete</a></td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.previous_job_id}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.job_title}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{prev_job.field_type}}</td>
