@@ -118,7 +118,7 @@ def alumni(request):
                         barangay = Barangay.objects.get(id=barangay)
                         date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
                         graduation_date = datetime.strptime(graduation_date, "%Y-%m-%d").date().isoformat()
-                        
+
                         new_alumni = Alumni_Demographic_Profile(alumni_id=alumni_id, fname=fname, lname=lname, mi=mi, suffix=suffix, 
                                                                 course_id=course, sex=sex, religion=religion, 
                                                                 marital_status=marital_status, date_of_birth=date_of_birth, 
@@ -272,6 +272,12 @@ def alumni_profile(request, alumni_id):
     }
 
     return render(request, 'AlumniManagement/alumni_profile.html', context)
+
+
+def del_current_job(request, job_id):
+    job = Current_Job.objects.get(current_job_id=job_id)
+    job.delete()
+    return redirect('AlumniManagement:alumni')
     
 
 def sample2(request):

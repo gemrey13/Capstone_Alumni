@@ -241,7 +241,7 @@
                   <tbody class="divide-y divide-gray-100">
                     {% for current_job in current_jobs %}
                       <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
-                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><a href="#">Delete</a></td>
+                          <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><a href="{% url 'AlumniManagement:delete_currrent_job' current_job.current_job_id %}">End Job</a></td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.current_job_id}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.job_title}}</td>
                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{current_job.field_type}}</td>

@@ -8,7 +8,7 @@
     z-index: 100;
     position: fixed;
     right: 0;
-    width: 20%;
+    white-space: nowrap;
 }
 #base-alert{
   opacity: 0;

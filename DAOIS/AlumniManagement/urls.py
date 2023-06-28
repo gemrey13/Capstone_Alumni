@@ -13,4 +13,6 @@ urlpatterns = [
     path('get_provinces/', views.get_provinces, name='get-provinces'),
     path('get_cities/', views.get_cities, name='get-cities'),
     path('get_barangays/', views.get_barangays, name='get-barangays'),
+
+    path('delete_currrent_job/<str:job_id>/', views.del_current_job, name='delete_currrent_job'),
 ]
