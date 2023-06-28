@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-import datetime 
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -86,6 +86,8 @@ def alumni(request):
                     city = City.objects.get(id=city)
                     barangay = Barangay.objects.get(id=barangay)
                     date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
+                    graduation_date = datetime.strptime(graduation_date, "%Y-%m-%d").date().isoformat()
+
                     new_alumni = Alumni_Demographic_Profile(alumni_id=alumni_id, fname=fname, lname=lname, mi=mi, suffix=suffix, 
                                                             course_id=course, sex=sex, religion=religion, 
                                                             marital_status=marital_status, date_of_birth=date_of_birth, 
@@ -115,6 +117,8 @@ def alumni(request):
                         city = City.objects.get(id=city)
                         barangay = Barangay.objects.get(id=barangay)
                         date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
+                        graduation_date = datetime.strptime(graduation_date, "%Y-%m-%d").date().isoformat()
+                        
                         new_alumni = Alumni_Demographic_Profile(alumni_id=alumni_id, fname=fname, lname=lname, mi=mi, suffix=suffix, 
                                                                 course_id=course, sex=sex, religion=religion, 
                                                                 marital_status=marital_status, date_of_birth=date_of_birth, 
@@ -222,8 +226,8 @@ def alumni_profile(request, alumni_id):
         province = Province.objects.get(id=province)
         city = City.objects.get(id=city)
         barangay = Barangay.objects.get(id=barangay)
-        date_of_birth = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date().isoformat()
-        graduation_date = datetime.datetime.strptime(graduation_date, "%Y-%m-%d").date().isoformat()
+        date_of_birth = datetime.strptime(date_of_birth, "%Y-%m-%d").date().isoformat()
+        graduation_date = datetime.strptime(graduation_date, "%Y-%m-%d").date().isoformat()
 
         alumni.fname = fname
         alumni.lname = lname
