@@ -376,6 +376,7 @@
                 <td class="text-blue-500 whitespace-nowrap p-3 text-sm text-center">
                     {% if profile.alumni_id %}
                         <a href="{% url 'AlumniManagement:alumni_profile' alumni_id=profile.alumni_id %}" class="hover:underline">Update</a>
+                        <a href="{% url 'AlumniManagement:delete_alumni' profile.alumni_id %}" class="hover:underline">Delete</a>
                     {% else %}
                         <!-- Handle case where alumni_id is missing or empty -->
                         <!-- You can display an alternative message or handle it as needed -->

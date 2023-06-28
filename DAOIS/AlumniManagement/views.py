@@ -302,5 +302,20 @@ def del_prev_job(request, job_id):
         print(e)
         pass
 
+def del_alumni(request, alumni_id):
+    try:
+        alumni = Alumni_Demographic_Profile.objects.get(alumni_id=alumni_id)
+        alumni.delete()
+        messages.success(request, 'Alumni Deleted')
+        return redirect('AlumniManagement:alumni')
+    except Exception as e:
+        messages.error(request, 'An error occured: ', str(e))
+        print(e)
+        pass
+    except ValueError as e:
+        messages.error(request, 'An error occured: ', str(e))
+        print(e)
+        pass
+
 def sample2(request):
     return render(request, 'AlumniManagement/sample2.html')

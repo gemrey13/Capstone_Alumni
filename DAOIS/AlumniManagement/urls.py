@@ -15,5 +15,6 @@ urlpatterns = [
     path('get_barangays/', views.get_barangays, name='get-barangays'),
 
     path('delete_currrent_job/<str:job_id>/', views.del_current_job, name='delete_currrent_job'),
-    path('delete_prev_job/<str:job_id>/', views.del_prev_job, name='delete_prev_job')
+    path('delete_prev_job/<str:job_id>/', views.del_prev_job, name='delete_prev_job'),
+    path('delete_alumni/<str:alumni_id>/', views.del_alumni, name='delete_alumni'),
 ]
