@@ -17,10 +17,22 @@
 
 	{% if messages %}
 	    {% for message in messages %}
-	        <div onclick="exitAlertBase()" class="messages transition-opacity duration-500 bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert" id="base-alert">
-			  <p class="font-bold">Be Warned</p>
-			  <p>{{ message }}</p>
-			</div>
+	    	{% if message.tags == 'success' %}
+		        <div onclick="exitAlertBase()" class="messages transition-opacity duration-500 bg-orange-100 border-l-4 border-orange-500 text-green-700 p-4" role="alert" id="base-alert">
+				  <p class="font-bold">Success</p>
+				  <p>{{ message }}</p>
+				</div>
+			{% elif message.tags == 'error' %}
+				<div onclick="exitAlertBase()" class="messages transition-opacity duration-500 bg-orange-100 border-l-4 border-orange-500 text-red-700 p-4" role="alert" id="base-alert">
+				  <p class="font-bold">Error</p>
+				  <p>{{ message }}</p>
+				</div>
+			{% else %}
+				<div onclick="exitAlertBase()" class="messages transition-opacity duration-500 bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert" id="base-alert">
+				  <p class="font-bold">Be Warned</p>
+				  <p>{{ message }}</p>
+				</div>
+	    	{% endif %}
 	    {% endfor %}
 	{% endif %}
 
